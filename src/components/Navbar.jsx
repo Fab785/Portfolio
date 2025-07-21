@@ -43,7 +43,7 @@ export default function Navbar() {
               >
                 <div
                   className="transition-transform duration-300 ease-in-out will-change-transform"
-                  style={{ height: "48px" }} // double height for 2 stacked texts
+                  style={{ height: "48px" }}
                 >
                   {/* White text */}
                   <span
@@ -62,7 +62,6 @@ export default function Navbar() {
                   </span>
                 </div>
 
-                {/* Hover transform on parent div */}
                 <style jsx>{`
                   a:hover > div {
                     transform: translateY(-24px);
@@ -79,13 +78,18 @@ export default function Navbar() {
         {!scrolled ? (
           <a
             href="#contact"
-            className="flex items-center justify-center bg-white text-black text-sm rounded-full transition hover:bg-gray-200"
+            className="relative group flex items-center justify-center rounded-full overflow-hidden text-base"
             style={{
               width: "117.93px",
               height: "40px",
+              backgroundColor: "#ffffff",
             }}
           >
-            Contact
+            {/* Background fill effect */}
+            <span className="absolute inset-0 z-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-in-out bg-lime-400"></span>
+
+            {/* Contact text stays on top */}
+            <span className="relative z-10 text-black">Contact</span>
           </a>
         ) : (
           <div className="flex items-center gap-2 text-white text-sm mr-3 ml-auto">
@@ -100,6 +104,8 @@ export default function Navbar() {
     </div>
   );
 }
+
+
 
 
 
