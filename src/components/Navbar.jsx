@@ -29,36 +29,51 @@ export default function Navbar() {
 
         {/* Center: Buttons */}
         {!scrolled ? (
-  <div className="flex items-center gap-[16px] ml-[48px] mr-[24px]">
-    <a
-      href="#home"
-      className="text-white text-base font-light hover:underline"
-      style={{ width: "44.56px", height: "24px" }}
-    >
-      Home
-    </a>
-    <a
-      href="#about"
-      className="text-white text-base font-light hover:underline"
-      style={{ width: "44.09px", height: "24px" }}
-    >
-      About
-    </a>
-    <a
-      href="#projects"
-      className="text-white text-base font-light hover:underline"
-      style={{ width: "59.86px", height: "24px" }}
-    >
-      Projects
-    </a>
-  </div>
-) : (
-  <div className="ml-auto mr-auto"></div>
-)}
+          <div className="flex items-center gap-[16px] ml-[48px] mr-[24px]">
+            {[
+              { label: "Home", width: 44.56 },
+              { label: "About", width: 44.09 },
+              { label: "Projects", width: 59.86 },
+            ].map(({ label, width }) => (
+              <a
+                key={label}
+                href={`#${label.toLowerCase()}`}
+                className="relative cursor-pointer overflow-hidden"
+                style={{ width: `${width}px`, height: "24px" }}
+              >
+                <div
+                  className="transition-transform duration-300 ease-in-out will-change-transform"
+                  style={{ height: "48px" }} // double height for 2 stacked texts
+                >
+                  {/* White text */}
+                  <span
+                    className="block text-white text-base font-light leading-[24px] h-6"
+                    style={{ height: "24px" }}
+                  >
+                    {label}
+                  </span>
 
+                  {/* Lime text */}
+                  <span
+                    className="block text-[#A3E635] text-base font-light leading-[24px] h-6"
+                    style={{ height: "24px" }}
+                  >
+                    {label}
+                  </span>
+                </div>
 
-
-
+                {/* Hover transform on parent div */}
+                <style jsx>{`
+                  a:hover > div {
+                    transform: translateY(-24px);
+                  }
+                `}</style>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <div className="ml-auto mr-auto"></div>
+        )}
 
         {/* Right: Contact OR Available */}
         {!scrolled ? (
@@ -85,6 +100,10 @@ export default function Navbar() {
     </div>
   );
 }
+
+
+
+
 
 
 
