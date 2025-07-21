@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen w-full text-white overflow-x-hidden">
+      <Navbar />
+      <Hero />
+      <div className="h-[200vh] bg-neutral-900"></div> {/* Ensure scroll space */}
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
