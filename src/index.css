@@ -30,4 +30,3 @@ body::before {
   filter: grayscale(100%) contrast(120%);
   pointer-events: none;
 }
-
