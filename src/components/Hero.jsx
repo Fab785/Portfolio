@@ -42,7 +42,7 @@ export default function Hero() {
             <img
               src={profileImg}
               alt="Profile"
-              className="rounded-[20px] object-cover w-[260px] h-[380px]"
+              className="rounded-[24px] object-cover object-[65%_center] w-[300px] h-[400px] md:w-[340px] md:h-[500px]"
             />
           </motion.div>
 
