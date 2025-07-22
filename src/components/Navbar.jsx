@@ -48,7 +48,7 @@ export default function Navbar() {
               <span className="block text-white text-base font-light leading-[24px] h-6">
                 {label}
               </span>
-              <span className="block text-[#A3E635] text-base font-light leading-[24px] h-6">
+              <span className="block text-[#B9F43F] text-base font-light leading-[24px] h-6">
                 {label}
               </span>
             </div>
