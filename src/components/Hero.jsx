@@ -27,12 +27,12 @@ export default function Hero() {
       {/* Your normal Hero content */}
       <section className="relative h-screen text-white flex items-center justify-center px-8 overflow-hidden">
         <div className="flex items-center gap-12 z-10">
-          <div className="flex flex-col items-end text-right">
-            <h1 className="text-md font-light uppercase tracking-widest mb-2">
+          <div className="flex flex-col items-start text-right leading-none">
+            <h1 className="text-lg font-light uppercase tracking-widest -mb-2">
               Fabrizio Terribile
             </h1>
-            <h2 className="text-[64px] font-extrabold leading-none">FRONTEND</h2>
-          </div>
+            <h2 className="text-[80px] font-extrabold">FRONTEND</h2>
+          </div> 
 
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -46,8 +46,11 @@ export default function Hero() {
             />
           </motion.div>
 
-          <div className="flex flex-col items-start text-left">
-            <h2 className="text-[64px] font-extrabold leading-none">DEVELOPER</h2>
+          <div className="flex flex-col items-end text-right">
+            <h2 className="text-[80px] font-extrabold leading-none">DEVELOPER</h2>
+            <p className="text-base mt-2 text-neutral-300 max-w-[250px]">
+              I'm a US-based front-end developer
+            </p>
           </div>
         </div>
 
