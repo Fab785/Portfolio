@@ -13,14 +13,13 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on scroll for better UX
   useEffect(() => {
     if (scrolled) setMenuOpen(false);
   }, [scrolled]);
 
   return (
     <>
-      {/* Large Screen Navbar (unchanged) */}
+      {/* Large Screen Navbar */}
       <div
         className={`hidden sm:flex fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
           scrolled ? "w-[260px]" : "w-[507.95px]"
@@ -28,14 +27,12 @@ export default function Navbar() {
         style={{ height: "56px" }}
       >
         <div className="flex items-center justify-between w-full h-full px-2 bg-black/90 backdrop-blur-md rounded-full border border-neutral-800 shadow-md">
-          {/* Profile Image */}
           <img
             src={profileImg}
             alt="Profile"
             className="w-10 h-10 rounded-full object-cover"
           />
 
-          {/* Center buttons (only visible when not scrolled) */}
           {!scrolled ? (
             <div className="flex items-center gap-[16px] ml-[48px] mr-[24px]">
               {[
@@ -73,7 +70,6 @@ export default function Navbar() {
             <div className="ml-auto mr-auto" />
           )}
 
-          {/* Contact or Available */}
           {!scrolled ? (
             <a
               href="#contact"
@@ -100,69 +96,96 @@ export default function Navbar() {
       </div>
 
       {/* Small Screen Navbar */}
-      <nav className="sm:hidden fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[260px] scale-90">
-        <div className="flex items-center justify-between w-full h-14 px-4 bg-black/90 backdrop-blur-md rounded-full border border-neutral-800 shadow-md">
-          {/* Profile Image */}
-          <img
-            src={profileImg}
-            alt="Profile"
-            className="w-10 h-10 rounded-full object-cover"
-          />
+      <nav className="sm:hidden fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[260px] transition-all duration-500">
+        <div
+          className={`overflow-hidden border border-neutral-800 shadow-md transition-[padding,max-height,background-color,backdrop-filter] duration-500 ease-in-out ${
+            menuOpen
+              ? "bg-black/50 backdrop-blur-xl py-6 max-h-[480px] rounded-3xl"
+              : "bg-black/90 backdrop-blur-md h-14 rounded-full"
+          }`}
+        >
+        
+          {/* Top Row */}
+          <div className="flex items-center justify-between px-4 h-14">
+            <div className="flex items-center">
+              <img
+                src={profileImg}
+                alt="Profile"
+                className="w-10 h-10 rounded-full object-cover"
+              />
+            </div>
 
-          {/* Available for work with pulsing dot, smaller text on mobile */}
-          <div className="flex items-center gap-2 text-white text-sm font-medium select-none sm:text-base">
-            <span>Available for work</span>
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
-            </span>
+            {!menuOpen && (
+              <div className="flex items-center gap-2 text-white text-sm font-medium select-none">
+                <span>Available for work</span>
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
+                </span>
+              </div>
+            )}
+
+            {/* Toggle Button */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+              className="relative w-10 h-10 rounded-full bg-lime-400 flex items-center justify-center"
+            >
+              <div className="relative w-6 h-6">
+                <span
+                  className={`absolute left-0 top-1/2 w-6 h-0.5 bg-black transform transition-all duration-300 ${
+                    menuOpen ? "rotate-45 -translate-y-1/2" : "-translate-y-2"
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 top-1/2 w-6 h-0.5 bg-black transform transition-all duration-300 ${
+                    menuOpen ? "-rotate-45 -translate-y-1/2" : "translate-y-2"
+                  }`}
+                />
+              </div>
+            </button>
           </div>
 
-          {/* Lime ball toggle button with 2 lines */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-            aria-expanded={menuOpen}
-            className="relative w-10 h-10 rounded-full bg-lime-400 flex flex-col justify-center items-center cursor-pointer focus:outline-none"
+          {/* Expanding menu content */}
+          <div
+            className={`flex flex-col items-center space-y-5 mt-6 transition-opacity duration-500 ${
+              menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
           >
-            {/* Two lines inside the lime ball */}
-            <span className="block w-6 h-0.5 bg-black rounded mb-1.5" />
-            <span className="block w-6 h-0.5 bg-black rounded" />
-          </button>
-        </div>
-
-        {/* Mobile vertical menu */}
-        {menuOpen && (
-          <div className="mt-2 bg-black/90 backdrop-blur-md rounded-lg border border-neutral-800 shadow-md max-w-[260px] mx-auto p-4 space-y-4 text-center z-40">
             {[
-              { label: "HOME", href: "#home" },
-              { label: "ABOUT", href: "#about" },
-              { label: "PROJECT", href: "#projects" },
+              { label: "Home", href: "#home" },
+              { label: "About", href: "#about" },
+              { label: "Projects", href: "#projects" },
+              { label: "Blogs", href: "#blogs" },
             ].map(({ label, href }) => (
               <a
                 key={label}
                 href={href}
                 onClick={() => setMenuOpen(false)}
-                className="block text-white font-semibold text-lg hover:text-lime-400 transition"
+                className="text-white font-normal text-lg hover:text-lime-400 transition"
               >
                 {label}
               </a>
             ))}
 
-            {/* Contact with lime pill background */}
             <a
               href="#contact"
               onClick={() => setMenuOpen(false)}
               className="inline-block bg-lime-400 text-black font-semibold rounded-full px-6 py-2 text-lg hover:bg-lime-500 transition"
             >
-              CONTACT
+              Contact
             </a>
           </div>
-        )}
+        </div>
       </nav>
     </>
   );
 }
+
+
+
+
 
 
 
