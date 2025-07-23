@@ -1,32 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { motion, useMotionValue } from "framer-motion";
+import React, { useEffect, useState, useRef } from "react";
+import { motion, useMotionValue, AnimatePresence } from "framer-motion";
 import profileImg from "../assets/Fab.jpg";
 
 export default function Hero() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const [showHi, setShowHi] = useState(true);
 
+  const [showHi, setShowHi] = useState(true);
+  const isFirstHi = useRef(true);
+
+  // Mouse follower
   useEffect(() => {
     const handleMouseMove = (e) => {
       mouseX.set(e.clientX + 20);
       mouseY.set(e.clientY + 20);
     };
-
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
+  // Timing: 2s Hi visible, then immediate switch to 👋 with animation overlap
   useEffect(() => {
-    const interval = setInterval(() => {
-      setShowHi((prev) => !prev);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
+    const delay = showHi ? 2000 : 4000; // Hi shows 2s, Hand shows 4s
+    const timeout = setTimeout(() => {
+      setShowHi(!showHi);
+      if (showHi) isFirstHi.current = false;
+    }, delay);
+
+    return () => clearTimeout(timeout);
+  }, [showHi]);
 
   return (
     <>
-      {/* Lime cursor dot */}
+      {/* Cursor */}
       <motion.div
         className="fixed rounded-full bg-lime-400 pointer-events-none z-50"
         style={{ x: mouseX, y: mouseY, width: 16, height: 16 }}
@@ -44,7 +50,7 @@ export default function Hero() {
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold">FRONTEND</h2>
           </div>
 
-          {/* Image with Hi Bubble */}
+          {/* Image + Bubble */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -57,38 +63,43 @@ export default function Hero() {
               className="rounded-[24px] object-cover object-[65%_center] w-[220px] h-[300px] sm:w-[260px] sm:h-[360px] md:w-[300px] md:h-[400px] lg:w-[340px] lg:h-[460px]"
             />
 
-            {/* "Hi" or 👋 Bubble */}
+            {/* Bubble with chained animations */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1, duration: 0.6, ease: "easeOut" }}
-              className="absolute -bottom-8 -left-8 bg-lime-400 text-black w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold shadow-lg select-none"
+              className="absolute -bottom-8 -left-8 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-lime-400 overflow-hidden shadow-lg"
               style={{ backgroundColor: "#A3E635" }}
             >
-              {showHi ? (
-                <motion.span
-                  key="hi"
-                  initial={{ y: 0, opacity: 1 }}
-                  animate={{ y: -20, opacity: 0 }}
-                  transition={{ duration: 1, ease: "easeInOut" }}
-                >
-                  Hi
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="wave"
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 1, ease: "easeInOut" }}
-                >
-                  <motion.span
-                    animate={{ rotate: [0, 15, -15, 15, 0] }}
-                    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                  >
-                    👋
-                  </motion.span>
-                </motion.span>
-              )}
+              <div className="relative w-full h-full flex items-center justify-center">
+                <AnimatePresence mode="popLayout">
+                  {showHi ? (
+                    <motion.div
+                      key="hi"
+                      className="absolute inset-0 flex items-center justify-center text-xl sm:text-2xl font-bold text-black"
+                      initial={{ y: isFirstHi.current ? "100%" : "-100%" }}
+                      animate={{ y: "0%" }}
+                      exit={{ y: "-100%" }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                    >
+                      Hi
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="wave"
+                      className="absolute inset-0 flex items-center justify-center text-xl sm:text-2xl font-bold text-black"
+                      initial={{ y: "100%" }}
+                      animate={{ y: "0%" }}
+                      exit={{ y: "100%" }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                    >
+                      <motion.span
+                        animate={{ rotate: [0, 15, -15, 15, 0] }}
+                        transition={{ repeat: Infinity, duration: 1 }}
+                      >
+                        👋
+                      </motion.span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -106,6 +117,11 @@ export default function Hero() {
     </>
   );
 }
+
+
+
+
+
 
 
 
