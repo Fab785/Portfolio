@@ -33,5 +33,28 @@ body::-webkit-scrollbar {
   width: 0px;
   background: transparent;
 }
+/* Responsive styling for tablets and phones */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* slightly larger text for better mobile readability */
+    padding: 0 1rem;
+  }
 
+  .navbar {
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
 
+  .hero-image {
+    width: 90vw !important;
+    height: auto !important;
+    margin: 0 auto;
+  }
+
+  .lime-circle {
+    bottom: 1rem !important;
+    left: 1rem !important;
+    width: 72px !important;
+    height: 72px !important;
+  }
+}
