@@ -104,7 +104,7 @@ export default function Navbar() {
               <span className="relative z-10 text-black">Contact</span>
             </a>
           ) : (
-            <div className="flex items-center gap-2 text-white text-base mr-3 ml-auto">
+            <div className="flex items-center gap-2 text-white text-base mr-3 ml-8">
               <span>Available for work</span>
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
@@ -135,7 +135,7 @@ export default function Navbar() {
             </div>
 
             {!menuOpen && (
-              <div className="flex items-center gap-2 text-white text-base font-medium select-none">
+              <div className="flex items-center gap-2 text-white text-sm font-medium select-none">
                 <span>Available for work</span>
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
@@ -201,6 +201,7 @@ export default function Navbar() {
     </>
   );
 }
+
 
 
 

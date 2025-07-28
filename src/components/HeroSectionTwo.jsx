@@ -16,20 +16,19 @@ const HeroSectionTwo = () => {
           </p>
 
           <ul className="space-y-6 text-lg md:text-xl tracking-wide font-medium">
-            {["UI/UX DESIGN", "GRAPHIC DESIGN", "WEB DESIGN", "BRANDING"].map(
-              (item, index) => (
-                <li
-                  key={index}
-                  className="flex justify-between items-center border-b border-gray-600 pb-3 group"
-                >
-                  <span>{index + 1}. {item}</span>
-                  <span className="transform transition-transform duration-300 group-hover:rotate-180">
-                    ↑
-                  </span>
-                </li>
-              )
-            )}
-          </ul>
+  {["GRAPHIC DESIGN", "WEB DESIGN"].map((item, index) => (
+    <li
+      key={index}
+      className="flex justify-between items-center border-b border-gray-600 pb-3 group hover:text-lime-400 transition-colors duration-300"
+    >
+      <span>{index + 1}. {item}</span>
+      <span className="transform transition-transform duration-300 group-hover:rotate-180">
+        ↑
+      </span>
+    </li>
+  ))}
+</ul>
+
         </div>
 
         {/* RIGHT IMAGE SIDE */}
