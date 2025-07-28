@@ -33,6 +33,19 @@ body::-webkit-scrollbar {
   width: 0px;
   background: transparent;
 }
+
+.perspective {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+
 /* Responsive styling for tablets and phones */
 @media (max-width: 768px) {
   body {
