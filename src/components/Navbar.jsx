@@ -1,15 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import profileImg from "../assets/Fab.jpg";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const prevScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY === 0) {
+        // At the very top - show big navbar
+        setScrolled(false);
+      } else if (currentScrollY > prevScrollY.current) {
+        // Scrolling down - shrink navbar
+        setScrolled(true);
+      } else if (currentScrollY < prevScrollY.current) {
+        // Scrolling up - grow navbar
+        setScrolled(false);
+      }
+
+      prevScrollY.current = currentScrollY;
     };
+
     window.addEventListener("scroll", handleScroll);
+
+    // Initialize on mount in case page loads scrolled
+    prevScrollY.current = window.scrollY;
+    setScrolled(window.scrollY > 0);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -104,7 +124,6 @@ export default function Navbar() {
               : "bg-black/90 backdrop-blur-md h-14 rounded-full"
           }`}
         >
-        
           {/* Top Row */}
           <div className="flex items-center justify-between px-4 h-14">
             <div className="flex items-center">
@@ -116,7 +135,7 @@ export default function Navbar() {
             </div>
 
             {!menuOpen && (
-              <div className="flex items-center gap-2 text-white text-sm font-medium select-none">
+              <div className="flex items-center gap-2 text-white text-base font-medium select-none">
                 <span>Available for work</span>
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
@@ -182,6 +201,8 @@ export default function Navbar() {
     </>
   );
 }
+
+
 
 
 
