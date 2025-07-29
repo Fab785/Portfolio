@@ -2,9 +2,21 @@ import React, { useState } from "react";
 import { CheckCircle } from "lucide-react";
 import computerImg from "../assets/computer.jpg";
 
-const HeroSectionTwo = ({ setHoveredImage, graphicImg, webImg }) => {
+const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) => {
   const [isWebDesignOpen, setIsWebDesignOpen] = useState(false);
   const [isUIDesignOpen, setIsUIDesignOpen] = useState(false);
+
+  // helper to handle mouse enter with morph on
+  const handleMouseEnter = (img) => {
+    setHoveredImage(img);
+    setIsMorphing(true);
+  };
+
+  // helper to handle mouse leave with morph off
+  const handleMouseLeave = () => {
+    setHoveredImage(null);
+    setIsMorphing(false);
+  };
 
   return (
     <section className="w-full min-h-screen text-white flex flex-col justify-center items-center px-6 md:px-20 py-20">
@@ -23,8 +35,8 @@ const HeroSectionTwo = ({ setHoveredImage, graphicImg, webImg }) => {
             {/* UI DESIGN */}
             <li
               onClick={() => setIsUIDesignOpen((prev) => !prev)}
-              onMouseEnter={() => setHoveredImage(graphicImg)}
-              onMouseLeave={() => setHoveredImage(null)}
+              onMouseEnter={() => handleMouseEnter(graphicImg)}
+              onMouseLeave={handleMouseLeave}
               className="cursor-pointer flex flex-col border-b border-gray-600 pb-3 group hover:text-lime-400 transition-colors duration-300"
             >
               <div className="flex justify-between items-center">
@@ -57,8 +69,8 @@ const HeroSectionTwo = ({ setHoveredImage, graphicImg, webImg }) => {
             {/* WEB DESIGN */}
             <li
               onClick={() => setIsWebDesignOpen((prev) => !prev)}
-              onMouseEnter={() => setHoveredImage(webImg)}
-              onMouseLeave={() => setHoveredImage(null)}
+              onMouseEnter={() => handleMouseEnter(webImg)}
+              onMouseLeave={handleMouseLeave}
               className="cursor-pointer flex flex-col border-b border-gray-600 pb-3 group hover:text-lime-400 transition-colors duration-300"
             >
               <div className="flex justify-between items-center">
@@ -107,6 +119,7 @@ const HeroSectionTwo = ({ setHoveredImage, graphicImg, webImg }) => {
 };
 
 export default HeroSectionTwo;
+
 
 
 

@@ -8,13 +8,15 @@ import webImg from "./assets/webdesign.jpg";
 
 function App() {
   const [hoveredImage, setHoveredImage] = useState(null);
+  const [isMorphing, setIsMorphing] = useState(false);
 
   return (
     <div className="min-h-screen w-full text-white overflow-x-hidden">
       <Navbar />
-      <Hero hoveredImage={hoveredImage} />
+      <Hero hoveredImage={hoveredImage} isMorphing={isMorphing} />
       <HeroSectionTwo
         setHoveredImage={setHoveredImage}
+        setIsMorphing={setIsMorphing}
         graphicImg={graphicImg}
         webImg={webImg}
       />
@@ -24,6 +26,7 @@ function App() {
 }
 
 export default App;
+
 
 
 
