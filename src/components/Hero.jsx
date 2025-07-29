@@ -19,24 +19,24 @@ export default function Hero({ hoveredImage }) {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
-  // Timing: 2s Hi visible, then immediate switch to 👋 with animation overlap
+  // Toggle Hi and Hand with precise timing
   useEffect(() => {
-    const delay = showHi ? 2000 : 4000; // Hi shows 2s, Hand shows 4s
+    const delay = showHi ? 2000 : 4000;
     const timeout = setTimeout(() => {
       setShowHi(!showHi);
       if (showHi) isFirstHi.current = false;
     }, delay);
-
     return () => clearTimeout(timeout);
   }, [showHi]);
 
   return (
     <>
-      {/* Custom Cursor */}
+      {/* Cursor or Lime Follower */}
       {hoveredImage ? (
         <motion.img
           src={hoveredImage}
-          alt="cursor"
+          alt="Cursor"
+          className="rounded-xl"
           style={{
             position: "fixed",
             top: mouseY,
@@ -76,7 +76,7 @@ export default function Hero({ hoveredImage }) {
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold">FRONTEND</h2>
           </div>
 
-          {/* Image + Bubble */}
+          {/* Image + Hi Bubble */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -89,43 +89,41 @@ export default function Hero({ hoveredImage }) {
               className="rounded-[24px] object-cover object-[65%_center] w-[220px] h-[300px] sm:w-[260px] sm:h-[360px] md:w-[300px] md:h-[400px] lg:w-[340px] lg:h-[460px]"
             />
 
-            {/* Bubble with chained animations */}
+            {/* Bubble */}
             <motion.div
-              className="absolute -bottom-8 -left-8 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-lime-400 overflow-hidden shadow-lg"
+              className="absolute -bottom-8 -left-8 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-lime-400 shadow-lg flex items-center justify-center overflow-hidden"
               style={{ backgroundColor: "#A3E635" }}
             >
-              <div className="relative w-full h-full flex items-center justify-center">
-                <AnimatePresence mode="popLayout">
-                  {showHi ? (
-                    <motion.div
-                      key="hi"
-                      className="absolute inset-0 flex items-center justify-center text-xl sm:text-2xl font-bold text-black"
-                      initial={{ y: isFirstHi.current ? "100%" : "-100%" }}
-                      animate={{ y: "0%" }}
-                      exit={{ y: "-100%" }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
+              <AnimatePresence mode="wait">
+                {showHi ? (
+                  <motion.div
+                    key="hi"
+                    className="text-xl sm:text-2xl font-bold text-black absolute"
+                    initial={{ y: isFirstHi.current ? "100%" : "-100%" }}
+                    animate={{ y: "0%" }}
+                    exit={{ y: "-100%" }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  >
+                    Hi
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="hand"
+                    className="text-xl sm:text-2xl font-bold text-black absolute"
+                    initial={{ y: "100%" }}
+                    animate={{ y: "0%" }}
+                    exit={{ y: "100%" }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  >
+                    <motion.span
+                      animate={{ rotate: [0, 15, -15, 15, 0] }}
+                      transition={{ repeat: Infinity, duration: 1 }}
                     >
-                      Hi
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="wave"
-                      className="absolute inset-0 flex items-center justify-center text-xl sm:text-2xl font-bold text-black"
-                      initial={{ y: "100%" }}
-                      animate={{ y: "0%" }}
-                      exit={{ y: "100%" }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                    >
-                      <motion.span
-                        animate={{ rotate: [0, 15, -15, 15, 0] }}
-                        transition={{ repeat: Infinity, duration: 1 }}
-                      >
-                        👋
-                      </motion.span>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                      👋
+                    </motion.span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           </motion.div>
 
@@ -143,6 +141,7 @@ export default function Hero({ hoveredImage }) {
     </>
   );
 }
+
 
 
 
