@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, AnimatePresence } from "framer-motion";
 import profileImg from "../assets/Fab.jpg";
 
-export default function Hero() {
+export default function Hero({ hoveredImage }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -32,11 +32,37 @@ export default function Hero() {
 
   return (
     <>
-      {/* Cursor */}
-      <motion.div
-        className="fixed rounded-full bg-lime-400 pointer-events-none z-50"
-        style={{ x: mouseX, y: mouseY, width: 16, height: 16 }}
-      />
+      {/* Custom Cursor */}
+      {hoveredImage ? (
+        <motion.img
+          src={hoveredImage}
+          alt="cursor"
+          style={{
+            position: "fixed",
+            top: mouseY,
+            left: mouseX,
+            width: 120,
+            height: 60,
+            pointerEvents: "none",
+            userSelect: "none",
+            transform: "translate(-50%, -50%)",
+            zIndex: 10000,
+          }}
+          draggable={false}
+        />
+      ) : (
+        <motion.div
+          className="fixed rounded-full bg-lime-400 pointer-events-none z-50"
+          style={{
+            x: mouseX,
+            y: mouseY,
+            width: 16,
+            height: 16,
+            translateX: "-50%",
+            translateY: "-50%",
+          }}
+        />
+      )}
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 py-12 text-white overflow-hidden">
@@ -117,6 +143,7 @@ export default function Hero() {
     </>
   );
 }
+
 
 
 

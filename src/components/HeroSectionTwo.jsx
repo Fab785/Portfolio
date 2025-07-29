@@ -108,3 +108,6 @@ const HeroSectionTwo = ({ setHoveredImage, graphicImg, webImg }) => {
 
 export default HeroSectionTwo;
 
+
+
+
