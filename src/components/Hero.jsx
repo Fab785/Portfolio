@@ -43,7 +43,7 @@ export default function Hero({ hoveredImage, isMorphing }) {
         style={{
           x: mouseX,
           y: mouseY,
-          translateX: "-50%",
+          translateX: "0%",
           translateY: "-50%",
           backgroundColor:
             isMorphing && hoveredImage ? "transparent" : "#A3E635",
