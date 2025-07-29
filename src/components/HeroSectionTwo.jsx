@@ -6,16 +6,38 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
   const [isWebDesignOpen, setIsWebDesignOpen] = useState(false);
   const [isUIDesignOpen, setIsUIDesignOpen] = useState(false);
 
-  // helper to handle mouse enter with morph on
-  const handleMouseEnter = (img) => {
+  // Track which main line is currently hovered to re-trigger morph on re-hover
+  const [hoveredMainLine, setHoveredMainLine] = useState(null);
+
+  const handleMouseEnterMain = (img, lineKey) => {
     setHoveredImage(img);
     setIsMorphing(true);
+    setHoveredMainLine(lineKey);
   };
 
-  // helper to handle mouse leave with morph off
-  const handleMouseLeave = () => {
+  const handleMouseLeaveMain = () => {
+    setHoveredMainLine(null);
+    // We don’t immediately turn off morphing here, submenu might be hovered
+    // Morph off happens on submenu hover out
+  };
+
+  const handleMouseEnterSubmenu = () => {
     setHoveredImage(null);
     setIsMorphing(false);
+  };
+
+  const handleMouseLeaveSubmenu = () => {
+    // When leaving submenu, if main line is still hovered, morph back on
+    if (hoveredMainLine === "ui") {
+      setHoveredImage(graphicImg);
+      setIsMorphing(true);
+    } else if (hoveredMainLine === "web") {
+      setHoveredImage(webImg);
+      setIsMorphing(true);
+    } else {
+      setHoveredImage(null);
+      setIsMorphing(false);
+    }
   };
 
   return (
@@ -35,8 +57,8 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
             {/* UI DESIGN */}
             <li
               onClick={() => setIsUIDesignOpen((prev) => !prev)}
-              onMouseEnter={() => handleMouseEnter(graphicImg)}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={() => handleMouseEnterMain(graphicImg, "ui")}
+              onMouseLeave={handleMouseLeaveMain}
               className="cursor-pointer flex flex-col border-b border-gray-600 pb-3 group hover:text-lime-400 transition-colors duration-300"
             >
               <div className="flex justify-between items-center">
@@ -51,7 +73,11 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
               </div>
 
               {isUIDesignOpen && (
-                <ul className="mt-4 space-y-3 text-base text-gray-300 pl-4">
+                <ul
+                  onMouseEnter={handleMouseEnterSubmenu}
+                  onMouseLeave={handleMouseLeaveSubmenu}
+                  className="mt-4 space-y-3 text-base text-gray-300 pl-4"
+                >
                   {[
                     "User Interface design for web and mobile apps",
                     "Usability testing and user feedback analysis",
@@ -69,8 +95,8 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
             {/* WEB DESIGN */}
             <li
               onClick={() => setIsWebDesignOpen((prev) => !prev)}
-              onMouseEnter={() => handleMouseEnter(webImg)}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={() => handleMouseEnterMain(webImg, "web")}
+              onMouseLeave={handleMouseLeaveMain}
               className="cursor-pointer flex flex-col border-b border-gray-600 pb-3 group hover:text-lime-400 transition-colors duration-300"
             >
               <div className="flex justify-between items-center">
@@ -85,7 +111,11 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
               </div>
 
               {isWebDesignOpen && (
-                <ul className="mt-4 space-y-3 text-base text-gray-300 pl-4">
+                <ul
+                  onMouseEnter={handleMouseEnterSubmenu}
+                  onMouseLeave={handleMouseLeaveSubmenu}
+                  className="mt-4 space-y-3 text-base text-gray-300 pl-4"
+                >
                   {[
                     "Responsive website design",
                     "Landing page design and optimization",
@@ -119,6 +149,7 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
 };
 
 export default HeroSectionTwo;
+
 
 
 

@@ -54,8 +54,8 @@ export default function Hero({ hoveredImage, isMorphing }) {
           backgroundRepeat: "no-repeat",
         }}
         animate={{
-          width: isMorphing ? 120 : 16,
-          height: isMorphing ? 60 : 16,
+          width: isMorphing ? 160 : 16,
+          height: isMorphing ? 100 : 16,
           borderRadius: isMorphing ? "24px" : "9999px",
           transition: { duration: transitionDuration, ease: "easeInOut" },
         }}
