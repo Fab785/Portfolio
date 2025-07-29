@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { CheckCircle } from "lucide-react";
 import computerImg from "../assets/computer.jpg";
 
-const HeroSectionTwo = () => {
+const HeroSectionTwo = ({ setHoveredImage, graphicImg, webImg }) => {
+  const [isWebDesignOpen, setIsWebDesignOpen] = useState(false);
+  const [isUIDesignOpen, setIsUIDesignOpen] = useState(false);
+
   return (
     <section className="w-full min-h-screen text-white flex flex-col justify-center items-center px-6 md:px-20 py-20">
       <div className="max-w-7xl w-full flex flex-col md:flex-row justify-between items-center gap-16">
-        {/* LEFT TEXT SIDE */}
+        {/* LEFT */}
         <div className="flex-1">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             WHAT I CAN DO FOR YOU
@@ -16,22 +20,78 @@ const HeroSectionTwo = () => {
           </p>
 
           <ul className="space-y-6 text-lg md:text-xl tracking-wide font-medium">
-  {["GRAPHIC DESIGN", "WEB DESIGN"].map((item, index) => (
-    <li
-      key={index}
-      className="flex justify-between items-center border-b border-gray-600 pb-3 group hover:text-lime-400 transition-colors duration-300"
-    >
-      <span>{index + 1}. {item}</span>
-      <span className="transform transition-transform duration-300 group-hover:rotate-180">
-        ↑
-      </span>
-    </li>
-  ))}
-</ul>
+            {/* UI DESIGN */}
+            <li
+              onClick={() => setIsUIDesignOpen((prev) => !prev)}
+              onMouseEnter={() => setHoveredImage(graphicImg)}
+              onMouseLeave={() => setHoveredImage(null)}
+              className="cursor-pointer flex flex-col border-b border-gray-600 pb-3 group hover:text-lime-400 transition-colors duration-300"
+            >
+              <div className="flex justify-between items-center">
+                <span>1. UI DESIGN</span>
+                <span
+                  className={`transform transition-transform duration-300 ${
+                    isUIDesignOpen ? "rotate-180 text-lime-400" : ""
+                  }`}
+                >
+                  ↑
+                </span>
+              </div>
 
+              {isUIDesignOpen && (
+                <ul className="mt-4 space-y-3 text-base text-gray-300 pl-4">
+                  {[
+                    "User Interface design for web and mobile apps",
+                    "Usability testing and user feedback analysis",
+                    "Interaction design and micro-animations",
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <CheckCircle className="text-lime-400 w-5 h-5 mt-1" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+
+            {/* WEB DESIGN */}
+            <li
+              onClick={() => setIsWebDesignOpen((prev) => !prev)}
+              onMouseEnter={() => setHoveredImage(webImg)}
+              onMouseLeave={() => setHoveredImage(null)}
+              className="cursor-pointer flex flex-col border-b border-gray-600 pb-3 group hover:text-lime-400 transition-colors duration-300"
+            >
+              <div className="flex justify-between items-center">
+                <span>2. WEB DESIGN</span>
+                <span
+                  className={`transform transition-transform duration-300 ${
+                    isWebDesignOpen ? "rotate-180 text-lime-400" : ""
+                  }`}
+                >
+                  ↑
+                </span>
+              </div>
+
+              {isWebDesignOpen && (
+                <ul className="mt-4 space-y-3 text-base text-gray-300 pl-4">
+                  {[
+                    "Responsive website design",
+                    "Landing page design and optimization",
+                    "Webflow development and customization",
+                    "Website maintenance and updates",
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <CheckCircle className="text-lime-400 w-5 h-5 mt-1" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          </ul>
         </div>
 
-        {/* RIGHT IMAGE SIDE */}
+        {/* RIGHT */}
         <div className="flex-1 flex justify-center items-center">
           <div className="w-[300px] md:w-[400px] aspect-[3/4] rounded-2xl transform rotate-6 shadow-xl overflow-hidden">
             <img
@@ -47,3 +107,4 @@ const HeroSectionTwo = () => {
 };
 
 export default HeroSectionTwo;
+
