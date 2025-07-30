@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import HeroSectionTwo from "./components/HeroSectionTwo";
+import HeroSectionThree from "./components/HeroSectionThree";
 
 import graphicImg from "./assets/uidesign.jpg";
 import webImg from "./assets/webdesign.jpg";
@@ -20,6 +21,7 @@ function App() {
         graphicImg={graphicImg}
         webImg={webImg}
       />
+      <HeroSectionThree />
       <div className="h-[200vh] bg-neutral-900"></div>
     </div>
   );
