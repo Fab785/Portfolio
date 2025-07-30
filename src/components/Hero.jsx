@@ -57,6 +57,7 @@ export default function Hero({ hoveredImage, isMorphing }) {
           width: isMorphing ? 160 : 16,
           height: isMorphing ? 100 : 16,
           borderRadius: isMorphing ? "24px" : "9999px",
+          rotate: isMorphing ? 10 : 0,
           transition: { duration: transitionDuration, ease: "easeInOut" },
         }}
       />
