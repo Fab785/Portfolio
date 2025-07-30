@@ -5,8 +5,6 @@ import computerImg from "../assets/computer.jpg";
 const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) => {
   const [isWebDesignOpen, setIsWebDesignOpen] = useState(false);
   const [isUIDesignOpen, setIsUIDesignOpen] = useState(false);
-
-  // Track which main line is currently hovered to re-trigger morph on re-hover
   const [hoveredMainLine, setHoveredMainLine] = useState(null);
 
   const handleMouseEnterMain = (img, lineKey) => {
@@ -16,9 +14,14 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
   };
 
   const handleMouseLeaveMain = () => {
-    setHoveredMainLine(null);
-    // We don’t immediately turn off morphing here, submenu might be hovered
-    // Morph off happens on submenu hover out
+    // Delay to confirm whether submenu was hovered
+    setTimeout(() => {
+      if (!document.querySelector(":hover").closest("ul")) {
+        setHoveredImage(null);
+        setIsMorphing(false);
+        setHoveredMainLine(null);
+      }
+    }, 50);
   };
 
   const handleMouseEnterSubmenu = () => {
@@ -27,7 +30,6 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
   };
 
   const handleMouseLeaveSubmenu = () => {
-    // When leaving submenu, if main line is still hovered, morph back on
     if (hoveredMainLine === "ui") {
       setHoveredImage(graphicImg);
       setIsMorphing(true);
@@ -49,7 +51,7 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
             WHAT I CAN DO FOR YOU
           </h2>
           <p className="text-gray-300 mb-10 leading-relaxed max-w-xl">
-            As a digital designer, I am a visual storyteller, crafting
+            As a Front-end Developer, I am a visual storyteller, crafting
             experiences that connect deeply and spark creativity.
           </p>
 
