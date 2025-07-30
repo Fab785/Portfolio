@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { CheckCircle } from "lucide-react";
 import computerImg from "../assets/computer.jpg";
 
@@ -6,6 +6,7 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
   const [isWebDesignOpen, setIsWebDesignOpen] = useState(false);
   const [isUIDesignOpen, setIsUIDesignOpen] = useState(false);
   const [hoveredMainLine, setHoveredMainLine] = useState(null);
+  const hoverZoneRef = useRef(null);
 
   const handleMouseEnterMain = (img, lineKey) => {
     setHoveredImage(img);
@@ -14,9 +15,9 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
   };
 
   const handleMouseLeaveMain = () => {
-    // Delay to confirm whether submenu was hovered
     setTimeout(() => {
-      if (!document.querySelector(":hover").closest("ul")) {
+      const isStillHovering = hoverZoneRef.current?.matches(':hover');
+      if (!isStillHovering) {
         setHoveredImage(null);
         setIsMorphing(false);
         setHoveredMainLine(null);
@@ -45,8 +46,8 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
   return (
     <section className="w-full min-h-screen text-white flex flex-col justify-center items-center px-6 md:px-20 py-20">
       <div className="max-w-7xl w-full flex flex-col md:flex-row justify-between items-center gap-16">
-        {/* LEFT */}
-        <div className="flex-1">
+        {/* LEFT SIDE */}
+        <div className="flex-1" ref={hoverZoneRef}>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             WHAT I CAN DO FOR YOU
           </h2>
@@ -61,7 +62,9 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
               onClick={() => setIsUIDesignOpen((prev) => !prev)}
               onMouseEnter={() => handleMouseEnterMain(graphicImg, "ui")}
               onMouseLeave={handleMouseLeaveMain}
-              className="cursor-pointer flex flex-col border-b border-gray-600 pb-3 group hover:text-lime-400 transition-colors duration-300"
+              className={`cursor-pointer flex flex-col pb-3 group transition-colors duration-300
+                ${isUIDesignOpen ? "text-lime-400 border-lime-400 border-b" : "border-gray-600 border-b hover:text-lime-400"}
+              `}
             >
               <div className="flex justify-between items-center">
                 <span>1. UI DESIGN</span>
@@ -99,7 +102,9 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
               onClick={() => setIsWebDesignOpen((prev) => !prev)}
               onMouseEnter={() => handleMouseEnterMain(webImg, "web")}
               onMouseLeave={handleMouseLeaveMain}
-              className="cursor-pointer flex flex-col border-b border-gray-600 pb-3 group hover:text-lime-400 transition-colors duration-300"
+              className={`cursor-pointer flex flex-col pb-3 group transition-colors duration-300
+                ${isWebDesignOpen ? "text-lime-400 border-lime-400 border-b" : "border-gray-600 border-b hover:text-lime-400"}
+              `}
             >
               <div className="flex justify-between items-center">
                 <span>2. WEB DESIGN</span>
@@ -135,7 +140,7 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
           </ul>
         </div>
 
-        {/* RIGHT */}
+        {/* RIGHT SIDE */}
         <div className="flex-1 flex justify-center items-center">
           <div className="w-[300px] md:w-[400px] aspect-[3/4] rounded-2xl transform rotate-6 shadow-xl overflow-hidden">
             <img
@@ -151,6 +156,8 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
 };
 
 export default HeroSectionTwo;
+
+
 
 
 
