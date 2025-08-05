@@ -90,7 +90,7 @@ const HeroSectionThree = () => {
             <img
               src={profileImg}
               alt="Profile"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-[65%_center]"           
             />
           </div>
         </div>
