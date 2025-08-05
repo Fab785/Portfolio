@@ -67,7 +67,7 @@ export default function Hero({ hoveredImage, isMorphing }) {
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14 z-10 relative w-full max-w-6xl">
           {/* Left Text */}
           <div className="text-center lg:text-right lg:items-end flex flex-col">
-            <h1 className="text-sm sm:text-base md:text-lg font-light uppercase tracking-widest -mb-1">
+            <h1 className="text-base sm:text-base md:text-lg font-bold uppercase tracking-widest -mb-1">
               Fabrizio Terribile
             </h1>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold">

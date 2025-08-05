@@ -1,6 +1,7 @@
 import React from "react";
+import { Linkedin, Github, Mail } from "lucide-react";
+import CountUp from "react-countup"; // 👈 import CountUp
 import profileImg from "../assets/Fab.jpg";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
 
 const HeroSectionThree = () => {
   return (
@@ -18,55 +19,61 @@ const HeroSectionThree = () => {
           {/* Stats row */}
           <div className="flex gap-12 mb-10 max-w-xs">
             <div className="flex flex-col items-center">
-              <span className="text-lime-400 text-4xl font-extrabold">6</span>
+              <span className="text-lime-400 text-4xl font-extrabold">
+                <CountUp end={6} duration={2} />
+              </span>
               <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
-                Years of Experience
+                Months of Experience
               </span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-lime-400 text-4xl font-extrabold">100+</span>
+              <span className="text-lime-400 text-4xl font-extrabold">
+                <CountUp end={100} duration={2} suffix="+" />
+              </span>
               <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
                 Hours of Studies
               </span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-lime-400 text-4xl font-extrabold">16</span>
+              <span className="text-lime-400 text-4xl font-extrabold">
+                <CountUp end={16} duration={2} />
+              </span>
               <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
                 Completed Projects
               </span>
             </div>
           </div>
 
-          {/* Email */}
-          <div>
-            <p className="uppercase text-gray-400 tracking-wide text-sm mb-1">Email :</p>
-            <a
-              href="mailto:fabrizioterribile@gmail.com"
-              className="text-white underline text-lg"
-            >
-              fabrizioterribile@gmail.com
-            </a>
-          </div>
-
-          {/* Social Icons */}
-          <div className="mt-6 flex gap-6">
+          {/* Contact Icons */}
+          <div className="flex items-center gap-6 mb-4">
             <a
               href="https://www.linkedin.com/in/fabrizio-terribile/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-lime-400 transition-colors duration-300 text-2xl"
               aria-label="LinkedIn"
+              className="hover:text-lime-400 transition-colors duration-300"
             >
-              <FaLinkedin />
+              <Linkedin size={32} />
             </a>
             <a
               href="https://github.com/Fab785"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-lime-400 transition-colors duration-300 text-2xl"
               aria-label="GitHub"
+              className="hover:text-lime-400 transition-colors duration-300"
             >
-              <FaGithub />
+              <Github size={32} />
+            </a>
+          </div>
+
+          {/* Email with envelope icon */}
+          <div className="flex items-center gap-2">
+            <Mail size={20} className="text-lime-400" />
+            <a
+              href="mailto:fabrizioterribile@gmail.com"
+              className="text-white underline text-lg"
+            >
+              fabrizioterribile@gmail.com
             </a>
           </div>
         </div>
@@ -93,4 +100,5 @@ const HeroSectionThree = () => {
 };
 
 export default HeroSectionThree;
+
 
