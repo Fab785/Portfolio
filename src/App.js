@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import HeroSectionTwo from "./components/HeroSectionTwo";
 import HeroSectionThree from "./components/HeroSectionThree";
+import HeroSectionFour from "./components/HeroSectionFour"; // ✅ NEW IMPORT
 
 import graphicImg from "./assets/uidesign.jpg";
 import webImg from "./assets/webdesign.jpg";
@@ -22,6 +23,7 @@ function App() {
         webImg={webImg}
       />
       <HeroSectionThree />
+      <HeroSectionFour /> {/* ✅ NEW SECTION ADDED */}
       <div className="h-[200vh] bg-neutral-900"></div>
     </div>
   );

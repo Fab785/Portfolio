@@ -66,7 +66,11 @@ export default function Hero({ hoveredImage, isMorphing }) {
       <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 py-12 text-white overflow-hidden">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14 z-10 relative w-full max-w-6xl">
           {/* Left Text */}
-          <div className="text-center lg:text-right lg:items-end flex flex-col">
+          <div className="text-center lg:text-right lg:items-start flex flex-col"
+          style={{ width: 407, height: 132 }}
+>
+          
+        
             <h1 className="text-base sm:text-base md:text-lg font-bold uppercase tracking-widest -mb-1">
               Fabrizio Terribile
             </h1>
@@ -130,7 +134,7 @@ export default function Hero({ hoveredImage, isMorphing }) {
 
           {/* Right Text */}
           <div className="text-center lg:text-left lg:items-start flex flex-col">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-none">
+            <h2 className="text-4xl sm:text-6xl md:text-6xl font-extrabold leading-none">
               DEVELOPER
             </h2>
             <p className="text-sm sm:text-base mt-2 text-neutral-300 max-w-[260px] mx-auto lg:mx-0">
