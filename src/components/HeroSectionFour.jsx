@@ -49,33 +49,43 @@ export default function HeroSectionFour() {
     };
   }, []);
 
-  // Each image slides up from 100% to 0% in sequence according to scrollPercent
-  // We divide scrollPercent (0 to 1) into 3 segments, one per image
-
   function getTranslateY(index) {
+    const gap = 20; // px gap during overlap
     const segmentLength = 1 / projects.length;
     const start = segmentLength * index;
     const end = segmentLength * (index + 1);
 
-    if (scrollPercent <= start) return "100%";
+    if (scrollPercent <= start) return `calc(100% + ${gap}px)`;
     if (scrollPercent >= end) return "0%";
 
-    // interpolate between 100% and 0%
     const localProgress = (scrollPercent - start) / segmentLength;
-    return `${100 - localProgress * 100}%`;
+    const y = 100 - localProgress * 100;
+    const gapEffect = (1 - localProgress) * gap; // gap decreases as it reaches final position
+    return `calc(${y}% + ${gapEffect}px)`;
   }
 
   return (
-    <div className="w-full h-screen relative bg-black overflow-hidden">
+    <div className="w-full h-screen relative relative overflow-hidden">
       {/* Scrollable div to handle scrolling inside this section */}
       <div
         ref={scrollContainerRef}
         className="h-full w-full overflow-y-scroll"
         style={{ scrollSnapType: "y mandatory" }}
       >
-        {/* Tall empty spacer to enable scroll */}
-        <div style={{ height: `${projects.length * 100}vh` }} />
+        {/* Intro content instead of empty gap */}
+        <div className="h-screen flex flex-col items-center justify-center text-center px-6">
+          <h2 className="text-5xl font-bold text-white mb-6">
+            Featured Projects
+          </h2>
+          <p className="text-lg text-gray-300 max-w-3xl">
+            These selected projects reflect my passion for blending strategy
+            with creativity — solving real problems through thoughtful design
+            and impactful storytelling.
+          </p>
+        </div>
 
+        {/* Spacer to allow enough scroll for all images to animate */}
+        <div style={{ height: `${projects.length * 100}vh` }} />
       </div>
 
       {/* Fixed container where images stack and animate */}
@@ -89,7 +99,7 @@ export default function HeroSectionFour() {
               transform: `translateY(${getTranslateY(index)})`,
               transition: "transform 0.2s linear",
               zIndex: index + 1,
-              pointerEvents: "auto", // enable hover
+              pointerEvents: "auto",
             }}
           >
             <img
@@ -98,7 +108,9 @@ export default function HeroSectionFour() {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
-              <h2 className="text-3xl font-bold text-white mb-2">{project.title}</h2>
+              <h2 className="text-3xl font-bold text-white mb-2">
+                {project.title}
+              </h2>
               <p className="text-lg text-gray-200">{project.description}</p>
             </div>
           </div>
