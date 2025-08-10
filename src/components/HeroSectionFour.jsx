@@ -55,7 +55,7 @@ export default function HeroSectionFour() {
     const start = segmentLength * index;
     const end = segmentLength * (index + 1);
 
-    if (scrollPercent <= start) return `calc(100% + ${gap}px)`;
+    if (scrollPercent <= start) return `calc(120% + ${gap}px)`;
     if (scrollPercent >= end) return "0%";
 
     const localProgress = (scrollPercent - start) / segmentLength;
@@ -97,7 +97,8 @@ export default function HeroSectionFour() {
             style={{
               top: 0,
               transform: `translateY(${getTranslateY(index)})`,
-              transition: "transform 0.2s linear",
+              transition: "transform",
+              willChange: "transform",
               zIndex: index + 1,
               pointerEvents: "auto",
             }}
@@ -119,3 +120,8 @@ export default function HeroSectionFour() {
     </div>
   );
 }
+
+
+
+
+
