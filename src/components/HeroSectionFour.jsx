@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import screenshot1 from "../assets/computer.jpg";
 import screenshot2 from "../assets/uidesign.jpg";
 import screenshot3 from "../assets/webdesign.jpg";
@@ -25,103 +25,103 @@ const projects = [
 ];
 
 export default function HeroSectionFour() {
-  const scrollContainerRef = useRef(null);
-  const [scrollPercent, setScrollPercent] = useState(0);
+  const firstImageRef = useRef(null);
+  const secondImageRef = useRef(null);
+  const [scale, setScale] = useState(1);
 
   useEffect(() => {
-    const scrollDiv = scrollContainerRef.current;
+    function handleScroll() {
+      if (!firstImageRef.current || !secondImageRef.current) return;
 
-    const onScroll = () => {
-      if (!scrollDiv) return;
-      const maxScrollTop = scrollDiv.scrollHeight - scrollDiv.clientHeight;
-      const scrollTop = scrollDiv.scrollTop;
-      const percent = scrollTop / maxScrollTop;
-      setScrollPercent(percent);
-    };
+      const secondImageTop = secondImageRef.current.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
 
-    if (scrollDiv) {
-      scrollDiv.addEventListener("scroll", onScroll);
+      // Shrink starts when second image top enters viewport bottom (i.e. <= windowHeight)
+      // Progress is 0 when secondImageTop === windowHeight, 1 when scrolled 300px past that point
+      const shrinkRange = 300;
+      let progress = (windowHeight - secondImageTop) / shrinkRange;
+
+      if (progress < 0) progress = 0;
+      if (progress > 1) progress = 1;
+
+      const minScale = 0.8;
+      const newScale = 1 - progress * (1 - minScale);
+
+      setScale(newScale);
     }
-    return () => {
-      if (scrollDiv) {
-        scrollDiv.removeEventListener("scroll", onScroll);
-      }
-    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // initial
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  function getTranslateY(index) {
-    const gap = 20; // px gap during overlap
-    const segmentLength = 1 / projects.length;
-    const start = segmentLength * index;
-    const end = segmentLength * (index + 1);
-
-    if (scrollPercent <= start) return `calc(120% + ${gap}px)`;
-    if (scrollPercent >= end) return "0%";
-
-    const localProgress = (scrollPercent - start) / segmentLength;
-    const y = 100 - localProgress * 100;
-    const gapEffect = (1 - localProgress) * gap; // gap decreases as it reaches final position
-    return `calc(${y}% + ${gapEffect}px)`;
-  }
-
   return (
-    <div className="w-full h-screen relative relative overflow-hidden">
-      {/* Scrollable div to handle scrolling inside this section */}
+    <section className="w-full min-h-screen bg-transparent relative overflow-y-auto">
+      {/* Intro */}
+      <div className="h-screen flex flex-col items-center justify-center text-center px-6">
+        <h2 className="text-5xl font-bold text-white mb-6">Featured Projects</h2>
+        <p className="text-lg text-gray-300 max-w-3xl">
+          These selected projects reflect my passion for blending strategy with creativity — solving real problems through thoughtful design and impactful storytelling.
+        </p>
+      </div>
+
+      {/* First image */}
       <div
-        ref={scrollContainerRef}
-        className="h-full w-full overflow-y-scroll"
-        style={{ scrollSnapType: "y mandatory" }}
+        ref={firstImageRef}
+        className="w-[80%] max-w-5xl mx-auto my-10 rounded-xl shadow-lg overflow-hidden h-[80vh] relative"
+        style={{
+          transform: `scale(${scale})`,
+          transformOrigin: "center top",
+          transition: "transform 0.1s linear",
+          zIndex: 10,
+        }}
       >
-        {/* Intro content instead of empty gap */}
-        <div className="h-screen flex flex-col items-center justify-center text-center px-6">
-          <h2 className="text-5xl font-bold text-white mb-6">
-            Featured Projects
-          </h2>
-          <p className="text-lg text-gray-300 max-w-3xl">
-            These selected projects reflect my passion for blending strategy
-            with creativity — solving real problems through thoughtful design
-            and impactful storytelling.
-          </p>
+        <img
+          src={projects[0].image}
+          alt={projects[0].title}
+          className="w-full h-full object-cover"
+          draggable={false}
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
+          <h2 className="text-3xl font-bold text-white mb-2">{projects[0].title}</h2>
+          <p className="text-lg text-gray-200">{projects[0].description}</p>
         </div>
-
-        {/* Spacer to allow enough scroll for all images to animate */}
-        <div style={{ height: `${projects.length * 100}vh` }} />
       </div>
 
-      {/* Fixed container where images stack and animate */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-        {projects.map((project, index) => (
-          <div
-            key={project.id}
-            className="absolute left-[10%] w-[80%] h-[80vh] rounded-xl shadow-lg overflow-hidden"
-            style={{
-              top: 0,
-              transform: `translateY(${getTranslateY(index)})`,
-              transition: "transform",
-              willChange: "transform",
-              zIndex: index + 1,
-              pointerEvents: "auto",
-            }}
-          >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
-              <h2 className="text-3xl font-bold text-white mb-2">
-                {project.title}
-              </h2>
-              <p className="text-lg text-gray-200">{project.description}</p>
-            </div>
-          </div>
-        ))}
+      {/* Second image */}
+      <div
+        ref={secondImageRef}
+        className="w-[80%] max-w-5xl mx-auto my-10 rounded-xl shadow-lg overflow-hidden h-[80vh] relative"
+      >
+        <img
+          src={projects[1].image}
+          alt={projects[1].title}
+          className="w-full h-full object-cover"
+          draggable={false}
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
+          <h2 className="text-3xl font-bold text-white mb-2">{projects[1].title}</h2>
+          <p className="text-lg text-gray-200">{projects[1].description}</p>
+        </div>
       </div>
-    </div>
+
+      {/* Third image */}
+      <div
+        className="w-[80%] max-w-5xl mx-auto my-10 rounded-xl shadow-lg overflow-hidden h-[80vh] relative"
+      >
+        <img
+          src={projects[2].image}
+          alt={projects[2].title}
+          className="w-full h-full object-cover"
+          draggable={false}
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
+          <h2 className="text-3xl font-bold text-white mb-2">{projects[2].title}</h2>
+          <p className="text-lg text-gray-200">{projects[2].description}</p>
+        </div>
+      </div>
+    </section>
   );
 }
-
-
-
-
 
