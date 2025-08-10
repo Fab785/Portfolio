@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import screenshot1 from "../assets/computer.jpg";
 import screenshot2 from "../assets/uidesign.jpg";
 import screenshot3 from "../assets/webdesign.jpg";
@@ -25,39 +25,55 @@ const projects = [
 ];
 
 export default function HeroSectionFour() {
-  const firstImageRef = useRef(null);
-  const secondImageRef = useRef(null);
-  const [scale, setScale] = useState(1);
+  const containerRef = useRef(null);
+  const imageRefs = useRef([]);
+  imageRefs.current = [];
+
+  const addToRefs = (el) => {
+    if (el && !imageRefs.current.includes(el)) {
+      imageRefs.current.push(el);
+    }
+  };
+
+  const [scales, setScales] = useState(projects.map(() => 0.85)); // start slightly bigger than before
 
   useEffect(() => {
-    function handleScroll() {
-      if (!firstImageRef.current || !secondImageRef.current) return;
+    function onScroll() {
+      if (!containerRef.current) return;
+      const viewportHeight = window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
 
-      const secondImageTop = secondImageRef.current.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
+      const newScales = imageRefs.current.map((img) => {
+        if (!img) return 0.85;
+        const rect = img.getBoundingClientRect();
+        const imgCenter = rect.top + rect.height / 2;
 
-      // Shrink starts when second image top enters viewport bottom (i.e. <= windowHeight)
-      // Progress is 0 when secondImageTop === windowHeight, 1 when scrolled 300px past that point
-      const shrinkRange = 300;
-      let progress = (windowHeight - secondImageTop) / shrinkRange;
+        const distance = Math.abs(viewportCenter - imgCenter);
+        const maxDistance = viewportHeight / 1.5; // bigger range for smoother scale change
 
-      if (progress < 0) progress = 0;
-      if (progress > 1) progress = 1;
+        // Calculate scale with smoother curve:
+        // Use a cosine curve for smooth easing between 0.85 and 1.15
+        // When distance=0 => scale=1.15 (max)
+        // When distance=maxDistance => scale=0.85 (min)
+        let scale = 0.85 + 0.3 * (Math.cos((Math.min(distance, maxDistance) / maxDistance) * Math.PI) + 1) / 2;
+        if (scale < 0.85) scale = 0.85;
+        if (scale > 1.15) scale = 1.15;
+        return scale;
+      });
 
-      const minScale = 0.8;
-      const newScale = 1 - progress * (1 - minScale);
-
-      setScale(newScale);
+      setScales(newScales);
     }
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // initial
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
-    <section className="w-full min-h-screen bg-transparent relative overflow-y-auto">
+    <section ref={containerRef} className="relative bg-transparent">
       {/* Intro */}
       <div className="h-screen flex flex-col items-center justify-center text-center px-6">
         <h2 className="text-5xl font-bold text-white mb-6">Featured Projects</h2>
@@ -66,61 +82,34 @@ export default function HeroSectionFour() {
         </p>
       </div>
 
-      {/* First image */}
-      <div
-        ref={firstImageRef}
-        className="w-[80%] max-w-5xl mx-auto my-10 rounded-xl shadow-lg overflow-hidden h-[80vh] relative"
-        style={{
-          transform: `scale(${scale})`,
-          transformOrigin: "center top",
-          transition: "transform 0.1s linear",
-          zIndex: 10,
-        }}
-      >
-        <img
-          src={projects[0].image}
-          alt={projects[0].title}
-          className="w-full h-full object-cover"
-          draggable={false}
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
-          <h2 className="text-3xl font-bold text-white mb-2">{projects[0].title}</h2>
-          <p className="text-lg text-gray-200">{projects[0].description}</p>
+      {/* Project images */}
+      {projects.map((project, idx) => (
+        <div
+          key={project.id}
+          ref={addToRefs}
+          className="w-[80%] max-w-5xl mx-auto my-10 rounded-xl shadow-lg overflow-hidden h-[80vh] relative transition-transform duration-500 ease-out"
+          style={{
+            transform: `scale(${scales[idx]})`,
+            transformOrigin: "center center",
+            zIndex: Math.round(scales[idx] * 100),
+            boxShadow:
+              scales[idx] > 1.05
+                ? "0 25px 50px rgba(0,0,0,0.6)"
+                : "0 5px 15px rgba(0,0,0,0.2)",
+          }}
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover"
+            draggable={false}
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
+            <h2 className="text-3xl font-bold text-white mb-2">{project.title}</h2>
+            <p className="text-lg text-gray-200">{project.description}</p>
+          </div>
         </div>
-      </div>
-
-      {/* Second image */}
-      <div
-        ref={secondImageRef}
-        className="w-[80%] max-w-5xl mx-auto my-10 rounded-xl shadow-lg overflow-hidden h-[80vh] relative"
-      >
-        <img
-          src={projects[1].image}
-          alt={projects[1].title}
-          className="w-full h-full object-cover"
-          draggable={false}
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
-          <h2 className="text-3xl font-bold text-white mb-2">{projects[1].title}</h2>
-          <p className="text-lg text-gray-200">{projects[1].description}</p>
-        </div>
-      </div>
-
-      {/* Third image */}
-      <div
-        className="w-[80%] max-w-5xl mx-auto my-10 rounded-xl shadow-lg overflow-hidden h-[80vh] relative"
-      >
-        <img
-          src={projects[2].image}
-          alt={projects[2].title}
-          className="w-full h-full object-cover"
-          draggable={false}
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
-          <h2 className="text-3xl font-bold text-white mb-2">{projects[2].title}</h2>
-          <p className="text-lg text-gray-200">{projects[2].description}</p>
-        </div>
-      </div>
+      ))}
     </section>
   );
 }
