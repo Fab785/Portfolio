@@ -119,10 +119,17 @@ export default function HeroSectionFour() {
       ))}
     {/* Browse All Projects Button */}
     <div className="flex justify-center py-16">
-      <button className="px-8 py-3 border-2 border-lime-400 text-lime-400 font-bold text-lg rounded-full hover:bg-lime-400 hover:text-black transition-colors duration-300">
-        BROWSE ALL PROJECTS
-      </button>
-    </div>
+  <button
+    className="px-8 py-3 border-2 border-lime-400 text-lime-400 font-bold text-lg rounded-full 
+               bg-gradient-to-r from-lime-400 to-lime-400 bg-[length:0%_100%] bg-no-repeat 
+               hover:bg-[length:100%_100%] hover:text-black 
+               transition-all duration-500 ease-out"
+    style={{ backgroundPosition: 'left' }}
+  >
+    BROWSE ALL PROJECTS
+  </button>
+</div>
+
 
     </section>
   );
