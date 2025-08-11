@@ -117,6 +117,13 @@ export default function HeroSectionFour() {
           </div>
         </div>
       ))}
+    {/* Browse All Projects Button */}
+    <div className="flex justify-center py-16">
+      <button className="px-8 py-3 border-2 border-lime-400 text-lime-400 font-bold text-lg rounded-full hover:bg-lime-400 hover:text-black transition-colors duration-300">
+        BROWSE ALL PROJECTS
+      </button>
+    </div>
+
     </section>
   );
 }
