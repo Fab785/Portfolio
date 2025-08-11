@@ -35,7 +35,7 @@ export default function HeroSectionFour() {
     }
   };
 
-  const [scales, setScales] = useState(projects.map(() => 0.85)); // start slightly bigger than before
+  const [scales, setScales] = useState(projects.map(() => 0.85));
 
   useEffect(() => {
     function onScroll() {
@@ -49,13 +49,17 @@ export default function HeroSectionFour() {
         const imgCenter = rect.top + rect.height / 2;
 
         const distance = Math.abs(viewportCenter - imgCenter);
-        const maxDistance = viewportHeight / 1.5; // bigger range for smoother scale change
+        const maxDistance = viewportHeight / 1.5;
 
-        // Calculate scale with smoother curve:
-        // Use a cosine curve for smooth easing between 0.85 and 1.15
-        // When distance=0 => scale=1.15 (max)
-        // When distance=maxDistance => scale=0.85 (min)
-        let scale = 0.85 + 0.3 * (Math.cos((Math.min(distance, maxDistance) / maxDistance) * Math.PI) + 1) / 2;
+        let scale =
+          0.85 +
+          (0.3 *
+            (Math.cos(
+              (Math.min(distance, maxDistance) / maxDistance) * Math.PI
+            ) +
+              1)) /
+            2;
+
         if (scale < 0.85) scale = 0.85;
         if (scale > 1.15) scale = 1.15;
         return scale;
@@ -66,19 +70,20 @@ export default function HeroSectionFour() {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <section ref={containerRef} className="relative bg-transparent">
-      {/* Intro */}
-      <div className="h-screen flex flex-col items-center justify-center text-center px-6">
-        <h2 className="text-5xl font-bold text-white mb-6">Featured Projects</h2>
-        <p className="text-lg text-gray-300 max-w-3xl">
-          These selected projects reflect my passion for blending strategy with creativity — solving real problems through thoughtful design and impactful storytelling.
+      {/* Intro aligned with first image */}
+      <div className="w-[80%] max-w-5xl mx-auto text-left px-2 pb-16">
+        <h2 className="text-5xl font-bold text-white mb-4">
+          Featured Projects
+        </h2>
+        <p className="text-lg text-gray-300 max-w-xl">
+          These selected projects reflect my passion for blending strategy with
+          creativity — solving real problems through thoughtful design and
+          impactful storytelling.
         </p>
       </div>
 
@@ -105,7 +110,9 @@ export default function HeroSectionFour() {
             draggable={false}
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
-            <h2 className="text-3xl font-bold text-white mb-2">{project.title}</h2>
+            <h2 className="text-3xl font-bold text-white mb-2">
+              {project.title}
+            </h2>
             <p className="text-lg text-gray-200">{project.description}</p>
           </div>
         </div>
@@ -113,4 +120,5 @@ export default function HeroSectionFour() {
     </section>
   );
 }
+
 
