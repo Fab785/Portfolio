@@ -5,6 +5,7 @@ import HeroSectionTwo from "./components/HeroSectionTwo";
 import HeroSectionThree from "./components/HeroSectionThree";
 import HeroSectionFour from "./components/HeroSectionFour";
 import HeroSectionFive from "./components/HeroSectionFive";
+import Footer from "./components/Footer";
 
 import graphicImg from "./assets/uidesign.jpg";
 import webImg from "./assets/webdesign.jpg";
@@ -28,8 +29,9 @@ function App() {
       {/* Continuous background wrapper for section 4 & 5 */}
       
       
-        <HeroSectionFour /> {/* should have bg-transparent */}
-        <HeroSectionFive /> {/* should have bg-transparent */}
+        <HeroSectionFour /> 
+        <HeroSectionFive />
+        <Footer />
     </div>
   );
 }
