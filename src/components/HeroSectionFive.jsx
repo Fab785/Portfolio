@@ -31,7 +31,7 @@ export default function HeroSectionFive() {
     <section
       className="relative min-h-screen flex items-center justify-center px-6 py-20 text-white overflow-hidden bg-transparent"
     >
-      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 max-w-7xl w-full">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-16 max-w-7xl w-full">
         {/* Left Side: Image + Hi bubble */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -45,17 +45,17 @@ export default function HeroSectionFive() {
             className="rounded-[24px] object-cover object-center w-[280px] h-[380px] lg:w-[340px] lg:h-[460px]"
           />
           <motion.div
-            className="absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-lime-400 shadow-lg flex items-center justify-center"
+            className="absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-lime-400 shadow-lg flex items-center justify-center overflow-hidden"
             style={{ backgroundColor: "#A3E635" }}
           >
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence initial={false}>
               {showHi ? (
                 <motion.div
                   key="hi"
-                  className="text-xl font-bold text-black"
-                  initial={{ y: isFirstHi.current ? "100%" : "-100%" }}
-                  animate={{ y: "0%" }}
-                  exit={{ y: "-100%" }}
+                  className="absolute inset-0 flex items-center justify-center text-xl font-bold text-black"
+                  initial={{ y: isFirstHi.current ? "100%" : "-100%", opacity: 0 }}
+                  animate={{ y: "0%", opacity: 1 }}
+                  exit={{ y: "-100%", opacity: 0 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
                   Hi
@@ -63,15 +63,16 @@ export default function HeroSectionFive() {
               ) : (
                 <motion.div
                   key="wave"
-                  className="text-xl font-bold text-black"
-                  initial={{ y: "100%" }}
-                  animate={{ y: "0%" }}
-                  exit={{ y: "100%" }}
+                  className="absolute inset-0 flex items-center justify-center text-xl font-bold text-black"
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: "0%", opacity: 1 }}
+                  exit={{ y: "100%", opacity: 0 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
                   <motion.span
                     animate={{ rotate: [0, 15, -15, 15, 0] }}
                     transition={{ repeat: Infinity, duration: 1 }}
+                    style={{ display: "inline-block" }}
                   >
                     👋
                   </motion.span>
@@ -97,16 +98,16 @@ export default function HeroSectionFive() {
               <label className="block text-lime-400 text-sm mb-1">Name</label>
               <input
                 type="text"
-                placeholder="John Smith"
-                className="w-full bg-neutral-800 rounded-full px-4 py-2 outline-none text-white"
+                placeholder="Fabrizio Terribile"
+                className="w-full bg-neutral-800 rounded-full px-4 py-2 outline-none text-white border border-transparent focus:border-lime-400 transition-colors"
               />
             </div>
             <div>
               <label className="block text-lime-400 text-sm mb-1">Email</label>
               <input
                 type="email"
-                placeholder="johnsmith@gmail.com"
-                className="w-full bg-neutral-800 rounded-full px-4 py-2 outline-none text-white"
+                placeholder="fabrizioterribile@gmail.com"
+                className="w-full bg-neutral-800 rounded-full px-4 py-2 outline-none text-white border border-transparent focus:border-lime-400 transition-colors"
               />
             </div>
           </div>
@@ -115,7 +116,7 @@ export default function HeroSectionFive() {
             <label className="block text-lime-400 text-sm mb-1">
               Service Needed ?
             </label>
-            <select className="w-full bg-neutral-800 rounded-full px-4 py-2 outline-none text-white">
+            <select className="w-full bg-neutral-800 rounded-full px-4 py-2 outline-none text-white border border-transparent focus:border-lime-400 transition-colors">
               <option>Select...</option>
               <option>Web Development</option>
               <option>UI/UX Design</option>
@@ -128,18 +129,37 @@ export default function HeroSectionFive() {
               What Can I Help You...
             </label>
             <textarea
-              placeholder="Hello, I'd like to enquire about..."
-              className="w-full bg-neutral-800 rounded-xl px-4 py-3 outline-none text-white h-32"
+              placeholder="Hello, I'd like to..."
+              className="w-full bg-neutral-800 rounded-xl px-4 py-3 outline-none text-white h-32 border border-transparent focus:border-lime-400 transition-colors"
             />
           </div>
 
-          <button className="bg-transparent border border-lime-400 text-lime-400 px-8 py-2 rounded-full font-bold hover:bg-lime-400 hover:text-black transition">
-            SUBMIT
-          </button>
+          <button
+  className="relative overflow-hidden border border-lime-400 text-lime-400 px-8 py-2 rounded-full font-bold transition-colors"
+  style={{
+    background:
+      "linear-gradient(to right, #A3E635 0%, #A3E635 50%, transparent 50%, transparent 100%)",
+    backgroundSize: "200% 100%",
+    backgroundPosition: "right bottom",
+    transition: "background-position 0.6s ease",
+  }}
+  onMouseEnter={e => {
+    e.currentTarget.style.backgroundPosition = "left bottom";
+    e.currentTarget.style.color = "black";
+  }}
+  onMouseLeave={e => {
+    e.currentTarget.style.backgroundPosition = "right bottom";
+    e.currentTarget.style.color = "#A3E635";
+  }}
+>
+  SUBMIT
+</button>
+
         </div>
       </div>
     </section>
   );
 }
+
 
 

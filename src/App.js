@@ -26,16 +26,10 @@ function App() {
       <HeroSectionThree />
 
       {/* Continuous background wrapper for section 4 & 5 */}
-      <div
-        style={{
-          background: "linear-gradient(135deg, #050505 0%, #0d0d0d 50%, #1a1a1a 100%)"
-        }}
-      >
+      
+      
         <HeroSectionFour /> {/* should have bg-transparent */}
         <HeroSectionFive /> {/* should have bg-transparent */}
-      </div>
-
-      <div className="h-[200vh] bg-neutral-900"></div>
     </div>
   );
 }
