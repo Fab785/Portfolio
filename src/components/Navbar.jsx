@@ -11,13 +11,10 @@ export default function Navbar() {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY === 0) {
-        // At the very top - show big navbar
         setScrolled(false);
       } else if (currentScrollY > prevScrollY.current) {
-        // Scrolling down - shrink navbar
         setScrolled(true);
       } else if (currentScrollY < prevScrollY.current) {
-        // Scrolling up - grow navbar
         setScrolled(false);
       }
 
@@ -25,8 +22,6 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    // Initialize on mount in case page loads scrolled
     prevScrollY.current = window.scrollY;
     setScrolled(window.scrollY > 0);
 
@@ -56,13 +51,13 @@ export default function Navbar() {
           {!scrolled ? (
             <div className="flex items-center gap-[16px] ml-[48px] mr-[24px]">
               {[
-                { label: "Home", width: 44.56 },
-                { label: "About", width: 44.09 },
-                { label: "Projects", width: 59.86 },
-              ].map(({ label, width }) => (
+                { label: "Home", width: 44.56, href: "/" },
+                { label: "About", width: 44.09, href: "#about" },
+                { label: "Projects", width: 59.86, href: "#projects" },
+              ].map(({ label, width, href }) => (
                 <a
                   key={label}
-                  href={`#${label.toLowerCase()}`}
+                  href={href}
                   className="relative cursor-pointer overflow-hidden"
                   style={{ width: `${width}px`, height: "24px" }}
                 >
@@ -173,7 +168,7 @@ export default function Navbar() {
             }`}
           >
             {[
-              { label: "Home", href: "#home" },
+              { label: "Home", href: "/" },
               { label: "About", href: "#about" },
               { label: "Projects", href: "#projects" },
               { label: "Blogs", href: "#blogs" },

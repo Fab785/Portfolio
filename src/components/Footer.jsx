@@ -11,13 +11,13 @@ export default function Footer() {
           {/* Email */}
           <div className="mb-4 md:mb-0 text-center md:text-left">
             <p className="text-sm">Email :</p>
-            <p className="font-bold">designer@example.com</p>
+            <p className="font-bold">fabrizioterribile@gmail.com</p>
           </div>
 
           {/* Phone */}
           <div className="mb-4 md:mb-0 text-center">
             <p className="text-sm">Call Today :</p>
-            <p className="font-bold">+1 (555) 123-4567</p>
+            <p className="font-bold">+1 (562) 388-5705</p>
           </div>
 
           {/* Social */}
@@ -25,7 +25,7 @@ export default function Footer() {
             <p className="text-sm">Social :</p>
             <div className="flex justify-center md:justify-end space-x-4 mt-1">
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/fabrizio-terribile/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-gray-700"
@@ -33,7 +33,7 @@ export default function Footer() {
                 <FaLinkedin size={20} />
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/Fab785"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-gray-700"
@@ -51,12 +51,11 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
         {/* Divider Line */}
         <div className="border-t border-black my-4"></div>
 
         {/* Copyright */}
-        <div className="text-center text-sm">
+        <div className="text-back text-sm">
           © Copyright 2025. All Rights Reserved
         </div>
       </div>

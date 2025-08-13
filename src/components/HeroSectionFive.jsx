@@ -29,7 +29,7 @@ export default function HeroSectionFive() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center px-6 py-20 text-white overflow-hidden bg-transparent"
+      className="relative min-h-screen flex items-center justify-center px-6 pt-20 pb-0 text-white overflow-hidden bg-transparent"
     >
       <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-16 max-w-7xl w-full">
         {/* Left Side: Image + Hi bubble */}
@@ -135,31 +135,31 @@ export default function HeroSectionFive() {
           </div>
 
           <button
-  className="relative overflow-hidden border border-lime-400 text-lime-400 px-8 py-2 rounded-full font-bold transition-colors"
-  style={{
-    background:
-      "linear-gradient(to right, #A3E635 0%, #A3E635 50%, transparent 50%, transparent 100%)",
-    backgroundSize: "200% 100%",
-    backgroundPosition: "right bottom",
-    transition: "background-position 0.6s ease",
-  }}
-  onMouseEnter={e => {
-    e.currentTarget.style.backgroundPosition = "left bottom";
-    e.currentTarget.style.color = "black";
-  }}
-  onMouseLeave={e => {
-    e.currentTarget.style.backgroundPosition = "right bottom";
-    e.currentTarget.style.color = "#A3E635";
-  }}
->
-  SUBMIT
-</button>
-
+            className="relative overflow-hidden border border-lime-400 text-lime-400 px-8 py-2 rounded-full font-bold transition-colors"
+            style={{
+              background:
+                "linear-gradient(to right, #A3E635 0%, #A3E635 50%, transparent 50%, transparent 100%)",
+              backgroundSize: "200% 100%",
+              backgroundPosition: "right bottom",
+              transition: "background-position 0.6s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundPosition = "left bottom";
+              e.currentTarget.style.color = "black";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundPosition = "right bottom";
+              e.currentTarget.style.color = "#A3E635";
+            }}
+          >
+            SUBMIT
+          </button>
         </div>
       </div>
     </section>
   );
 }
+
 
 
 
