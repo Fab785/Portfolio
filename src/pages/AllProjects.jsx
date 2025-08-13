@@ -103,14 +103,14 @@ export default function AllProjects() {
       </div>
 
       {/* Floating cards */}
-      <div className="flex flex-col md:flex-row gap-10 w-full max-w-7xl justify-center">
+      <div className="flex flex-col md:flex-row gap-16 px-6 w-full max-w-7xl justify-center">
         {projects.map((project, idx) => (
           <div
             key={idx}
             ref={addToRefs}
             onMouseEnter={() => setHoveredIndex(idx)}
             onMouseLeave={() => setHoveredIndex(null)}
-            className="bg-white text-black rounded-3xl shadow-lg overflow-hidden flex-1 max-w-sm cursor-pointer transition-transform duration-500 ease-out"
+            className="bg-white text-black rounded-3xl shadow-lg overflow-hidden flex flex-col max-w-sm cursor-pointer transition-transform duration-500 ease-out"
             style={{
               transform: `scale(${
                 hoveredIndex === idx ? scales[idx] * 1.1 : scales[idx]
@@ -118,6 +118,7 @@ export default function AllProjects() {
               transformOrigin: "center center",
               zIndex: hoveredIndex === idx ? 200 : Math.round(scales[idx] * 100),
               marginTop: "5rem",
+              marginBottom: "3rem",
               boxShadow:
                 hoveredIndex === idx
                   ? "0 35px 60px rgba(0,0,0,0.7)"
@@ -126,17 +127,24 @@ export default function AllProjects() {
                   : "0 5px 15px rgba(0,0,0,0.2)",
             }}
           >
-            <img
-              src={project.img}
-              alt={project.title}
-              className="w-full h-56 object-cover"
-            />
-            <div className="p-6 flex flex-col gap-4">
-              <h2 className="text-2xl font-bold">{project.title}</h2>
-              <p className="text-gray-700">{project.description}</p>
+            {/* Image top 2/3 */}
+            <div className="h-2/3">
+              <img
+                src={project.img}
+                alt={project.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Content bottom 1/3 */}
+            <div className="flex flex-col justify-between flex-1 p-6 relative">
+              <div>
+                <h2 className="text-2xl font-bold">{project.title}</h2>
+                <p className="text-gray-700 mt-2">{project.description}</p>
+              </div>
 
               {project.stats && (
-                <div className="flex flex-wrap gap-4 text-sm font-semibold text-gray-900">
+                <div className="flex flex-wrap gap-4 text-sm font-semibold text-gray-900 mt-4">
                   {project.stats.map((stat, i) => (
                     <div key={i}>
                       <span className="block text-lg">{stat.value}</span>
@@ -147,7 +155,7 @@ export default function AllProjects() {
               )}
 
               {project.button && (
-                <button className="mt-4 px-4 py-2 bg-lime-400 text-black font-semibold rounded-full hover:bg-lime-500 transition">
+                <button className="absolute bottom-4 right-4 px-4 py-2 bg-lime-400 text-black font-semibold rounded-full hover:bg-lime-500 transition">
                   {project.button}
                 </button>
               )}
@@ -158,6 +166,7 @@ export default function AllProjects() {
     </section>
   );
 }
+
 
 
 
