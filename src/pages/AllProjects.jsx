@@ -92,10 +92,10 @@ export default function AllProjects() {
     >
       {/* Top-left intro */}
       <div className="w-full max-w-7xl mb-12 text-left">
-        <h1 className="text-4xl font-bold text-lime-400 mb-4">
+        <h1 className="text-5xl md:text-6xl font-extrabold text-lime-400 mb-6">
           Featured Projects
         </h1>
-        <p className="text-gray-300 max-w-2xl">
+        <p className="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-4xl">
           These selected projects reflect my passion for blending strategy with
           creativity — solving real problems through thoughtful design and
           impactful storytelling.
@@ -166,6 +166,10 @@ export default function AllProjects() {
     </section>
   );
 }
+
+
+
+
 
 
 
