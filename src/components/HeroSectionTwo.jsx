@@ -6,40 +6,44 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
   const [isWebDesignOpen, setIsWebDesignOpen] = useState(false);
   const [isUIDesignOpen, setIsUIDesignOpen] = useState(false);
   const [hoveredMainLine, setHoveredMainLine] = useState(null);
-  const hoverZoneRef = useRef(null);
 
+  // Hover main line: morph to image
   const handleMouseEnterMain = (img, lineKey) => {
     setHoveredImage(img);
     setIsMorphing(true);
     setHoveredMainLine(lineKey);
   };
 
-  const handleMouseLeaveMain = () => {
-    setTimeout(() => {
-      const isStillHovering = hoverZoneRef.current?.matches(':hover');
-      if (!isStillHovering) {
-        setHoveredImage(null);
-        setIsMorphing(false);
-        setHoveredMainLine(null);
-      }
-    }, 50);
+  // Leave main line: reset to dot (unless pointer is still inside the same LI)
+  const handleMouseLeaveMain = (e) => {
+    const toEl = e.relatedTarget;
+    if (toEl && e.currentTarget.contains(toEl)) return; // still inside the LI -> ignore
+    setHoveredImage(null);
+    setIsMorphing(false);
+    setHoveredMainLine(null);
   };
 
+  // Enter submenu: show dot (pause the morph while browsing submenu)
   const handleMouseEnterSubmenu = () => {
     setHoveredImage(null);
     setIsMorphing(false);
   };
 
-  const handleMouseLeaveSubmenu = () => {
-    if (hoveredMainLine === "ui") {
-      setHoveredImage(graphicImg);
-      setIsMorphing(true);
-    } else if (hoveredMainLine === "web") {
-      setHoveredImage(webImg);
-      setIsMorphing(true);
+  // Leave submenu: if pointer is still over the parent LI, re-morph; else reset
+  const handleMouseLeaveSubmenu = (e) => {
+    const parentIsHovered = e.currentTarget.parentElement?.matches(":hover");
+    if (parentIsHovered) {
+      if (hoveredMainLine === "ui") {
+        setHoveredImage(graphicImg);
+        setIsMorphing(true);
+      } else if (hoveredMainLine === "web") {
+        setHoveredImage(webImg);
+        setIsMorphing(true);
+      }
     } else {
       setHoveredImage(null);
       setIsMorphing(false);
+      setHoveredMainLine(null);
     }
   };
 
@@ -47,7 +51,7 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
     <section className="w-full min-h-screen text-white flex flex-col justify-center items-center px-6 md:px-20 py-20">
       <div className="max-w-7xl w-full flex flex-col md:flex-row justify-between items-center gap-16">
         {/* LEFT SIDE */}
-        <div className="flex-1" ref={hoverZoneRef}>
+        <div className="flex-1">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             WHAT I CAN DO FOR YOU
           </h2>
@@ -156,7 +160,6 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
 };
 
 export default HeroSectionTwo;
-
 
 
 
