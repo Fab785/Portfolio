@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import screenshot1 from "../assets/computer.jpg";
 import screenshot2 from "../assets/uidesign.jpg";
-import screenshot3 from "../assets/webdesign.jpg";
+import screenshot3 from "../assets/AriCreati.png";
 
 const projects = [
   { id: 1, title: "Project One",  description: "This is a short description for project one.",  image: screenshot1 },
