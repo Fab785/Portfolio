@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import screenshot1 from "../assets/RactLibrary.png";
 import screenshot2 from "../assets/AriCreati.png";
 import screenshot3 from "../assets/webdesign.jpg";
 
 export default function AllProjects() {
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+
+  // Track mouse position
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setCursorPos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   const projects = [
     {
       img: screenshot1,
@@ -31,8 +42,19 @@ export default function AllProjects() {
   ];
 
   return (
-    <section className="relative min-h-screen text-white px-6 py-16 flex flex-col items-center
-      bg-[linear-gradient(135deg,#e0e0e0_0%,#444444_20%,#111111_50%,#222222_100%)]">
+    <section
+      className="relative min-h-screen text-white px-6 py-16 flex flex-col items-center
+      bg-[linear-gradient(135deg,#e0e0e0_0%,#444444_20%,#111111_50%,#222222_100%)]"
+    >
+      {/* Floating cursor dot */}
+      <div
+        className="fixed w-4 h-4 bg-lime-400 rounded-full pointer-events-none z-50 mix-blend-difference"
+        style={{
+          left: cursorPos.x + 20, // small offset so it's "close to cursor"
+          top: cursorPos.y + 20,
+          transform: "translate(-50%, -50%)",
+        }}
+      />
 
       {/* Optional overlay for contrast */}
       <div className="absolute inset-0 bg-black/40 pointer-events-none" />
@@ -89,6 +111,10 @@ export default function AllProjects() {
     </section>
   );
 }
+
+
+
+
 
 
 
