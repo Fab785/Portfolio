@@ -3,6 +3,9 @@ import { ArrowUpRight } from "lucide-react";
 import screenshot1 from "../assets/RactLibrary.png";
 import screenshot2 from "../assets/Aricreati.png";
 import screenshot3 from "../assets/Treact.png";
+// 👉 Add placeholder screenshots for the two new projects
+import screenshot4 from "../assets/Skinstric.png";
+import screenshot5 from "../assets/Ultraverse.png";
 
 export default function AllProjects() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -31,7 +34,7 @@ export default function AllProjects() {
       subtitle: "Ultraverse",
       stack: "React, JavaScript, Node.js, Git",
       description:
-        "The final product of my internship with Frontend Simplified. This internship consisted of converting a static website into a dynamic application using various Node.js libraries such as Axios, Owl Carousel, and Animate on Scroll. Maintained version control with repository branches and pull requests on GitHub.",
+        "The final product of my internship with Frontend Simplified. Converted a static website into a dynamic app using Axios, Owl Carousel, and Animate on Scroll. Maintained version control with GitHub PRs.",
       link: "https://library-with-react-rho.vercel.app/#/",
     },
     {
@@ -40,16 +43,32 @@ export default function AllProjects() {
       subtitle: "Creative Strategy",
       stack: "React, JavaScript, Tailwind",
       description:
-        "A modern business platform designed to highlight creative solutions for small and medium enterprises. Focused on speed, responsive design, and scalability, this project blends a sleek interface with strategic storytelling to showcase the identity and values of Aricreati in a digital-first world.",
+        "A modern business platform highlighting creative solutions for SMEs. Fast, scalable, and responsive — blending sleek UI with strategic storytelling.",
       link: "https://ari-creati.vercel.app/",
     },
     {
       img: screenshot3,
       title: "Treact Clone",
-      stack: "HTML, CSS",
+      stack: "React, HTML, CSS",
       description:
-        "This clone is a test of my ability to recreate the landing page of another website. The clone includes the same assets, animations, dynamic components, and responsive design as the original.",
+        "Recreated the Treact landing page with animations, components, and responsive design — testing precision in front-end replication.",
       link: "https://final-project-zeta-livid.vercel.app/",
+    },
+    {
+      img: screenshot4,
+      title: "Skinstric",
+      stack: "React, Tailwind, Next.js",
+      description:
+        "A clean and modern skincare brand website. Built with Next.js for performance, Tailwind for styling, and a mobile-first design approach.",
+      link: "https://skinstric-kohl.vercel.app/",
+    },
+    {
+      img: screenshot5,
+      title: "Internship Project",
+      stack: "React, JavaScript, Tailwind",
+      description:
+        "Developed during my internship — showcasing UI/UX principles, modern layouts, and responsive components optimized for real-world use cases.",
+      link: "https://fabrizio-internship-9q4v.vercel.app/",
     },
   ];
 
@@ -58,23 +77,23 @@ export default function AllProjects() {
       className="relative min-h-screen text-white px-6 py-16 flex flex-col items-center
                  bg-[linear-gradient(135deg,#e0e0e0_0%,#444444_20%,#111111_50%,#222222_100%)]"
     >
-      {/* Visual-only floating cursor (no pointer events = no flicker) */}
+      {/* Floating cursor */}
       <div
         className={`fixed flex items-center justify-center rounded-full z-50 transition-all duration-200 ease-out
                     mix-blend-difference pointer-events-none
                     ${hoveredProject ? "w-16 h-16" : "w-4 h-4"}`}
         style={{
-          left: cursorPos.x + 20, // sit a bit to the right of the real cursor
+          left: cursorPos.x + 20,
           top: cursorPos.y + 8,
           transform: "translate(-50%, -50%)",
-          backgroundColor: "#a3e635", // lime-400
+          backgroundColor: "#a3e635",
           color: "#000",
         }}
       >
         {hoveredProject && <ArrowUpRight className="w-6 h-6" />}
       </div>
 
-      {/* Optional overlay for contrast */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
       {/* Header */}
@@ -139,7 +158,6 @@ export default function AllProjects() {
     </section>
   );
 }
-
 
 
 
