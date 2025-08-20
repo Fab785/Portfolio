@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import screenshot1 from "../assets/computer.jpg";
-import screenshot2 from "../assets/uidesign.jpg";
+import screenshot1 from "../assets/Ultraverse.png";
+import screenshot2 from "../assets/Skinstric.png";
 import screenshot3 from "../assets/Aricreati.png";
 
 const projects = [

@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Linkedin, Github, Mail } from "lucide-react";
-import CountUp from "react-countup"; // 👈 import CountUp
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer"; // 👈 new
 import profileImg from "../assets/Fab.jpg";
 
 const HeroSectionThree = () => {
+  // Track if the section is in view
+  const [ref, inView] = useInView({
+    threshold: 0.3,   // trigger when 30% of section is visible
+    triggerOnce: false, // allow repeat when scrolling in/out
+  });
+
   return (
-    <section className="w-full min-h-screen text-white flex flex-col justify-center items-center px-6 md:px-20 py-20">
+    <section
+      ref={ref}
+      className="w-full min-h-screen text-white flex flex-col justify-center items-center px-6 md:px-20 py-20"
+    >
       <div className="max-w-7xl w-full flex flex-col md:flex-row justify-between items-center gap-16">
         {/* LEFT SIDE */}
         <div className="flex-1 flex flex-col justify-center">
@@ -20,7 +30,7 @@ const HeroSectionThree = () => {
           <div className="flex gap-12 mb-10 max-w-xs">
             <div className="flex flex-col items-center">
               <span className="text-lime-400 text-4xl font-extrabold">
-                <CountUp end={6} duration={2} />
+                {inView ? <CountUp end={6} duration={2} /> : 0}
               </span>
               <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
                 Months of Experience
@@ -28,7 +38,7 @@ const HeroSectionThree = () => {
             </div>
             <div className="flex flex-col items-center">
               <span className="text-lime-400 text-4xl font-extrabold">
-                <CountUp end={100} duration={2} suffix="+" />
+                {inView ? <CountUp end={100} duration={2} suffix="+" /> : 0}
               </span>
               <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
                 Hours of Studies
@@ -36,7 +46,7 @@ const HeroSectionThree = () => {
             </div>
             <div className="flex flex-col items-center">
               <span className="text-lime-400 text-4xl font-extrabold">
-                <CountUp end={16} duration={2} />
+                {inView ? <CountUp end={16} duration={2} /> : 0}
               </span>
               <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
                 Completed Projects
@@ -90,7 +100,7 @@ const HeroSectionThree = () => {
             <img
               src={profileImg}
               alt="Profile"
-              className="w-full h-full object-cover object-[65%_center]"           
+              className="w-full h-full object-cover object-[65%_center]"
             />
           </div>
         </div>
@@ -100,5 +110,6 @@ const HeroSectionThree = () => {
 };
 
 export default HeroSectionThree;
+
 
 
