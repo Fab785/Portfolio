@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import profileImg from "../assets/Fab.jpg";
 
 export default function Navbar() {
@@ -32,6 +33,19 @@ export default function Navbar() {
     if (scrolled) setMenuOpen(false);
   }, [scrolled]);
 
+  const menuLinks = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "#about" },
+    { label: "Projects", href: "/projects" },
+  ];
+
+  const mobileLinks = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "#about" },
+    { label: "Projects", href: "/projects" },
+    { label: "Blogs", href: "#blogs" },
+  ];
+
   return (
     <>
       {/* Large Screen Navbar */}
@@ -50,16 +64,12 @@ export default function Navbar() {
 
           {!scrolled ? (
             <div className="flex items-center gap-[16px] ml-[48px] mr-[24px]">
-              {[
-                { label: "Home", width: 44.56, href: "/" },
-                { label: "About", width: 44.09, href: "#about" },
-                { label: "Projects", width: 59.86, href: "#projects" },
-              ].map(({ label, width, href }) => (
-                <a
+              {menuLinks.map(({ label, href }) => (
+                <Link
                   key={label}
-                  href={href}
+                  to={href}
                   className="relative cursor-pointer overflow-hidden"
-                  style={{ width: `${width}px`, height: "24px" }}
+                  style={{ width: `${label === "Projects" ? 59.86 : label === "Home" ? 44.56 : 44.09}px`, height: "24px" }}
                 >
                   <div
                     className="transition-transform duration-300 ease-in-out will-change-transform"
@@ -78,7 +88,7 @@ export default function Navbar() {
                       transform: translateY(-24px);
                     }
                   `}</style>
-                </a>
+                </Link>
               ))}
             </div>
           ) : (
@@ -167,20 +177,15 @@ export default function Navbar() {
               menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
-            {[
-              { label: "Home", href: "/" },
-              { label: "About", href: "#about" },
-              { label: "Projects", href: "#projects" },
-              { label: "Blogs", href: "#blogs" },
-            ].map(({ label, href }) => (
-              <a
+            {mobileLinks.map(({ label, href }) => (
+              <Link
                 key={label}
-                href={href}
+                to={href}
                 onClick={() => setMenuOpen(false)}
                 className="text-white font-normal text-lg hover:text-lime-400 transition"
               >
                 {label}
-              </a>
+              </Link>
             ))}
 
             <a
@@ -196,6 +201,8 @@ export default function Navbar() {
     </>
   );
 }
+
+
 
 
 

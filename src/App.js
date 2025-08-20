@@ -9,14 +9,16 @@ import HeroSectionFour from "./components/HeroSectionFour";
 import HeroSectionFive from "./components/HeroSectionFive";
 import Footer from "./components/Footer";
 
-import AllProjects from "./pages/AllProjects"; // make sure file is here
+import AllProjects from "./pages/AllProjects"; // ensure file exists
 import graphicImg from "./assets/uidesign.jpg";
 import webImg from "./assets/webdesign.jpg";
 
 /* Scroll to top on route change */
 function ScrollToTop() {
   const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return null;
 }
 
@@ -32,9 +34,8 @@ function HomePage({ hoveredImage, isMorphing, setHoveredImage, setIsMorphing }) 
         webImg={webImg}
       />
       <HeroSectionThree />
-      
-        <HeroSectionFour />
-        <HeroSectionFive />
+      <HeroSectionFour />
+      <HeroSectionFive />
     </>
   );
 }
@@ -60,7 +61,9 @@ export default function App() {
             />
           }
         />
-        <Route path="/all-projects" element={<AllProjects />} />
+        {/* Updated route for Projects page */}
+        <Route path="/projects" element={<AllProjects />} />
+
         {/* fallback to home if unknown path */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
@@ -69,3 +72,4 @@ export default function App() {
     </div>
   );
 }
+

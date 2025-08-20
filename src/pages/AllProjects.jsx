@@ -3,7 +3,6 @@ import { ArrowUpRight } from "lucide-react";
 import screenshot1 from "../assets/RactLibrary.png";
 import screenshot2 from "../assets/Aricreati.png";
 import screenshot3 from "../assets/Treact.png";
-// 👉 Add placeholder screenshots for the two new projects
 import screenshot4 from "../assets/Skinstric.png";
 import screenshot5 from "../assets/Ultraverse.png";
 
@@ -79,8 +78,8 @@ export default function AllProjects() {
     >
       {/* Floating cursor */}
       <div
-        className={`fixed flex items-center justify-center rounded-full z-50 transition-all duration-200 ease-out
-                    mix-blend-difference pointer-events-none
+        className={`fixed flex items-center justify-center rounded-full transition-all duration-200 ease-out
+                    pointer-events-none z-[9999]
                     ${hoveredProject ? "w-16 h-16" : "w-4 h-4"}`}
         style={{
           left: cursorPos.x + 20,
@@ -121,35 +120,35 @@ export default function AllProjects() {
             onMouseLeave={() => setHoveredProject(null)}
             aria-label={`${project.title} – open project`}
           >
-            {/* Image */}
-            <img
-              src={project.img}
-              alt={`project-${i + 1}`}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03] group-hover:opacity-40"
-            />
+            {/* Image wrapper */}
+            <div className="absolute inset-0">
+              <img
+                src={project.img}
+                alt={`project-${i + 1}`}
+                className="w-full h-full object-cover transform scale-105 
+                           transition-transform duration-500 group-hover:scale-[1.12] opacity-90"
+              />
+            </div>
 
-            {/* Hover overlay */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-              <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
-              <div className="relative h-full w-full flex items-center">
-                <div className="px-10 md:px-14 max-w-3xl">
-                  <h3 className="text-4xl md:text-5xl font-bold mb-2">
-                    {project.title}
-                  </h3>
-                  {project.subtitle && (
-                    <h4 className="text-xl md:text-2xl font-semibold mb-4">
-                      {project.subtitle}
-                    </h4>
-                  )}
-                  {project.stack && (
-                    <p className="text-sm md:text-base text-gray-300 mb-5">
-                      {project.stack}
-                    </p>
-                  )}
-                  <p className="text-base md:text-lg leading-relaxed text-gray-100">
-                    {project.description}
+            {/* Overlay + description */}
+            <div className="absolute inset-0 flex items-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="px-10 md:px-14 max-w-3xl">
+                <h3 className="text-4xl md:text-5xl font-bold mb-2">
+                  {project.title}
+                </h3>
+                {project.subtitle && (
+                  <h4 className="text-xl md:text-2xl font-semibold mb-4">
+                    {project.subtitle}
+                  </h4>
+                )}
+                {project.stack && (
+                  <p className="text-sm md:text-base text-gray-300 mb-5">
+                    {project.stack}
                   </p>
-                </div>
+                )}
+                <p className="text-base md:text-lg leading-relaxed text-gray-100">
+                  {project.description}
+                </p>
               </div>
             </div>
           </a>
@@ -158,6 +157,8 @@ export default function AllProjects() {
     </section>
   );
 }
+
+
 
 
 
