@@ -96,7 +96,7 @@ export default function AllProjects() {
       <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
       {/* Header */}
-      <div className="w-full max-w-7xl mb-12 text-left relative z-10">
+      <div className="w-full max-w-7xl mt-32 mb-12 text-left relative z-10">
         <h1 className="text-5xl md:text-6xl font-extrabold text-lime-400 mb-6">
           Featured Projects
         </h1>
@@ -121,18 +121,17 @@ export default function AllProjects() {
             aria-label={`${project.title} – open project`}
           >
             {/* Image wrapper */}
-            <div className="absolute inset-0">
+            <div className="absolute inset-0 overflow-hidden rounded-3xl">
               <img
                 src={project.img}
                 alt={`project-${i + 1}`}
-                className="w-full h-full object-cover transform scale-105 
-                           transition-transform duration-500 group-hover:scale-[1.12] opacity-90"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.12] will-change-transform"
               />
             </div>
 
             {/* Overlay + description */}
-            <div className="absolute inset-0 flex items-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="px-10 md:px-14 max-w-3xl">
+            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="px-10 md:px-14 pt-16">
                 <h3 className="text-4xl md:text-5xl font-bold mb-2">
                   {project.title}
                 </h3>
@@ -157,6 +156,10 @@ export default function AllProjects() {
     </section>
   );
 }
+
+
+
+
 
 
 
