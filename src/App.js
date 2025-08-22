@@ -10,9 +10,10 @@ import HeroSectionFive from "./components/HeroSectionFive";
 import Footer from "./components/Footer";
 
 import AllProjects from "./pages/AllProjects.jsx"; // ensure file exists
+import AboutMe from "./pages/AboutMe.jsx"; // new AboutMe page
 import graphicImg from "./assets/uidesign.jpg";
 import webImg from "./assets/Laptop2.jpg";
-import frontendImg from "./assets/laptop.jpg"
+import frontendImg from "./assets/laptop.jpg";
 
 /* Scroll to top on route change */
 function ScrollToTop() {
@@ -63,8 +64,12 @@ export default function App() {
             />
           }
         />
-        {/* Updated route for Projects page */}
+
+        {/* Projects page */}
         <Route path="/projects" element={<AllProjects />} />
+
+        {/* My Story / AboutMe page */}
+        <Route path="/my-story" element={<AboutMe />} />
 
         {/* fallback to home if unknown path */}
         <Route path="*" element={<Navigate to="/" replace />} />
@@ -74,4 +79,5 @@ export default function App() {
     </div>
   );
 }
+
 

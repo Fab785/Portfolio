@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Linkedin, Github, Mail } from "lucide-react";
 import CountUp from "react-countup";
-import { useInView } from "react-intersection-observer"; // 👈 new
+import { useInView } from "react-intersection-observer"; 
 import profileImg from "../assets/Fab.jpg";
+import { Link } from "react-router-dom";
 
 const HeroSectionThree = () => {
-  // Track if the section is in view
   const [ref, inView] = useInView({
-    threshold: 0.3,   // trigger when 30% of section is visible
-    triggerOnce: false, // allow repeat when scrolling in/out
+    threshold: 0.3,
+    triggerOnce: false,
   });
 
   return (
@@ -77,7 +77,7 @@ const HeroSectionThree = () => {
           </div>
 
           {/* Email with envelope icon */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mb-8">
             <Mail size={20} className="text-lime-400" />
             <a
               href="mailto:fabrizioterribile@gmail.com"
@@ -85,6 +85,19 @@ const HeroSectionThree = () => {
             >
               fabrizioterribile@gmail.com
             </a>
+          </div>
+
+          {/* My Story Button */}
+          <div className="flex justify-start">
+            <Link
+              to="/my-story"
+              className="inline-block px-8 py-4 border-2 border-lime-400 text-lime-400 font-bold text-lg rounded-full
+                         bg-gradient-to-r from-lime-400 to-lime-400 bg-[length:0%_100%] bg-no-repeat bg-left
+                         hover:bg-[length:100%_100%] hover:text-black
+                         transition-all duration-500 ease-out"
+            >
+              My Story
+            </Link>
           </div>
         </div>
 

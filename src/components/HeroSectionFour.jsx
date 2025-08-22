@@ -55,75 +55,76 @@ export default function HeroSectionFour() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative bg-transparent">
-      {/* Section Header */}
-      <div className="w-[80%] max-w-5xl mx-auto text-left px-2 pb-16">
-        <h2 className="text-6xl font-bold text-lime-400 mb-4">
-          FEATURED PROJECTS
-        </h2>
-        <p className="text-xl text-gray-300 max-w-2xl mt-4">
-          Selected projects reflecting creativity and strategy — solving real problems through thoughtful design.
-        </p>
-      </div>
+    <section ref={containerRef} className="relative bg-transparent pt-32 md:pt-40">
+  {/* Section Header */}
+  <div className="w-[80%] max-w-5xl mx-auto text-left px-2 pb-16">
+    <h2 className="text-6xl font-bold text-lime-400 mb-4">
+      FEATURED PROJECTS
+    </h2>
+    <p className="text-xl text-gray-300 max-w-2xl mt-4">
+      Selected projects reflecting creativity and strategy — solving real problems through thoughtful design.
+    </p>
+  </div>
 
-      {/* Project Cards */}
-      {projects.map((project, idx) => (
-        <div
-          key={project.id}
-          ref={addToRefs}
-          className="w-[80%] max-w-5xl mx-auto my-10 rounded-xl shadow-lg overflow-hidden h-[80vh] relative transition-transform duration-500 ease-out"
-          style={{
-            transform: `scale(${scales[idx]})`,
-            transformOrigin: "center center",
-            zIndex: Math.round(scales[idx] * 100),
-            boxShadow:
-              scales[idx] > 1.05
-                ? "0 25px 50px rgba(0,0,0,0.6)"
-                : "0 5px 15px rgba(0,0,0,0.2)",
-          }}
-        >
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-            draggable={false}
-          />
+  {/* Project Cards */}
+  {projects.map((project, idx) => (
+    <div
+      key={project.id}
+      ref={addToRefs}
+      className="w-[80%] max-w-5xl mx-auto my-10 rounded-xl shadow-lg overflow-hidden h-[80vh] relative transition-transform duration-500 ease-out"
+      style={{
+        transform: `scale(${scales[idx]})`,
+        transformOrigin: "center center",
+        zIndex: Math.round(scales[idx] * 100),
+        boxShadow:
+          scales[idx] > 1.05
+            ? "0 25px 50px rgba(0,0,0,0.6)"
+            : "0 5px 15px rgba(0,0,0,0.2)",
+      }}
+    >
+      <img
+        src={project.image}
+        alt={project.title}
+        className="w-full h-full object-cover"
+        draggable={false}
+      />
 
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/50 flex flex-col justify-between items-center opacity-0 hover:opacity-100 transition-opacity duration-500 px-6 py-10 text-center">
-            <div className="flex-1 flex flex-col justify-start items-center gap-6 pt-6">
-              <h2 className="text-5xl sm:text-6xl font-bold text-lime-400 mb-2">
-                {project.title}
-              </h2>
-              <p className="text-lg sm:text-xl text-gray-200 max-w-2xl">
-                {project.description}
-              </p>
-            </div>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 px-8 py-4 bg-lime-400 text-black font-semibold rounded-full hover:bg-lime-500 transition-colors duration-300"
-            >
-              Browse This Project
-            </a>
-          </div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50 flex flex-col justify-between items-center opacity-0 hover:opacity-100 transition-opacity duration-500 px-6 py-10 text-center">
+        <div className="flex-1 flex flex-col justify-start items-center gap-6 pt-6">
+          <h2 className="text-5xl sm:text-6xl font-bold text-lime-400 mb-2">
+            {project.title}
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-200 max-w-2xl">
+            {project.description}
+          </p>
         </div>
-      ))}
-
-      {/* Browse All Projects Button */}
-      <div className="flex justify-center py-20">
-        <Link
-          to="/all-projects"
-          className="inline-block px-8 py-4 border-2 border-lime-400 text-lime-400 font-bold text-lg rounded-full
-                     bg-gradient-to-r from-lime-400 to-lime-400 bg-[length:0%_100%] bg-no-repeat bg-left
-                     hover:bg-[length:100%_100%] hover:text-black
-                     transition-all duration-500 ease-out"
+        <a
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 px-8 py-4 bg-lime-400 text-black font-semibold rounded-full hover:bg-lime-500 transition-colors duration-300"
         >
-          BROWSE ALL PROJECTS
-        </Link>
+          Browse This Project
+        </a>
       </div>
-    </section>
+    </div>
+  ))}
+
+  {/* Browse All Projects Button */}
+  <div className="flex justify-center py-20">
+    <Link
+      to="/all-projects"
+      className="inline-block px-8 py-4 border-2 border-lime-400 text-lime-400 font-bold text-lg rounded-full
+                 bg-gradient-to-r from-lime-400 to-lime-400 bg-[length:0%_100%] bg-no-repeat bg-left
+                 hover:bg-[length:100%_100%] hover:text-black
+                 transition-all duration-500 ease-out"
+    >
+      BROWSE ALL PROJECTS
+    </Link>
+  </div>
+</section>
+
   );
 }
 
