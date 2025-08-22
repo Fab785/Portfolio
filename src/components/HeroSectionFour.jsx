@@ -1,13 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import screenshot1 from "../assets/Ultraverse.png";
-import screenshot2 from "../assets/Skinstric.png";
+import screenshot2 from "../assets/Treact.png";
 import screenshot3 from "../assets/Aricreati.png";
 
 const projects = [
-  { id: 1, title: "Project One",  description: "This is a short description for project one.",  image: screenshot1 },
-  { id: 2, title: "Project Two",  description: "This is a short description for project two.",  image: screenshot2 },
-  { id: 3, title: "ULTRAVERSE",description: "This is a short description for project three.",image: screenshot3 },
+  { 
+    id: 1, 
+    title: "ULTRAVERSE", 
+    description: "Exploring immersive metaverse experiences and virtual worlds.", 
+    image: screenshot1, 
+    link: "https://fabrizio-internship-9q4v.vercel.app/" 
+  },
+  { 
+    id: 2, 
+    title: "TRIACT", 
+    description: "Innovative AI-powered platform for smart analytics and workflow automation.", 
+    image: screenshot2, 
+    link: "https://final-project-zeta-livid.vercel.app/" 
+  },
+  { 
+    id: 3, 
+    title: "ARICREATI CREAZIONI",
+    description: "Creative portfolio and design showcase, highlighting unique projects.",
+    image: screenshot3, 
+    link: "https://ari-creati.vercel.app/" 
+  },
 ];
 
 export default function HeroSectionFour() {
@@ -31,7 +49,6 @@ export default function HeroSectionFour() {
         if (!img) return 0.85;
         const rect = img.getBoundingClientRect();
         const imgCenter = rect.top + rect.height / 2;
-
         const distance = Math.abs(viewportCenter - imgCenter);
         const maxDistance = viewportHeight / 1.5;
 
@@ -58,11 +75,11 @@ export default function HeroSectionFour() {
   return (
     <section ref={containerRef} className="relative bg-transparent">
       <div className="w-[80%] max-w-5xl mx-auto text-left px-2 pb-16">
-        <h2 className="text-5xl font-bold text-white mb-4">FEATURED PROJECTS</h2>
-        <p className="text-lg text-gray-300 max-w-xl">
-          These selected projects reflect my passion for blending strategy with
-          creativity — solving real problems through thoughtful design and
-          impactful storytelling.
+        <h2 className="text-5xl sm:text-6xl font-bold text-lime-400 mb-4 px-4 py-2 rounded-full inline-block bg-black/30">
+          FEATURED PROJECTS
+        </h2>
+        <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mt-4">
+          Selected projects reflecting creativity and strategy — solving real problems through thoughtful design.
         </p>
       </div>
 
@@ -87,27 +104,32 @@ export default function HeroSectionFour() {
             className="w-full h-full object-cover"
             draggable={false}
           />
-          <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500">
-            <h2 className="text-3xl font-bold text-white mb-2">{project.title}</h2>
-            <p className="text-lg text-gray-200">{project.description}</p>
+
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/50 flex flex-col justify-between items-center opacity-0 hover:opacity-100 transition-opacity duration-500 px-4 sm:px-6 py-6 sm:py-10 text-center">
+            <div className="flex-1 flex flex-col justify-start items-center gap-4 sm:gap-6 pt-4 sm:pt-6">
+              <h2 className="text-3xl sm:text-6xl font-bold text-lime-400 mb-2 px-2 sm:px-6 py-2 rounded-full bg-black/30 break-words">
+                {project.title}
+              </h2>
+              <p className="text-base sm:text-xl text-gray-200 max-w-full sm:max-w-2xl">
+                {project.description}
+              </p>
+            </div>
+            <Link
+              to={project.link}
+              className="mt-4 sm:mt-6 px-6 sm:px-8 py-3 sm:py-4 bg-lime-400 text-black font-semibold rounded-full hover:bg-lime-500 transition-colors duration-300"
+            >
+              Browse This Project
+            </Link>
           </div>
         </div>
       ))}
-
-      {/* Browse All Projects Button */}
-      <div className="flex justify-center py-16">
-        <Link
-          to="/all-projects"
-          className="inline-block px-8 py-3 border-2 border-lime-400 text-lime-400 font-bold text-lg rounded-full
-                     bg-gradient-to-r from-lime-400 to-lime-400 bg-[length:0%_100%] bg-no-repeat bg-left
-                     hover:bg-[length:100%_100%] hover:text-black
-                     transition-all duration-500 ease-out"
-        >
-          BROWSE ALL PROJECTS
-        </Link>
-      </div>
     </section>
   );
 }
+
+
+
+
 
 
