@@ -5,27 +5,9 @@ import screenshot2 from "../assets/Treact.png";
 import screenshot3 from "../assets/Aricreati.png";
 
 const projects = [
-  { 
-    id: 1, 
-    title: "ULTRAVERSE", 
-    description: "Exploring immersive metaverse experiences and virtual worlds.", 
-    image: screenshot1, 
-    link: "https://fabrizio-internship-9q4v.vercel.app/" 
-  },
-  { 
-    id: 2, 
-    title: "TRIACT", 
-    description: "Innovative AI-powered platform for smart analytics and workflow automation.", 
-    image: screenshot2, 
-    link: "https://final-project-zeta-livid.vercel.app/" 
-  },
-  { 
-    id: 3, 
-    title: "ARICREATI CREAZIONI",
-    description: "Creative portfolio and design showcase, highlighting unique projects.",
-    image: screenshot3, 
-    link: "https://ari-creati.vercel.app/" 
-  },
+  { id: 1, title: "ULTRAVERSE", description: "Exploring immersive metaverse experiences.", image: screenshot1, link: "/projects/ultraverse" },
+  { id: 2, title: "TRIACT", description: "AI-driven skincare design and analysis.", image: screenshot2, link: "/projects/skincare" },
+  { id: 3, title: "ARICREATI CREAZIONI", description: "Creative portfolio and design showcase.", image: screenshot3, link: "/projects/aricreati" },
 ];
 
 export default function HeroSectionFour() {
@@ -74,15 +56,17 @@ export default function HeroSectionFour() {
 
   return (
     <section ref={containerRef} className="relative bg-transparent">
+      {/* Section Header */}
       <div className="w-[80%] max-w-5xl mx-auto text-left px-2 pb-16">
-        <h2 className="text-5xl sm:text-6xl font-bold text-lime-400 mb-4 px-4 py-2 rounded-full inline-block bg-black/30">
+        <h2 className="text-6xl font-bold text-lime-400 mb-4">
           FEATURED PROJECTS
         </h2>
-        <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mt-4">
+        <p className="text-xl text-gray-300 max-w-2xl mt-4">
           Selected projects reflecting creativity and strategy — solving real problems through thoughtful design.
         </p>
       </div>
 
+      {/* Project Cards */}
       {projects.map((project, idx) => (
         <div
           key={project.id}
@@ -106,27 +90,43 @@ export default function HeroSectionFour() {
           />
 
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/50 flex flex-col justify-between items-center opacity-0 hover:opacity-100 transition-opacity duration-500 px-4 sm:px-6 py-6 sm:py-10 text-center">
-            <div className="flex-1 flex flex-col justify-start items-center gap-4 sm:gap-6 pt-4 sm:pt-6">
-              <h2 className="text-3xl sm:text-6xl font-bold text-lime-400 mb-2 px-2 sm:px-6 py-2 rounded-full bg-black/30 break-words">
+          <div className="absolute inset-0 bg-black/50 flex flex-col justify-between items-center opacity-0 hover:opacity-100 transition-opacity duration-500 px-6 py-10 text-center">
+            <div className="flex-1 flex flex-col justify-start items-center gap-6 pt-6">
+              <h2 className="text-5xl sm:text-6xl font-bold text-lime-400 mb-2">
                 {project.title}
               </h2>
-              <p className="text-base sm:text-xl text-gray-200 max-w-full sm:max-w-2xl">
+              <p className="text-lg sm:text-xl text-gray-200 max-w-2xl">
                 {project.description}
               </p>
             </div>
-            <Link
-              to={project.link}
-              className="mt-4 sm:mt-6 px-6 sm:px-8 py-3 sm:py-4 bg-lime-400 text-black font-semibold rounded-full hover:bg-lime-500 transition-colors duration-300"
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 px-8 py-4 bg-lime-400 text-black font-semibold rounded-full hover:bg-lime-500 transition-colors duration-300"
             >
               Browse This Project
-            </Link>
+            </a>
           </div>
         </div>
       ))}
+
+      {/* Browse All Projects Button */}
+      <div className="flex justify-center py-20">
+        <Link
+          to="/all-projects"
+          className="inline-block px-8 py-4 border-2 border-lime-400 text-lime-400 font-bold text-lg rounded-full
+                     bg-gradient-to-r from-lime-400 to-lime-400 bg-[length:0%_100%] bg-no-repeat bg-left
+                     hover:bg-[length:100%_100%] hover:text-black
+                     transition-all duration-500 ease-out"
+        >
+          BROWSE ALL PROJECTS
+        </Link>
+      </div>
     </section>
   );
 }
+
 
 
 
