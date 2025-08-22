@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { FaReact, FaNodeJs, FaGitAlt } from "react-icons/fa";
+import { IoLogoJavascript, IoLogoHtml5, IoLogoCss3 } from "react-icons/io";
+import { SiTailwindcss, SiNextdotjs, SiAxios } from "react-icons/si";
 import screenshot1 from "../assets/RactLibrary.png";
 import screenshot2 from "../assets/Aricreati.png";
 import screenshot3 from "../assets/Treact.png";
@@ -11,7 +14,6 @@ export default function AllProjects() {
   const [hoveredProject, setHoveredProject] = useState(null);
   const rafId = useRef(null);
 
-  // Smooth mouse tracking (throttled via rAF)
   useEffect(() => {
     const onMove = (e) => {
       const x = e.clientX;
@@ -26,12 +28,26 @@ export default function AllProjects() {
     };
   }, []);
 
+  // map stack names to icons
+  const iconsMap = {
+    React: <FaReact className="text-cyan-400 text-3xl" />,
+    JavaScript: <IoLogoJavascript className="text-yellow-400 text-3xl" />,
+    Nodejs: <FaNodeJs className="text-green-500 text-3xl" />,
+    "Node.js": <FaNodeJs className="text-green-500 text-3xl" />,
+    Git: <FaGitAlt className="text-orange-500 text-3xl" />,
+    Tailwind: <SiTailwindcss className="text-sky-400 text-3xl" />,
+    Nextjs: <SiNextdotjs className="text-gray-200 text-3xl" />,
+    "Next.js": <SiNextdotjs className="text-gray-200 text-3xl" />,
+    HTML: <IoLogoHtml5 className="text-orange-600 text-3xl" />,
+    CSS: <IoLogoCss3 className="text-blue-500 text-3xl" />,
+    Axios: <SiAxios className="text-purple-400 text-3xl" />,
+  };
+
   const projects = [
     {
       img: screenshot1,
       title: "Library Snapshot",
-      subtitle: "Ultraverse",
-      stack: "React, JavaScript, Node.js, Git",
+      stack: ["React", "JavaScript", "Node.js", "Git"],
       description:
         "The final product of my internship with Frontend Simplified. Converted a static website into a dynamic app using Axios, Owl Carousel, and Animate on Scroll. Maintained version control with GitHub PRs.",
       link: "https://library-with-react-rho.vercel.app/#/",
@@ -40,7 +56,7 @@ export default function AllProjects() {
       img: screenshot2,
       title: "Aricreati Business",
       subtitle: "Creative Strategy",
-      stack: "React, JavaScript, Tailwind",
+      stack: ["React", "JavaScript", "Tailwind"],
       description:
         "A modern business platform highlighting creative solutions for SMEs. Fast, scalable, and responsive — blending sleek UI with strategic storytelling.",
       link: "https://ari-creati.vercel.app/",
@@ -48,7 +64,7 @@ export default function AllProjects() {
     {
       img: screenshot3,
       title: "Treact Clone",
-      stack: "React, HTML, CSS",
+      stack: ["React", "HTML", "CSS"],
       description:
         "Recreated the Treact landing page with animations, components, and responsive design — testing precision in front-end replication.",
       link: "https://final-project-zeta-livid.vercel.app/",
@@ -56,7 +72,7 @@ export default function AllProjects() {
     {
       img: screenshot4,
       title: "Skinstric",
-      stack: "React, Tailwind, Next.js",
+      stack: ["React", "Tailwind", "Next.js"],
       description:
         "A clean and modern skincare brand website. Built with Next.js for performance, Tailwind for styling, and a mobile-first design approach.",
       link: "https://skinstric-kohl.vercel.app/",
@@ -64,7 +80,8 @@ export default function AllProjects() {
     {
       img: screenshot5,
       title: "Internship Project",
-      stack: "React, JavaScript, Tailwind",
+      subtitle: "Ultraverse",
+      stack: ["React", "JavaScript", "Tailwind"],
       description:
         "Developed during my internship — showcasing UI/UX principles, modern layouts, and responsive components optimized for real-world use cases.",
       link: "https://fabrizio-internship-9q4v.vercel.app/",
@@ -91,9 +108,6 @@ export default function AllProjects() {
       >
         {hoveredProject && <ArrowUpRight className="w-6 h-6" />}
       </div>
-
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
       {/* Header */}
       <div className="w-full max-w-7xl mt-32 mb-12 text-left relative z-10">
@@ -125,27 +139,40 @@ export default function AllProjects() {
               <img
                 src={project.img}
                 alt={`project-${i + 1}`}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.12] will-change-transform"
+                className="w-full h-full object-cover"
               />
             </div>
 
-            {/* Overlay + description */}
-            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="px-10 md:px-14 pt-16">
-                <h3 className="text-4xl md:text-5xl font-bold mb-2">
+            {/* Sliding door overlays */}
+            <div className="absolute inset-0 flex">
+              {/* Left panel */}
+              <div
+                className="w-[51%] h-full bg-black/40 backdrop-blur-md transform -translate-x-full group-hover:translate-x-0 
+                           transition-transform duration-500 flex flex-col justify-start items-start px-8 pt-16"
+              >
+                <h3 className="text-4xl md:text-5xl font-bold text-lime-400 mb-2">
                   {project.title}
                 </h3>
                 {project.subtitle && (
-                  <h4 className="text-xl md:text-2xl font-semibold mb-4">
+                  <h4 className="text-xl md:text-2xl font-semibold text-gray-200 mb-4">
                     {project.subtitle}
                   </h4>
                 )}
                 {project.stack && (
-                  <p className="text-sm md:text-base text-gray-300 mb-5">
-                    {project.stack}
-                  </p>
+                  <div className="flex space-x-4 mt-4">
+                    {project.stack.map((tech, index) => (
+                      <span key={index}>{iconsMap[tech] || tech}</span>
+                    ))}
+                  </div>
                 )}
-                <p className="text-base md:text-lg leading-relaxed text-gray-100">
+              </div>
+
+              {/* Right panel */}
+              <div
+                className="w-[51%] h-full bg-black/40 backdrop-blur-md transform translate-x-full group-hover:translate-x-0 
+                           transition-transform duration-500 flex flex-col justify-end items-start px-8 pb-16"
+              >
+                <p className="text-lg md:text-xl leading-relaxed text-gray-100 mt-20">
                   {project.description}
                 </p>
               </div>
@@ -156,6 +183,10 @@ export default function AllProjects() {
     </section>
   );
 }
+
+
+
+
 
 
 
