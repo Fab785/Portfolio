@@ -1,6 +1,5 @@
 import React from "react";
-import frontImg from "../assets/Fab.jpg"; // front face
-import backImg from "../assets/pexels-serpstat-177219-572056.jpg";
+import frontImg from "../assets/Fab.jpg";
 
 export default function AboutSection() {
   return (

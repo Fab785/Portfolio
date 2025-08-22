@@ -2,7 +2,8 @@ import React, { useState, useRef } from "react";
 import { CheckCircle } from "lucide-react";
 import computerImg from "../assets/computer.jpg";
 
-const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) => {
+const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, frontendImg }) => {
+  const [isFrontendOpen, setIsFrontendOpen] = useState(false);
   const [isWebDesignOpen, setIsWebDesignOpen] = useState(false);
   const [isUIDesignOpen, setIsUIDesignOpen] = useState(false);
   const [hoveredMainLine, setHoveredMainLine] = useState(null);
@@ -14,26 +15,26 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
     setHoveredMainLine(lineKey);
   };
 
-  // Leave main line: reset to dot (unless pointer is still inside the same LI)
   const handleMouseLeaveMain = (e) => {
     const toEl = e.relatedTarget;
-    if (toEl && e.currentTarget.contains(toEl)) return; // still inside the LI -> ignore
+    if (toEl && e.currentTarget.contains(toEl)) return;
     setHoveredImage(null);
     setIsMorphing(false);
     setHoveredMainLine(null);
   };
 
-  // Enter submenu: show dot (pause the morph while browsing submenu)
   const handleMouseEnterSubmenu = () => {
     setHoveredImage(null);
     setIsMorphing(false);
   };
 
-  // Leave submenu: if pointer is still over the parent LI, re-morph; else reset
   const handleMouseLeaveSubmenu = (e) => {
     const parentIsHovered = e.currentTarget.parentElement?.matches(":hover");
     if (parentIsHovered) {
-      if (hoveredMainLine === "ui") {
+      if (hoveredMainLine === "frontend") {
+        setHoveredImage(frontendImg);
+        setIsMorphing(true);
+      } else if (hoveredMainLine === "ui") {
         setHoveredImage(graphicImg);
         setIsMorphing(true);
       } else if (hoveredMainLine === "web") {
@@ -61,7 +62,49 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
           </p>
 
           <ul className="space-y-6 text-lg md:text-xl tracking-wide font-medium">
-            {/* UI DESIGN */}
+            
+            {/* FRONT-END DEVELOPMENT (new first section) */}
+            <li
+              onClick={() => setIsFrontendOpen((prev) => !prev)}
+              onMouseEnter={() => handleMouseEnterMain(frontendImg, "frontend")}
+              onMouseLeave={handleMouseLeaveMain}
+              className={`cursor-pointer flex flex-col pb-3 group transition-colors duration-300
+                ${isFrontendOpen ? "text-lime-400 border-lime-400 border-b" : "border-gray-600 border-b hover:text-lime-400"}
+              `}
+            >
+              <div className="flex justify-between items-center">
+                <span>1. FRONT-END DEVELOPMENT</span>
+                <span
+                  className={`transform transition-transform duration-300 ${
+                    isFrontendOpen ? "rotate-180 text-lime-400" : ""
+                  }`}
+                >
+                  ↑
+                </span>
+              </div>
+
+              {isFrontendOpen && (
+                <ul
+                  onMouseEnter={handleMouseEnterSubmenu}
+                  onMouseLeave={handleMouseLeaveSubmenu}
+                  className="mt-4 space-y-3 text-base text-gray-300 pl-4"
+                >
+                  {[
+                    "Building responsive, dynamic web apps",
+                    "Optimizing performance & accessibility",
+                    "Working with React, Next.js & Tailwind",
+                    "Integrating APIs & real-world data",
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <CheckCircle className="text-lime-400 w-5 h-5 mt-1" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+
+            {/* UI/UX DESIGN (now second) */}
             <li
               onClick={() => setIsUIDesignOpen((prev) => !prev)}
               onMouseEnter={() => handleMouseEnterMain(graphicImg, "ui")}
@@ -71,7 +114,7 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
               `}
             >
               <div className="flex justify-between items-center">
-                <span>1. UI DESIGN</span>
+                <span>2. UI/UX DESIGN</span>
                 <span
                   className={`transform transition-transform duration-300 ${
                     isUIDesignOpen ? "rotate-180 text-lime-400" : ""
@@ -101,7 +144,7 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
               )}
             </li>
 
-            {/* WEB DESIGN */}
+            {/* WEB DESIGN (now third) */}
             <li
               onClick={() => setIsWebDesignOpen((prev) => !prev)}
               onMouseEnter={() => handleMouseEnterMain(webImg, "web")}
@@ -111,7 +154,7 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
               `}
             >
               <div className="flex justify-between items-center">
-                <span>2. WEB DESIGN</span>
+                <span>3. WEB DESIGN</span>
                 <span
                   className={`transform transition-transform duration-300 ${
                     isWebDesignOpen ? "rotate-180 text-lime-400" : ""
@@ -160,6 +203,7 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg }) 
 };
 
 export default HeroSectionTwo;
+
 
 
 

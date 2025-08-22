@@ -9,9 +9,10 @@ import HeroSectionFour from "./components/HeroSectionFour";
 import HeroSectionFive from "./components/HeroSectionFive";
 import Footer from "./components/Footer";
 
-import AllProjects from "./pages/AllProjects"; // ensure file exists
+import AllProjects from "./pages/AllProjects.jsx"; // ensure file exists
 import graphicImg from "./assets/uidesign.jpg";
-import webImg from "./assets/webdesign.jpg";
+import webImg from "./assets/Laptop2.jpg";
+import frontendImg from "./assets/laptop.jpg"
 
 /* Scroll to top on route change */
 function ScrollToTop() {
@@ -30,6 +31,7 @@ function HomePage({ hoveredImage, isMorphing, setHoveredImage, setIsMorphing }) 
       <HeroSectionTwo
         setHoveredImage={setHoveredImage}
         setIsMorphing={setIsMorphing}
+        frontendImg={frontendImg}
         graphicImg={graphicImg}
         webImg={webImg}
       />
