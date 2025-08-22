@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react"; 
 import { CheckCircle } from "lucide-react";
 import computerImg from "../assets/computer.jpg";
 
@@ -15,9 +15,11 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, fr
     setHoveredMainLine(lineKey);
   };
 
+  // FIXED: safely check Node before contains
   const handleMouseLeaveMain = (e) => {
     const toEl = e.relatedTarget;
-    if (toEl && e.currentTarget.contains(toEl)) return;
+    if (toEl instanceof Node && e.currentTarget.contains(toEl)) return;
+
     setHoveredImage(null);
     setIsMorphing(false);
     setHoveredMainLine(null);
@@ -53,7 +55,7 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, fr
       <div className="max-w-7xl w-full flex flex-col md:flex-row justify-between items-center gap-16">
         {/* LEFT SIDE */}
         <div className="flex-1">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-lime-400">
             WHAT I CAN DO FOR YOU
           </h2>
           <p className="text-gray-300 mb-10 leading-relaxed max-w-xl">
@@ -62,8 +64,7 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, fr
           </p>
 
           <ul className="space-y-6 text-lg md:text-xl tracking-wide font-medium">
-            
-            {/* FRONT-END DEVELOPMENT (new first section) */}
+            {/* FRONT-END DEVELOPMENT */}
             <li
               onClick={() => setIsFrontendOpen((prev) => !prev)}
               onMouseEnter={() => handleMouseEnterMain(frontendImg, "frontend")}
@@ -72,10 +73,14 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, fr
                 ${isFrontendOpen ? "text-lime-400 border-lime-400 border-b" : "border-gray-600 border-b hover:text-lime-400"}
               `}
             >
-              <div className="flex justify-between items-center">
+              <div
+                className={`flex justify-between items-center transform transition-all duration-500
+                  ${isFrontendOpen ? "-translate-y-2" : "translate-y-0"}
+                `}
+              >
                 <span>1. FRONT-END DEVELOPMENT</span>
                 <span
-                  className={`transform transition-transform duration-300 ${
+                  className={`transform transition-transform duration-500 ${
                     isFrontendOpen ? "rotate-180 text-lime-400" : ""
                   }`}
                 >
@@ -83,28 +88,28 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, fr
                 </span>
               </div>
 
-              {isFrontendOpen && (
-                <ul
-                  onMouseEnter={handleMouseEnterSubmenu}
-                  onMouseLeave={handleMouseLeaveSubmenu}
-                  className="mt-4 space-y-3 text-base text-gray-300 pl-4"
-                >
-                  {[
-                    "Building responsive, dynamic web apps",
-                    "Optimizing performance & accessibility",
-                    "Working with React, Next.js & Tailwind",
-                    "Integrating APIs & real-world data",
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <CheckCircle className="text-lime-400 w-5 h-5 mt-1" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <ul
+                className={`overflow-hidden transition-all duration-500 ${
+                  isFrontendOpen ? "max-h-96 mt-4" : "max-h-0 mt-0"
+                } space-y-3 text-base text-gray-300 pl-4`}
+                onMouseEnter={handleMouseEnterSubmenu}
+                onMouseLeave={handleMouseLeaveSubmenu}
+              >
+                {[
+                  "Building responsive, dynamic web apps",
+                  "Optimizing performance & accessibility",
+                  "Working with React, Next.js & Tailwind",
+                  "Integrating APIs & real-world data",
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <CheckCircle className="text-lime-400 w-5 h-5 mt-1" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </li>
 
-            {/* UI/UX DESIGN (now second) */}
+            {/* UI/UX DESIGN */}
             <li
               onClick={() => setIsUIDesignOpen((prev) => !prev)}
               onMouseEnter={() => handleMouseEnterMain(graphicImg, "ui")}
@@ -113,10 +118,14 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, fr
                 ${isUIDesignOpen ? "text-lime-400 border-lime-400 border-b" : "border-gray-600 border-b hover:text-lime-400"}
               `}
             >
-              <div className="flex justify-between items-center">
+              <div
+                className={`flex justify-between items-center transform transition-all duration-500
+                  ${isUIDesignOpen ? "-translate-y-2" : "translate-y-0"}
+                `}
+              >
                 <span>2. UI/UX DESIGN</span>
                 <span
-                  className={`transform transition-transform duration-300 ${
+                  className={`transform transition-transform duration-500 ${
                     isUIDesignOpen ? "rotate-180 text-lime-400" : ""
                   }`}
                 >
@@ -124,27 +133,27 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, fr
                 </span>
               </div>
 
-              {isUIDesignOpen && (
-                <ul
-                  onMouseEnter={handleMouseEnterSubmenu}
-                  onMouseLeave={handleMouseLeaveSubmenu}
-                  className="mt-4 space-y-3 text-base text-gray-300 pl-4"
-                >
-                  {[
-                    "User Interface design for web and mobile apps",
-                    "Usability testing and user feedback analysis",
-                    "Interaction design and micro-animations",
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <CheckCircle className="text-lime-400 w-5 h-5 mt-1" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <ul
+                className={`overflow-hidden transition-all duration-500 ${
+                  isUIDesignOpen ? "max-h-72 mt-4" : "max-h-0 mt-0"
+                } space-y-3 text-base text-gray-300 pl-4`}
+                onMouseEnter={handleMouseEnterSubmenu}
+                onMouseLeave={handleMouseLeaveSubmenu}
+              >
+                {[
+                  "User Interface design for web and mobile apps",
+                  "Usability testing and user feedback analysis",
+                  "Interaction design and micro-animations",
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <CheckCircle className="text-lime-400 w-5 h-5 mt-1" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </li>
 
-            {/* WEB DESIGN (now third) */}
+            {/* WEB DESIGN */}
             <li
               onClick={() => setIsWebDesignOpen((prev) => !prev)}
               onMouseEnter={() => handleMouseEnterMain(webImg, "web")}
@@ -153,10 +162,14 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, fr
                 ${isWebDesignOpen ? "text-lime-400 border-lime-400 border-b" : "border-gray-600 border-b hover:text-lime-400"}
               `}
             >
-              <div className="flex justify-between items-center">
+              <div
+                className={`flex justify-between items-center transform transition-all duration-500
+                  ${isWebDesignOpen ? "-translate-y-2" : "translate-y-0"}
+                `}
+              >
                 <span>3. WEB DESIGN</span>
                 <span
-                  className={`transform transition-transform duration-300 ${
+                  className={`transform transition-transform duration-500 ${
                     isWebDesignOpen ? "rotate-180 text-lime-400" : ""
                   }`}
                 >
@@ -164,25 +177,25 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, fr
                 </span>
               </div>
 
-              {isWebDesignOpen && (
-                <ul
-                  onMouseEnter={handleMouseEnterSubmenu}
-                  onMouseLeave={handleMouseLeaveSubmenu}
-                  className="mt-4 space-y-3 text-base text-gray-300 pl-4"
-                >
-                  {[
-                    "Responsive website design",
-                    "Landing page design and optimization",
-                    "Webflow development and customization",
-                    "Website maintenance and updates",
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <CheckCircle className="text-lime-400 w-5 h-5 mt-1" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <ul
+                className={`overflow-hidden transition-all duration-500 ${
+                  isWebDesignOpen ? "max-h-80 mt-4" : "max-h-0 mt-0"
+                } space-y-3 text-base text-gray-300 pl-4`}
+                onMouseEnter={handleMouseEnterSubmenu}
+                onMouseLeave={handleMouseLeaveSubmenu}
+              >
+                {[
+                  "Responsive website design",
+                  "Landing page design and optimization",
+                  "Webflow development and customization",
+                  "Website maintenance and updates",
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <CheckCircle className="text-lime-400 w-5 h-5 mt-1" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </li>
           </ul>
         </div>
@@ -203,6 +216,10 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, fr
 };
 
 export default HeroSectionTwo;
+
+
+
+
 
 
 

@@ -79,8 +79,8 @@ export default function AllProjects() {
     },
     {
       img: screenshot5,
-      title: "Internship Project",
-      subtitle: "Ultraverse",
+      title: "ULTRAVERSE",
+      subtitle: "Internship Project",
       stack: ["React", "JavaScript", "Tailwind"],
       description:
         "Developed during my internship — showcasing UI/UX principles, modern layouts, and responsive components optimized for real-world use cases.",
