@@ -8,7 +8,6 @@ export default function Hero({ hoveredImage, isMorphing }) {
 
   const [showHi, setShowHi] = useState(true);
   const isFirstHi = useRef(true);
-
   const prevMorphing = useRef(false);
 
   useEffect(() => {
@@ -59,8 +58,39 @@ export default function Hero({ hoveredImage, isMorphing }) {
         }}
       />
 
-      {/* Hero Section inherits global background */}
+      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 py-12 text-white overflow-hidden">
+        {/* Animated lime radial highlights flowing into Section 2 */}
+        <motion.div
+          className="absolute top-0 left-0 w-full h-[150vh] pointer-events-none -z-10"
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: 120, ease: "linear" }}
+        >
+          <motion.div
+            className="absolute w-[400px] h-[400px] rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(198,255,0,0.08) 0%, transparent 70%)",
+              top: "-50px",
+              left: "-50px",
+            }}
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute w-[500px] h-[500px] rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(198,255,0,0.06) 0%, transparent 80%)",
+              bottom: "-150px",
+              right: "-100px",
+            }}
+            animate={{ scale: [1, 1.15, 1] }}
+            transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
+          />
+        </motion.div>
+
+        {/* Hero content */}
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14 z-10 relative w-full max-w-6xl">
           {/* Left Text */}
           <div
@@ -142,6 +172,8 @@ export default function Hero({ hoveredImage, isMorphing }) {
     </>
   );
 }
+
+
 
 
 

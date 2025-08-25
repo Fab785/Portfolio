@@ -9,8 +9,8 @@ import HeroSectionFour from "./components/HeroSectionFour";
 import HeroSectionFive from "./components/HeroSectionFive";
 import Footer from "./components/Footer";
 
-import AllProjects from "./pages/AllProjects.jsx"; // ensure file exists
-import AboutMe from "./pages/AboutMe.jsx"; // new AboutMe page
+import AllProjects from "./pages/AllProjects.jsx";
+import AboutMe from "./pages/AboutMe.jsx";
 import graphicImg from "./assets/uidesign.jpg";
 import webImg from "./assets/Laptop2.jpg";
 import frontendImg from "./assets/laptop.jpg";

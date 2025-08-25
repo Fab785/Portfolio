@@ -34,16 +34,16 @@ export default function Navbar() {
   }, [scrolled]);
 
   const menuLinks = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "/projects" },
+    { label: "Home", to: "/" },
+    { label: "About", to: "/my-story" }, // updated
+    { label: "Projects", to: "/projects" },
   ];
 
   const mobileLinks = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "/projects" },
-    { label: "Blogs", href: "#blogs" },
+    { label: "Home", to: "/" },
+    { label: "About", to: "/my-story" }, // updated
+    { label: "Projects", to: "/projects" },
+    { label: "Blogs", to: "#blogs" },
   ];
 
   return (
@@ -64,12 +64,21 @@ export default function Navbar() {
 
           {!scrolled ? (
             <div className="flex items-center gap-[16px] ml-[48px] mr-[24px]">
-              {menuLinks.map(({ label, href }) => (
+              {menuLinks.map(({ label, to }) => (
                 <Link
                   key={label}
-                  to={href}
+                  to={to}
                   className="relative cursor-pointer overflow-hidden"
-                  style={{ width: `${label === "Projects" ? 59.86 : label === "Home" ? 44.56 : 44.09}px`, height: "24px" }}
+                  style={{
+                    width: `${
+                      label === "Projects"
+                        ? 59.86
+                        : label === "Home"
+                        ? 44.56
+                        : 44.09
+                    }px`,
+                    height: "24px",
+                  }}
                 >
                   <div
                     className="transition-transform duration-300 ease-in-out will-change-transform"
@@ -177,10 +186,10 @@ export default function Navbar() {
               menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
-            {mobileLinks.map(({ label, href }) => (
+            {mobileLinks.map(({ label, to }) => (
               <Link
                 key={label}
-                to={href}
+                to={to}
                 onClick={() => setMenuOpen(false)}
                 className="text-white font-normal text-lg hover:text-lime-400 transition"
               >
@@ -201,6 +210,8 @@ export default function Navbar() {
     </>
   );
 }
+
+
 
 
 
