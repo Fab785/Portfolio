@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import profileImg from "../assets/Fab.jpg";
 
 export default function Navbar() {
@@ -7,17 +7,17 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const prevScrollY = useRef(0);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Scroll handler for shrinking navbar
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY === 0) {
-        setScrolled(false);
-      } else if (currentScrollY > prevScrollY.current) {
-        setScrolled(true);
-      } else if (currentScrollY < prevScrollY.current) {
-        setScrolled(false);
-      }
+      if (currentScrollY === 0) setScrolled(false);
+      else if (currentScrollY > prevScrollY.current) setScrolled(true);
+      else if (currentScrollY < prevScrollY.current) setScrolled(false);
 
       prevScrollY.current = currentScrollY;
     };
@@ -35,16 +35,40 @@ export default function Navbar() {
 
   const menuLinks = [
     { label: "Home", to: "/" },
-    { label: "About", to: "/my-story" }, // updated
+    { label: "About", to: "/my-story" },
     { label: "Projects", to: "/projects" },
   ];
 
   const mobileLinks = [
     { label: "Home", to: "/" },
-    { label: "About", to: "/my-story" }, // updated
+    { label: "About", to: "/my-story" },
     { label: "Projects", to: "/projects" },
     { label: "Blogs", to: "#blogs" },
   ];
+
+  // Smooth scroll to HeroSectionFive
+  const scrollToContact = () => {
+    const el = document.getElementById("hero-section-five");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // Smooth scroll to top (used for Home button)
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Handle Home click
+  const handleHomeClick = (e) => {
+    e.preventDefault();
+    if (location.pathname === "/") {
+      scrollToTop(); // Already on home, just scroll to top
+    } else {
+      navigate("/"); // Not on home, navigate to home page
+    }
+    setMenuOpen(false);
+  };
 
   return (
     <>
@@ -64,49 +88,62 @@ export default function Navbar() {
 
           {!scrolled ? (
             <div className="flex items-center gap-[16px] ml-[48px] mr-[24px]">
-              {menuLinks.map(({ label, to }) => (
-                <Link
-                  key={label}
-                  to={to}
-                  className="relative cursor-pointer overflow-hidden"
-                  style={{
-                    width: `${
-                      label === "Projects"
-                        ? 59.86
-                        : label === "Home"
-                        ? 44.56
-                        : 44.09
-                    }px`,
-                    height: "24px",
-                  }}
-                >
-                  <div
-                    className="transition-transform duration-300 ease-in-out will-change-transform"
-                    style={{ height: "48px" }}
+              {menuLinks.map(({ label, to }) =>
+                label === "Home" ? (
+                  <button
+                    key={label}
+                    onClick={handleHomeClick}
+                    className="relative cursor-pointer overflow-hidden"
+                    style={{
+                      width: 44.56,
+                      height: "24px",
+                    }}
                   >
-                    <span className="block text-white text-base font-light leading-[24px] h-6">
-                      {label}
-                    </span>
-                    <span className="block text-[#B9F43F] text-base font-light leading-[24px] h-6">
-                      {label}
-                    </span>
-                  </div>
-
-                  <style jsx>{`
-                    a:hover > div {
-                      transform: translateY(-24px);
-                    }
-                  `}</style>
-                </Link>
-              ))}
+                    <div
+                      className="transition-transform duration-300 ease-in-out will-change-transform"
+                      style={{ height: "48px" }}
+                    >
+                      <span className="block text-white text-base font-light leading-[24px] h-6">
+                        {label}
+                      </span>
+                      <span className="block text-[#B9F43F] text-base font-light leading-[24px] h-6">
+                        {label}
+                      </span>
+                    </div>
+                  </button>
+                ) : (
+                  <Link
+                    key={label}
+                    to={to}
+                    className="relative cursor-pointer overflow-hidden"
+                    style={{
+                      width:
+                        label === "Projects" ? 59.86 : 44.09,
+                      height: "24px",
+                    }}
+                  >
+                    <div
+                      className="transition-transform duration-300 ease-in-out will-change-transform"
+                      style={{ height: "48px" }}
+                    >
+                      <span className="block text-white text-base font-light leading-[24px] h-6">
+                        {label}
+                      </span>
+                      <span className="block text-[#B9F43F] text-base font-light leading-[24px] h-6">
+                        {label}
+                      </span>
+                    </div>
+                  </Link>
+                )
+              )}
             </div>
           ) : (
             <div className="ml-auto mr-auto" />
           )}
 
           {!scrolled ? (
-            <a
-              href="#contact"
+            <button
+              onClick={scrollToContact}
               className="relative group flex items-center justify-center rounded-full overflow-hidden text-base"
               style={{
                 width: "117.93px",
@@ -116,7 +153,7 @@ export default function Navbar() {
             >
               <span className="absolute inset-0 z-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-in-out bg-lime-400" />
               <span className="relative z-10 text-black">Contact</span>
-            </a>
+            </button>
           ) : (
             <div className="flex items-center gap-2 text-white text-base mr-3 ml-8">
               <span>Available for work</span>
@@ -186,30 +223,44 @@ export default function Navbar() {
               menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
-            {mobileLinks.map(({ label, to }) => (
-              <Link
-                key={label}
-                to={to}
-                onClick={() => setMenuOpen(false)}
-                className="text-white font-normal text-lg hover:text-lime-400 transition"
-              >
-                {label}
-              </Link>
-            ))}
+            {mobileLinks.map(({ label, to }) =>
+              label === "Home" ? (
+                <button
+                  key={label}
+                  onClick={handleHomeClick}
+                  className="text-white font-normal text-lg hover:text-lime-400 transition"
+                >
+                  {label}
+                </button>
+              ) : (
+                <Link
+                  key={label}
+                  to={to}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-white font-normal text-lg hover:text-lime-400 transition"
+                >
+                  {label}
+                </Link>
+              )
+            )}
 
-            <a
-              href="#contact"
-              onClick={() => setMenuOpen(false)}
+            <button
+              onClick={() => {
+                scrollToContact();
+                setMenuOpen(false);
+              }}
               className="inline-block bg-lime-400 text-black font-semibold rounded-full px-6 py-2 text-lg hover:bg-lime-500 transition"
             >
               Contact
-            </a>
+            </button>
           </div>
         </div>
       </nav>
     </>
   );
 }
+
+
 
 
 
