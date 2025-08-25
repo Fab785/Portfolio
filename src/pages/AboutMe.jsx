@@ -5,15 +5,15 @@ import profileImg from "../assets/Fab.jpg";
 export default function AboutMe() {
   return (
     <section
-  className="w-full min-h-screen text-white flex flex-col justify-center items-center px-6 md:px-20 py-20 relative"
-  style={{
-    background: `
-      radial-gradient(circle at top left, rgba(132,204,22,0.15), transparent 60%),
-      radial-gradient(circle at bottom right, rgba(132,204,22,0.15), transparent 70%),
-      linear-gradient(to bottom right, #000000, #111827, #1a2e05)
-    `,
-  }}
->
+      className="w-full min-h-screen text-white flex flex-col justify-center items-center px-6 md:px-20 py-20 relative"
+      style={{
+        background: `
+          radial-gradient(circle at top left, rgba(132,204,22,0.15), transparent 60%),
+          radial-gradient(circle at bottom right, rgba(132,204,22,0.15), transparent 70%),
+          linear-gradient(to bottom right, #000000, #111827, #1a2e05)
+        `,
+      }}
+    >
       <div className="max-w-5xl w-full flex flex-col md:flex-row justify-between items-center gap-16">
         {/* LEFT SIDE: Text */}
         <div className="flex-1 flex flex-col justify-center">
@@ -21,13 +21,20 @@ export default function AboutMe() {
             ABOUT ME
           </h2>
           <p className="text-gray-300 mb-6 text-lg md:text-xl leading-relaxed max-w-xl">
-            Hi, I'm Fabrizio, a passionate Front-end developer. I started my journey at Frontend Simplified school in February, and since then, I’ve been dedicated to mastering modern web development technologies.
+            Hi, I'm Fabrizio — a passionate Frontend Developer. I began my journey at
+            Frontend Simplified in February and have been fully committed to mastering
+            modern web technologies ever since.
           </p>
           <p className="text-gray-300 mb-6 text-lg md:text-xl leading-relaxed max-w-xl">
-            I enjoy creating interactive and visually appealing digital experiences, blending design and functionality to bring ideas to life. Every project I build is a step forward in refining my skills and pushing the boundaries of what’s possible on the web.
+            I love building interactive and visually engaging digital experiences,
+            blending design and functionality to turn ideas into reality. Every project I
+            create is an opportunity to sharpen my skills and explore new ways to push the
+            boundaries of web development.
           </p>
           <p className="text-gray-300 mb-6 text-lg md:text-xl leading-relaxed max-w-xl">
-            My focus is on building responsive, dynamic, and user-friendly web applications using React, Tailwind CSS, and modern development tools. Learning and experimenting with new technologies keeps me inspired every day.
+            My focus is on crafting responsive, dynamic, and user-friendly applications
+            with React, Tailwind CSS, and other modern tools. I’m constantly learning,
+            experimenting, and staying inspired by the evolving world of technology.
           </p>
           <Link
             to="/"
@@ -60,3 +67,4 @@ export default function AboutMe() {
     </section>
   );
 }
+

@@ -90,8 +90,14 @@ export default function AllProjects() {
 
   return (
     <section
-      className="relative min-h-screen text-white px-6 py-16 flex flex-col items-center
-                 bg-[linear-gradient(135deg,#e0e0e0_0%,#444444_20%,#111111_50%,#222222_100%)]"
+      className="relative min-h-screen text-white px-6 py-16 flex flex-col items-center"
+      style={{
+        background: `
+          radial-gradient(circle at top left, rgba(132,204,22,0.15), transparent 60%),
+          radial-gradient(circle at bottom right, rgba(132,204,22,0.15), transparent 70%),
+          linear-gradient(to bottom right, #000000, #111827, #1a2e05)
+        `,
+      }}
     >
       {/* Floating cursor */}
       <div
@@ -183,6 +189,7 @@ export default function AllProjects() {
     </section>
   );
 }
+
 
 
 
