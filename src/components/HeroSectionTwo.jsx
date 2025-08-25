@@ -8,14 +8,12 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, fr
   const [isUIDesignOpen, setIsUIDesignOpen] = useState(false);
   const [hoveredMainLine, setHoveredMainLine] = useState(null);
 
-  // Hover main line: morph to image
   const handleMouseEnterMain = (img, lineKey) => {
     setHoveredImage(img);
     setIsMorphing(true);
     setHoveredMainLine(lineKey);
   };
 
-  // FIXED: safely check Node before contains
   const handleMouseLeaveMain = (e) => {
     const toEl = e.relatedTarget;
     if (toEl instanceof Node && e.currentTarget.contains(toEl)) return;
@@ -216,6 +214,7 @@ const HeroSectionTwo = ({ setHoveredImage, setIsMorphing, graphicImg, webImg, fr
 };
 
 export default HeroSectionTwo;
+
 
 
 

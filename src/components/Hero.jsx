@@ -9,7 +9,6 @@ export default function Hero({ hoveredImage, isMorphing }) {
   const [showHi, setShowHi] = useState(true);
   const isFirstHi = useRef(true);
 
-  // Track previous isMorphing state to adjust transition speed
   const prevMorphing = useRef(false);
 
   useEffect(() => {
@@ -30,9 +29,7 @@ export default function Hero({ hoveredImage, isMorphing }) {
     return () => clearTimeout(timeout);
   }, [showHi]);
 
-  // Determine transition duration based on morph direction
   const transitionDuration = isMorphing && !prevMorphing.current ? 0.6 : 0.15;
-  // Update prevMorphing for next render
   prevMorphing.current = isMorphing;
 
   return (
@@ -62,15 +59,14 @@ export default function Hero({ hoveredImage, isMorphing }) {
         }}
       />
 
-      {/* Hero Section */}
+      {/* Hero Section inherits global background */}
       <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 py-12 text-white overflow-hidden">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14 z-10 relative w-full max-w-6xl">
           {/* Left Text */}
-          <div className="text-center lg:text-right lg:items-start flex flex-col"
-          style={{ width: 407, height: 132 }}
->
-          
-        
+          <div
+            className="text-center lg:text-right lg:items-start flex flex-col"
+            style={{ width: 407, height: 132 }}
+          >
             <h1 className="text-base sm:text-base md:text-lg font-bold uppercase tracking-widest -mb-1">
               Fabrizio Terribile
             </h1>
@@ -146,6 +142,8 @@ export default function Hero({ hoveredImage, isMorphing }) {
     </>
   );
 }
+
+
 
 
 
