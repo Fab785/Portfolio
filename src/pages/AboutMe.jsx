@@ -4,12 +4,21 @@ import profileImg from "../assets/Fab.jpg";
 
 export default function AboutMe() {
   return (
-    <section className="w-full min-h-screen text-white flex flex-col justify-center items-center px-6 md:px-20 py-20 bg-black">
+    <section
+  className="w-full min-h-screen text-white flex flex-col justify-center items-center px-6 md:px-20 py-20 relative"
+  style={{
+    background: `
+      radial-gradient(circle at top left, rgba(132,204,22,0.15), transparent 60%),
+      radial-gradient(circle at bottom right, rgba(132,204,22,0.15), transparent 70%),
+      linear-gradient(to bottom right, #000000, #111827, #1a2e05)
+    `,
+  }}
+>
       <div className="max-w-5xl w-full flex flex-col md:flex-row justify-between items-center gap-16">
         {/* LEFT SIDE: Text */}
         <div className="flex-1 flex flex-col justify-center">
           <h2 className="text-5xl md:text-6xl font-bold text-lime-400 mb-6 uppercase tracking-wide">
-            MY STORY
+            ABOUT ME
           </h2>
           <p className="text-gray-300 mb-6 text-lg md:text-xl leading-relaxed max-w-xl">
             Hi, I'm Fabrizio, a passionate Front-end developer. I started my journey at Frontend Simplified school in February, and since then, I’ve been dedicated to mastering modern web development technologies.
