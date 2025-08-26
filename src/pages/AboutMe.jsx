@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import profileImg from "../assets/Fab.jpg";
 
 export default function AboutMe() {
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const rafId = useRef(null);
+
+  useEffect(() => {
+    const onMove = (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      rafId.current = requestAnimationFrame(() => setCursorPos({ x, y }));
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
+  }, []);
+
   return (
     <section
       className="w-full min-h-screen text-white flex flex-col justify-center items-center px-6 md:px-20 py-20 relative"
@@ -14,6 +31,18 @@ export default function AboutMe() {
         `,
       }}
     >
+      {/* Lime dot cursor */}
+      <div
+        className="fixed w-4 h-4 rounded-full pointer-events-none z-[9999] bg-lime-400"
+        style={{
+            left: cursorPos.x + 28, // moves the dot 20px to the right
+            top: cursorPos.y + 20,   // moves the dot 8px down
+            transform: "translate(-50%, -50%)",
+            transition: "all 0.05s ease-out",
+          }}
+          
+      />
+
       <div className="max-w-5xl w-full flex flex-col md:flex-row justify-between items-center gap-16">
         {/* LEFT SIDE: Text */}
         <div className="flex-1 flex flex-col justify-center">
@@ -67,4 +96,5 @@ export default function AboutMe() {
     </section>
   );
 }
+
 

@@ -105,8 +105,8 @@ export default function AllProjects() {
                     pointer-events-none z-[9999]
                     ${hoveredProject ? "w-16 h-16" : "w-4 h-4"}`}
         style={{
-          left: cursorPos.x + 20,
-          top: cursorPos.y + 8,
+          left: cursorPos.x + 28,
+          top: cursorPos.y + 20,
           transform: "translate(-50%, -50%)",
           backgroundColor: "#a3e635",
           color: "#000",
