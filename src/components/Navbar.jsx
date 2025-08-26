@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import profileImg from "../assets/Fab.jpg";
+import ContactModal from "./ContactModal"; // 👈 import your modal
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false); // 👈 state for modal
   const prevScrollY = useRef(0);
 
   const location = useLocation();
@@ -45,12 +47,6 @@ export default function Navbar() {
     { label: "Projects", to: "/projects" },
     { label: "Blogs", to: "#blogs" },
   ];
-
-  // Smooth scroll to contact section
-  const scrollToContact = () => {
-    const el = document.getElementById("hero-section-five");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
 
   // Smooth scroll to top (Home)
   const scrollToTop = () => {
@@ -140,7 +136,7 @@ export default function Navbar() {
 
           {!scrolled ? (
             <button
-              onClick={scrollToContact}
+              onClick={() => setIsContactOpen(true)} // 👈 open modal
               className="relative group flex items-center justify-center rounded-full overflow-hidden text-base"
               style={{
                 width: "117.93px",
@@ -245,7 +241,7 @@ export default function Navbar() {
 
             <button
               onClick={() => {
-                scrollToContact();
+                setIsContactOpen(true); // 👈 open modal
                 setMenuOpen(false);
               }}
               className="inline-block bg-lime-400 text-black font-semibold rounded-full px-6 py-2 text-lg hover:bg-lime-500 transition"
@@ -255,9 +251,14 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+
+      {/* 👇 Modal rendered here */}
+      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
     </>
   );
 }
+
+
 
 
 

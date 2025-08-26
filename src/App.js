@@ -51,7 +51,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen w-full text-white overflow-x-hidden">
-      <Navbar openContact={() => setContactOpen(true)} />
+      <Navbar openContact={() => setContactOpen(true)} /> {/* unchanged */}
       <ScrollToTop />
 
       <Routes>
@@ -69,6 +69,9 @@ export default function App() {
 
         {/* Projects page */}
         <Route path="/projects" element={<AllProjects />} />
+
+        {/* All Projects page for HeroSectionFour button */}
+        <Route path="/all-projects" element={<AllProjects />} /> {/* 👈 NEW */}
 
         {/* My Story / AboutMe page */}
         <Route path="/my-story" element={<AboutMe />} />
