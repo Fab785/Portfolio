@@ -8,6 +8,7 @@ import HeroSectionThree from "./components/HeroSectionThree";
 import HeroSectionFour from "./components/HeroSectionFour";
 import HeroSectionFive from "./components/HeroSectionFive";
 import Footer from "./components/Footer";
+import ContactModal from "./components/ContactModal";
 
 import AllProjects from "./pages/AllProjects.jsx";
 import AboutMe from "./pages/AboutMe.jsx";
@@ -46,10 +47,11 @@ function HomePage({ hoveredImage, isMorphing, setHoveredImage, setIsMorphing }) 
 export default function App() {
   const [hoveredImage, setHoveredImage] = useState(null);
   const [isMorphing, setIsMorphing] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false); // modal state
 
   return (
     <div className="min-h-screen w-full text-white overflow-x-hidden">
-      <Navbar />
+      <Navbar openContact={() => setContactOpen(true)} />
       <ScrollToTop />
 
       <Routes>
@@ -76,9 +78,16 @@ export default function App() {
       </Routes>
 
       <Footer />
+
+      {/* Contact Modal */}
+      <ContactModal
+        isOpen={contactOpen}
+        onClose={() => setContactOpen(false)}
+      />
     </div>
   );
 }
+
 
 
 

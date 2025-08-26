@@ -10,7 +10,7 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Scroll handler for shrinking navbar
+  // Shrink-on-scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -46,29 +46,31 @@ export default function Navbar() {
     { label: "Blogs", to: "#blogs" },
   ];
 
-  // Smooth scroll to HeroSectionFive
+  // Smooth scroll to contact section
   const scrollToContact = () => {
     const el = document.getElementById("hero-section-five");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Smooth scroll to top (used for Home button)
+  // Smooth scroll to top (Home)
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Handle Home click
+  // Home click handler
   const handleHomeClick = (e) => {
     e.preventDefault();
     if (location.pathname === "/") {
-      scrollToTop(); // Already on home, just scroll to top
+      scrollToTop();
     } else {
-      navigate("/"); // Not on home, navigate to home page
+      navigate("/");
     }
     setMenuOpen(false);
   };
+
+  // width per label (kept identical to your original sizing)
+  const widthFor = (label) =>
+    label === "Projects" ? 59.86 : label === "Home" ? 44.56 : 44.09;
 
   return (
     <>
@@ -90,17 +92,15 @@ export default function Navbar() {
             <div className="flex items-center gap-[16px] ml-[48px] mr-[24px]">
               {menuLinks.map(({ label, to }) =>
                 label === "Home" ? (
+                  // HOME as button, with rolling hover effect
                   <button
                     key={label}
                     onClick={handleHomeClick}
-                    className="relative cursor-pointer overflow-hidden"
-                    style={{
-                      width: 44.56,
-                      height: "24px",
-                    }}
+                    className="relative group cursor-pointer overflow-hidden"
+                    style={{ width: widthFor(label), height: "24px" }}
                   >
                     <div
-                      className="transition-transform duration-300 ease-in-out will-change-transform"
+                      className="transition-transform duration-300 ease-in-out will-change-transform group-hover:-translate-y-6"
                       style={{ height: "48px" }}
                     >
                       <span className="block text-white text-base font-light leading-[24px] h-6">
@@ -112,18 +112,15 @@ export default function Navbar() {
                     </div>
                   </button>
                 ) : (
+                  // ABOUT / PROJECTS as links, with rolling hover effect
                   <Link
                     key={label}
                     to={to}
-                    className="relative cursor-pointer overflow-hidden"
-                    style={{
-                      width:
-                        label === "Projects" ? 59.86 : 44.09,
-                      height: "24px",
-                    }}
+                    className="relative group cursor-pointer overflow-hidden"
+                    style={{ width: widthFor(label), height: "24px" }}
                   >
                     <div
-                      className="transition-transform duration-300 ease-in-out will-change-transform"
+                      className="transition-transform duration-300 ease-in-out will-change-transform group-hover:-translate-y-6"
                       style={{ height: "48px" }}
                     >
                       <span className="block text-white text-base font-light leading-[24px] h-6">
@@ -227,7 +224,9 @@ export default function Navbar() {
               label === "Home" ? (
                 <button
                   key={label}
-                  onClick={handleHomeClick}
+                  onClick={(e) => {
+                    handleHomeClick(e);
+                  }}
                   className="text-white font-normal text-lg hover:text-lime-400 transition"
                 >
                   {label}
@@ -259,6 +258,9 @@ export default function Navbar() {
     </>
   );
 }
+
+
+
 
 
 
