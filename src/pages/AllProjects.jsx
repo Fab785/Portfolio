@@ -59,7 +59,7 @@ export default function AllProjects() {
       stack: ["React", "JavaScript", "Tailwind"],
       description:
         "A modern business platform highlighting creative solutions for SMEs. Fast, scalable, and responsive — blending sleek UI with strategic storytelling.",
-      link: "https://ari-creati.vercel.app/",
+      link: "https://fab785.github.io/AriCreati/",
     },
     {
       img: screenshot3,

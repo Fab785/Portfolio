@@ -9,7 +9,6 @@ import HeroSectionFour from "./components/HeroSectionFour";
 import HeroSectionFive from "./components/HeroSectionFive";
 import Footer from "./components/Footer";
 import ContactModal from "./components/ContactModal";
-
 import AllProjects from "./pages/AllProjects.jsx";
 import AboutMe from "./pages/AboutMe.jsx";
 import graphicImg from "./assets/uidesign.jpg";

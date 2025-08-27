@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* Wrap your app in BrowserRouter */}
-    <BrowserRouter>
+    <BrowserRouter basename="/Portfolio">
       <App />
     </BrowserRouter>
   </React.StrictMode>
