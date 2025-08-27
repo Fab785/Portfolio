@@ -118,9 +118,9 @@ export default function HeroSectionFive() {
             </label>
             <select className="w-full bg-neutral-800 rounded-full px-4 py-2 outline-none text-white border border-transparent focus:border-lime-400 transition-colors">
               <option>Select...</option>
-              <option>Web Development</option>
+              <option>Front-End</option>
               <option>UI/UX Design</option>
-              <option>Branding</option>
+              <option>Web Development</option>
             </select>
           </div>
 

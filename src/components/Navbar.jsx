@@ -72,7 +72,7 @@ export default function Navbar() {
     <>
       {/* Large Screen Navbar */}
       <div
-        className={`hidden sm:flex fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
+        className={`hidden sm:flex fixed top-6 left-1/2 -translate-x-1/2 z-[200] transition-all duration-500 ${
           scrolled ? "w-[260px]" : "w-[507.95px]"
         } ${scrolled ? "scale-90" : "scale-100"}`}
         style={{ height: "56px" }}
@@ -160,7 +160,7 @@ export default function Navbar() {
       </div>
 
       {/* Small Screen Navbar */}
-      <nav className="sm:hidden fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[260px] transition-all duration-500">
+      <nav className="sm:hidden fixed top-6 left-1/2 -translate-x-1/2 z-[200] w-[260px] transition-all duration-500">
         <div
           className={`overflow-hidden border border-neutral-800 shadow-md transition-[padding,max-height,background-color,backdrop-filter] duration-500 ease-in-out ${
             menuOpen
