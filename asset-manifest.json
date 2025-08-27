@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Portfolio/static/css/main.419ac306.css",
+    "main.js": "/Portfolio/static/js/main.dcfce162.js",
+    "static/js/453.ad7768ec.chunk.js": "/Portfolio/static/js/453.ad7768ec.chunk.js",
+    "static/media/Aricreati.png": "/Portfolio/static/media/Aricreati.f0764d9d164597eb63e2.png",
+    "static/media/Ultraverse.png": "/Portfolio/static/media/Ultraverse.26854ce236303b16d139.png",
+    "static/media/uidesign.jpg": "/Portfolio/static/media/uidesign.719698716b016b97a4cc.jpg",
+    "static/media/Laptop2.jpg": "/Portfolio/static/media/Laptop2.2239a192b51878aea03f.jpg",
+    "static/media/computer.jpg": "/Portfolio/static/media/computer.b52ded2fabe418a41b5c.jpg",
+    "static/media/laptop.jpg": "/Portfolio/static/media/laptop.d454e69dc4bd91aac2e0.jpg",
+    "static/media/Treact.png": "/Portfolio/static/media/Treact.6ce09a5984b3770c9dfd.png",
+    "static/media/RactLibrary.png": "/Portfolio/static/media/RactLibrary.241cde5d21a4fb8fc0f4.png",
+    "static/media/Skinstric.png": "/Portfolio/static/media/Skinstric.102e043405231dfdf0f0.png",
+    "static/media/Fab.jpg": "/Portfolio/static/media/Fab.64a9720246287f2f8919.jpg",
+    "index.html": "/Portfolio/index.html",
+    "main.419ac306.css.map": "/Portfolio/static/css/main.419ac306.css.map",
+    "main.dcfce162.js.map": "/Portfolio/static/js/main.dcfce162.js.map",
+    "453.ad7768ec.chunk.js.map": "/Portfolio/static/js/453.ad7768ec.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.419ac306.css",
+    "static/js/main.dcfce162.js"
+  ]
+}
