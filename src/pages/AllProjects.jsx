@@ -84,7 +84,7 @@ export default function AllProjects() {
       stack: ["React", "JavaScript", "Tailwind"],
       description:
         "Developed during my internship — showcasing UI/UX principles, modern layouts, and responsive components optimized for real-world use cases.",
-      link: "https://fabrizio-internship-9q4v.vercel.app/",
+      link: "https://fab785.github.io/fabrizio-internship/",
     },
   ];
 
