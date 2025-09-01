@@ -45,7 +45,6 @@ export default function Navbar() {
     { label: "Home", to: "/" },
     { label: "About", to: "/my-story" },
     { label: "Projects", to: "/projects" },
-    { label: "Blogs", to: "#blogs" },
   ];
 
   // Smooth scroll to top (Home)
