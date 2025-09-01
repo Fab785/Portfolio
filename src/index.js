@@ -4,16 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// Import BrowserRouter from react-router-dom
-import { BrowserRouter } from 'react-router-dom';
+// Use HashRouter instead of BrowserRouter
+import { HashRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* Wrap your app in BrowserRouter */}
-    <BrowserRouter basename="/Portfolio">
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
 
