@@ -88,6 +88,8 @@ export default function AllProjects() {
     },
   ];
 
+  const [mobileTappedIndex, setMobileTappedIndex] = useState(null);
+
   return (
     <section
       className="relative min-h-screen text-white px-6 py-16 flex flex-col items-center"
@@ -135,9 +137,20 @@ export default function AllProjects() {
             href={project.link}
             target="_blank"
             rel="noreferrer"
-            className="relative w-full max-w-5xl h-[600px] rounded-3xl overflow-hidden shadow-2xl group block"
+            className="relative w-full h-[300px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl group block max-w-5xl"
             onMouseEnter={() => setHoveredProject(project)}
             onMouseLeave={() => setHoveredProject(null)}
+            onClick={(e) => {
+              if (window.innerWidth < 768) {
+                if (mobileTappedIndex !== i) {
+                  e.preventDefault();
+                  setMobileTappedIndex(i);
+                } else {
+                  setMobileTappedIndex(null);
+                  // allow navigation
+                }
+              }
+            }}
             aria-label={`${project.title} – open project`}
           >
             {/* Image wrapper */}
@@ -186,31 +199,39 @@ export default function AllProjects() {
               </div>
             </div>
 
-            {/* Simple overlay for mobile (appears only on hover/tap) */}
-<div className="absolute inset-0 flex md:hidden bg-black/60 backdrop-blur-md flex-col justify-center items-center p-6 text-center
-                opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-  <h3 className="text-2xl font-bold text-lime-400 mb-2">{project.title}</h3>
-  {project.subtitle && (
-    <h4 className="text-lg font-semibold text-gray-200 mb-4">
-      {project.subtitle}
-    </h4>
-  )}
-  <p className="text-base text-gray-100 mb-4">{project.description}</p>
-  {project.stack && (
-    <div className="flex space-x-3 justify-center">
-      {project.stack.map((tech, index) => (
-        <span key={index}>{iconsMap[tech] || tech}</span>
-      ))}
-    </div>
-  )}
-</div>
-
+            {/* Simple overlay for mobile (first tap shows, second tap navigates) */}
+            <div
+              className={`absolute inset-0 flex md:hidden bg-black/60 backdrop-blur-md flex-col justify-center items-center p-6 text-center
+                transition-opacity duration-300 ${
+                  mobileTappedIndex === i ? "opacity-100" : "opacity-0"
+                }`}
+            >
+              <h3 className="text-2xl font-bold text-lime-400 mb-2">
+                {project.title}
+              </h3>
+              {project.subtitle && (
+                <h4 className="text-lg font-semibold text-gray-200 mb-4">
+                  {project.subtitle}
+                </h4>
+              )}
+              <p className="text-base text-gray-100 mb-4">
+                {project.description}
+              </p>
+              {project.stack && (
+                <div className="flex space-x-3 justify-center">
+                  {project.stack.map((tech, index) => (
+                    <span key={index}>{iconsMap[tech] || tech}</span>
+                  ))}
+                </div>
+              )}
+            </div>
           </a>
         ))}
       </div>
     </section>
   );
 }
+
 
 
 
