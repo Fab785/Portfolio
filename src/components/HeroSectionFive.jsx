@@ -29,7 +29,7 @@ export default function HeroSectionFive() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center px-6 pt-20 pb-0 text-white overflow-hidden bg-transparent"
+      className="relative min-h-screen flex items-center justify-center px-6 pt-20 pb-20 sm:pb-40 text-white overflow-hidden bg-transparent"
     >
       <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-16 max-w-7xl w-full">
         {/* Left Side: Image + Hi bubble */}
@@ -135,7 +135,7 @@ export default function HeroSectionFive() {
           </div>
 
           <button
-            className="relative overflow-hidden border border-lime-400 text-lime-400 px-8 py-2 rounded-full font-bold transition-colors"
+            className="relative overflow-hidden border border-lime-400 text-lime-400 px-8 py-2 rounded-full font-bold transition-colors mb-10 sm:mb-0"
             style={{
               background:
                 "linear-gradient(to right, #A3E635 0%, #A3E635 50%, transparent 50%, transparent 100%)",
@@ -159,6 +159,7 @@ export default function HeroSectionFive() {
     </section>
   );
 }
+
 
 
 
