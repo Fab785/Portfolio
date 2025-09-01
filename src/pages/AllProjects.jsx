@@ -46,7 +46,7 @@ export default function AllProjects() {
   const projects = [
     {
       img: screenshot1,
-      title: "Library Snapshotto",
+      title: "Library Snapshot",
       stack: ["React", "JavaScript", "Node.js", "Git"],
       description:
         "The final product of my internship with Frontend Simplified. Converted a static website into a dynamic app using Axios, Owl Carousel, and Animate on Scroll. Maintained version control with GitHub PRs.",
