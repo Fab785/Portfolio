@@ -1,4 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import screenshot1 from "../assets/Ultraverse.png";
 import screenshot2 from "../assets/Treact.png";
 import screenshot3 from "../assets/Aricreati.png";
@@ -19,6 +20,13 @@ export default function HeroSectionFour() {
   };
 
   const [scales, setScales] = useState(projects.map(() => 0.85));
+  const [activeOverlays, setActiveOverlays] = useState(projects.map(() => false));
+
+  const handleOverlayClick = (idx) => {
+    const newOverlays = [...activeOverlays];
+    newOverlays[idx] = !newOverlays[idx];
+    setActiveOverlays(newOverlays);
+  };
 
   useEffect(() => {
     function onScroll() {
@@ -70,7 +78,7 @@ export default function HeroSectionFour() {
         <div
           key={project.id}
           ref={addToRefs}
-          className="w-[80%] max-w-5xl mx-auto my-10 rounded-xl shadow-lg overflow-hidden relative transition-transform duration-500 ease-out"
+          className="w-[80%] max-w-5xl mx-auto my-10 rounded-xl shadow-lg overflow-hidden relative transition-transform duration-500 ease-out pb-6"
           style={{
             transform: `scale(${scales[idx]})`,
             transformOrigin: "center center",
@@ -90,29 +98,51 @@ export default function HeroSectionFour() {
           />
 
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/50 flex flex-col justify-between items-center opacity-0 hover:opacity-100 transition-opacity duration-500 px-6 py-10 text-center">
+          <div
+            className={`absolute inset-0 bg-black/50 flex flex-col justify-between items-center transition-opacity duration-500 px-6 py-10 text-center
+              ${activeOverlays[idx] ? "opacity-100" : "opacity-0 hover:opacity-100"}`}
+            onClick={() => handleOverlayClick(idx)}
+          >
             <div className="flex-1 flex flex-col justify-start items-center gap-6 pt-6">
               <h2 className="text-2xl sm:text-5xl font-bold text-lime-400 mb-2 break-words">
                 {project.title}
               </h2>
-              <p className="text-base sm:text-xl text-gray-200 max-w-2xl">
-                {project.description}
-              </p>
+              {activeOverlays[idx] && (
+                <p className="text-base sm:text-xl text-gray-200 max-w-2xl">
+                  {project.description}
+                </p>
+              )}
             </div>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 px-8 py-4 bg-lime-400 text-black font-semibold rounded-full hover:bg-lime-500 transition-colors duration-300"
-            >
-              Browse This Project
-            </a>
+            {activeOverlays[idx] && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 px-8 py-4 bg-lime-400 text-black font-semibold rounded-full hover:bg-lime-500 transition-colors duration-300"
+              >
+                Browse This Project
+              </a>
+            )}
           </div>
         </div>
       ))}
+
+      {/* Browse All Projects Button */}
+      <div className="flex justify-center py-20">
+        <Link
+          to="/all-projects"
+          className="inline-block px-8 py-4 border-2 border-lime-400 text-lime-400 font-bold text-lg rounded-full
+                     bg-gradient-to-r from-lime-400 to-lime-400 bg-[length:0%_100%] bg-no-repeat bg-left
+                     hover:bg-[length:100%_100%] hover:text-black
+                     transition-all duration-500 ease-out"
+        >
+          BROWSE ALL PROJECTS
+        </Link>
+      </div>
     </section>
   );
 }
+
 
 
 
