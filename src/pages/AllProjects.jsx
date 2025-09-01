@@ -101,21 +101,24 @@ export default function AllProjects() {
         `,
       }}
     >
-      {/* Floating cursor */}
-      <div
-        className={`fixed flex items-center justify-center rounded-full transition-all duration-200 ease-out
-                    pointer-events-none z-[9999]
-                    ${hoveredProject ? "w-16 h-16" : "w-4 h-4"}`}
-        style={{
-          left: cursorPos.x + 28,
-          top: cursorPos.y + 20,
-          transform: "translate(-50%, -50%)",
-          backgroundColor: "#a3e635",
-          color: "#000",
-        }}
-      >
-        {hoveredProject && <ArrowUpRight className="w-6 h-6" />}
-      </div>
+      {/* Floating cursor (desktop only) */}
+{window.innerWidth >= 768 && (
+  <div
+    className={`fixed flex items-center justify-center rounded-full transition-all duration-200 ease-out
+                pointer-events-none z-[9999]
+                ${hoveredProject ? "w-16 h-16" : "w-4 h-4"}`}
+    style={{
+      left: cursorPos.x + 28,
+      top: cursorPos.y + 20,
+      transform: "translate(-50%, -50%)",
+      backgroundColor: "#a3e635",
+      color: "#000",
+    }}
+  >
+    {hoveredProject && <ArrowUpRight className="w-6 h-6" />}
+  </div>
+)}
+
 
       {/* Header */}
       <div className="w-full max-w-7xl mt-32 mb-12 text-left relative z-10">
