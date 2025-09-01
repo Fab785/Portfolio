@@ -77,21 +77,22 @@ export default function AboutMe() {
         </div>
 
         {/* RIGHT SIDE: Image */}
-        <div className="w-[300px] md:w-[400px] aspect-[3/4]">
-          <div
-            className="w-full h-full rounded-2xl overflow-hidden shadow-[0_25px_40px_rgba(0,0,0,0.6)]"
-            style={{
-              transform: "rotateZ(-3deg) rotateX(2deg)",
-              transformOrigin: "bottom right",
-            }}
-          >
-            <img
-              src={profileImg}
-              alt="Profile"
-              className="w-full h-full object-cover object-[65%_center]"
-            />
-          </div>
-        </div>
+<div className="w-full sm:w-[300px] md:w-[400px] aspect-[3/4] flex-shrink-0">
+  <div
+    className="w-full h-full rounded-2xl overflow-hidden shadow-[0_25px_40px_rgba(0,0,0,0.6)]"
+    style={{
+      transform: "rotateZ(-3deg) rotateX(2deg)",
+      transformOrigin: "bottom right",
+    }}
+  >
+    <img
+      src={profileImg}
+      alt="Profile"
+      className="w-full h-full object-cover object-[65%_center]"
+    />
+  </div>
+</div>
+
       </div>
     </section>
   );

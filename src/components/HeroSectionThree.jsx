@@ -27,32 +27,33 @@ const HeroSectionThree = () => {
           </p>
 
           {/* Stats row */}
-          <div className="flex gap-12 mb-10 max-w-xs">
-            <div className="flex flex-col items-center">
-              <span className="text-lime-400 text-4xl font-extrabold">
-                {inView ? <CountUp end={6} duration={2} /> : 0}
-              </span>
-              <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
-                Months of Experience
-              </span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-lime-400 text-4xl font-extrabold">
-                {inView ? <CountUp end={100} duration={2} suffix="+" /> : 0}
-              </span>
-              <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
-                Hours of Studies
-              </span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-lime-400 text-4xl font-extrabold">
-                {inView ? <CountUp end={16} duration={2} /> : 0}
-              </span>
-              <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
-                Completed Projects
-              </span>
-            </div>
-          </div>
+<div className="flex flex-col md:flex-row gap-6 md:gap-12 mb-10 max-w-xs md:max-w-full">
+  <div className="flex flex-col items-center">
+    <span className="text-lime-400 text-4xl font-extrabold">
+      {inView ? <CountUp end={6} duration={2} /> : 0}
+    </span>
+    <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
+      Months of Experience
+    </span>
+  </div>
+  <div className="flex flex-col items-center">
+    <span className="text-lime-400 text-4xl font-extrabold">
+      {inView ? <CountUp end={100} duration={2} suffix="+" /> : 0}
+    </span>
+    <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
+      Hours of Studies
+    </span>
+  </div>
+  <div className="flex flex-col items-center">
+    <span className="text-lime-400 text-4xl font-extrabold">
+      {inView ? <CountUp end={16} duration={2} /> : 0}
+    </span>
+    <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
+      Completed Projects
+    </span>
+  </div>
+</div>
+
 
           {/* Contact Icons */}
           <div className="flex items-center gap-6 mb-4">
