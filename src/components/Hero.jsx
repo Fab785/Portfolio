@@ -33,30 +33,33 @@ export default function Hero({ hoveredImage, isMorphing }) {
 
   return (
     <>
-      {/* Morphing Dot / Image */}
-      <motion.div
-        className="fixed pointer-events-none z-50"
-        style={{
-          x: mouseX,
-          y: mouseY,
-          translateX: "0%",
-          translateY: "-50%",
-          backgroundColor:
-            isMorphing && hoveredImage ? "transparent" : "#A3E635",
-          backgroundImage:
-            isMorphing && hoveredImage ? `url(${hoveredImage})` : "none",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-        animate={{
-          width: isMorphing ? 160 : 16,
-          height: isMorphing ? 100 : 16,
-          borderRadius: isMorphing ? "24px" : "9999px",
-          rotate: isMorphing ? 10 : 0,
-          transition: { duration: transitionDuration, ease: "easeInOut" },
-        }}
-      />
+      {/* Morphing Dot / Image (desktop only) */}
+{window.innerWidth >= 768 && (
+  <motion.div
+    className="fixed pointer-events-none z-50"
+    style={{
+      x: mouseX,
+      y: mouseY,
+      translateX: "0%",
+      translateY: "-50%",
+      backgroundColor:
+        isMorphing && hoveredImage ? "transparent" : "#A3E635",
+      backgroundImage:
+        isMorphing && hoveredImage ? `url(${hoveredImage})` : "none",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+    }}
+    animate={{
+      width: isMorphing ? 160 : 16,
+      height: isMorphing ? 100 : 16,
+      borderRadius: isMorphing ? "24px" : "9999px",
+      rotate: isMorphing ? 10 : 0,
+      transition: { duration: transitionDuration, ease: "easeInOut" },
+    }}
+  />
+)}
+
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 py-12 text-white overflow-hidden">
