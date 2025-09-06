@@ -8,6 +8,7 @@ import screenshot2 from "../assets/Aricreati.png";
 import screenshot3 from "../assets/Treact.png";
 import screenshot4 from "../assets/Skinstric.png";
 import screenshot5 from "../assets/Ultraverse.png";
+import screenshot6 from "../assets/Xclone.png"; // 🔹 Add your screenshot here
 
 export default function AllProjects() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -86,6 +87,14 @@ export default function AllProjects() {
         "Developed during my internship — showcasing UI/UX principles, modern layouts, and responsive components optimized for real-world use cases.",
       link: "https://fab785.github.io/fabrizio-internship/",
     },
+    {
+      img: screenshot6,
+      title: "X-clone",
+      stack: ["React", "JavaScript", "Tailwind", "Next.js"],
+      description:
+        "A modern recreation of Twitter (now X). Built with React, Next.js, and TailwindCSS, focusing on dynamic feeds, authentication, and responsive UI.",
+      link: "https://x-clone-plum-theta.vercel.app/",
+    },
   ];
 
   const [mobileTappedIndex, setMobileTappedIndex] = useState(null);
@@ -102,23 +111,22 @@ export default function AllProjects() {
       }}
     >
       {/* Floating cursor (desktop only) */}
-{window.innerWidth >= 768 && (
-  <div
-    className={`fixed flex items-center justify-center rounded-full transition-all duration-200 ease-out
+      {window.innerWidth >= 768 && (
+        <div
+          className={`fixed flex items-center justify-center rounded-full transition-all duration-200 ease-out
                 pointer-events-none z-[9999]
                 ${hoveredProject ? "w-16 h-16" : "w-4 h-4"}`}
-    style={{
-      left: cursorPos.x + 28,
-      top: cursorPos.y + 20,
-      transform: "translate(-50%, -50%)",
-      backgroundColor: "#a3e635",
-      color: "#000",
-    }}
-  >
-    {hoveredProject && <ArrowUpRight className="w-6 h-6" />}
-  </div>
-)}
-
+          style={{
+            left: cursorPos.x + 28,
+            top: cursorPos.y + 20,
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "#a3e635",
+            color: "#000",
+          }}
+        >
+          {hoveredProject && <ArrowUpRight className="w-6 h-6" />}
+        </div>
+      )}
 
       {/* Header */}
       <div className="w-full max-w-7xl mt-32 mb-12 text-left relative z-10">
@@ -150,7 +158,6 @@ export default function AllProjects() {
                   setMobileTappedIndex(i);
                 } else {
                   setMobileTappedIndex(null);
-                  // allow navigation
                 }
               }
             }}
@@ -234,6 +241,7 @@ export default function AllProjects() {
     </section>
   );
 }
+
 
 
 
