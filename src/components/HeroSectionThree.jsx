@@ -1,5 +1,5 @@
 import React from "react";
-import { Linkedin, Github, Mail } from "lucide-react";
+import { Linkedin, Github } from "lucide-react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer"; 
 import profileImg from "../assets/Fab.jpg";
@@ -76,27 +76,52 @@ const HeroSectionThree = () => {
             </a>
 
             {/* PDF Resume Link */}
-            {/* PDF Resume Link */}
             <a
   href="https://fab785.github.io/iResume/"
   target="_blank"
   rel="noopener noreferrer"
   aria-label="Resume"
+  className="hover:text-lime-400 transition-colors duration-300"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    fill="currentColor"
-    viewBox="0 0 24 24"
+    fill="none"
+    viewBox="0 0 64 64"
     width="32"
     height="32"
   >
-    <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6z"/>
-    <text x="12" y="16" textAnchor="middle" fontSize="6" fontWeight="bold" fill="white">PDF</text>
+    {/* Document outline */}
+    <rect
+      x="8"
+      y="4"
+      width="48"
+      height="56"
+      rx="4"
+      ry="4"
+      stroke="currentColor"
+      strokeWidth="4"
+      fill="currentColor"
+      fillOpacity="0.1"
+    />
+    {/* Folded corner */}
+    <polygon
+      points="48,4 48,20 64,20"
+      fill="currentColor"
+      fillOpacity="0.2"
+    />
+    {/* PDF letters */}
+    <text
+      x="32"
+      y="44"
+      textAnchor="middle"
+      fontSize="16"
+      fontWeight="bold"
+      fill="currentColor"
+    >
+      PDF
+    </text>
   </svg>
 </a>
-
-
-
 
           </div>
 
@@ -136,6 +161,7 @@ const HeroSectionThree = () => {
 };
 
 export default HeroSectionThree;
+
 
 
 
