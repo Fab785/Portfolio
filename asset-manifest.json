@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Portfolio/static/css/main.9dbeab0f.css",
-    "main.js": "/Portfolio/static/js/main.5cc83081.js",
+    "main.css": "/Portfolio/static/css/main.6731fb80.css",
+    "main.js": "/Portfolio/static/js/main.185df4ad.js",
     "static/js/453.ad7768ec.chunk.js": "/Portfolio/static/js/453.ad7768ec.chunk.js",
     "static/media/Aricreati.png": "/Portfolio/static/media/Aricreati.f0764d9d164597eb63e2.png",
     "static/media/Ultraverse.png": "/Portfolio/static/media/Ultraverse.26854ce236303b16d139.png",
@@ -15,12 +15,12 @@
     "static/media/Skinstric.png": "/Portfolio/static/media/Skinstric.102e043405231dfdf0f0.png",
     "static/media/Fab.jpg": "/Portfolio/static/media/Fab.64a9720246287f2f8919.jpg",
     "index.html": "/Portfolio/index.html",
-    "main.9dbeab0f.css.map": "/Portfolio/static/css/main.9dbeab0f.css.map",
-    "main.5cc83081.js.map": "/Portfolio/static/js/main.5cc83081.js.map",
+    "main.6731fb80.css.map": "/Portfolio/static/css/main.6731fb80.css.map",
+    "main.185df4ad.js.map": "/Portfolio/static/js/main.185df4ad.js.map",
     "453.ad7768ec.chunk.js.map": "/Portfolio/static/js/453.ad7768ec.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9dbeab0f.css",
-    "static/js/main.5cc83081.js"
+    "static/css/main.6731fb80.css",
+    "static/js/main.185df4ad.js"
   ]
 }
