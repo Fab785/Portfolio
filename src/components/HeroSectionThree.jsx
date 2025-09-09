@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Linkedin, Github, Mail } from "lucide-react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer"; 
@@ -27,33 +27,32 @@ const HeroSectionThree = () => {
           </p>
 
           {/* Stats row */}
-<div className="flex flex-col md:flex-row gap-6 md:gap-12 mb-10 max-w-xs md:max-w-full">
-  <div className="flex flex-col items-center">
-    <span className="text-lime-400 text-4xl font-extrabold">
-      {inView ? <CountUp end={6} duration={2} /> : 0}
-    </span>
-    <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
-      Months of Experience
-    </span>
-  </div>
-  <div className="flex flex-col items-center">
-    <span className="text-lime-400 text-4xl font-extrabold">
-      {inView ? <CountUp end={100} duration={2} suffix="+" /> : 0}
-    </span>
-    <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
-      Hours of Studies
-    </span>
-  </div>
-  <div className="flex flex-col items-center">
-    <span className="text-lime-400 text-4xl font-extrabold">
-      {inView ? <CountUp end={16} duration={2} /> : 0}
-    </span>
-    <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
-      Completed Projects
-    </span>
-  </div>
-</div>
-
+          <div className="flex flex-col md:flex-row gap-6 md:gap-12 mb-10 max-w-xs md:max-w-full">
+            <div className="flex flex-col items-center">
+              <span className="text-lime-400 text-4xl font-extrabold">
+                {inView ? <CountUp end={7} duration={2} /> : 0}
+              </span>
+              <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
+                Months of Experience
+              </span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="text-lime-400 text-4xl font-extrabold">
+                {inView ? <CountUp end={100} duration={2} suffix="+" /> : 0}
+              </span>
+              <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
+                Hours of Studies
+              </span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="text-lime-400 text-4xl font-extrabold">
+                {inView ? <CountUp end={6} duration={2} /> : 0}
+              </span>
+              <span className="text-gray-400 uppercase tracking-wide text-sm mt-1 text-center">
+                Completed Projects
+              </span>
+            </div>
+          </div>
 
           {/* Contact Icons */}
           <div className="flex items-center gap-6 mb-4">
@@ -75,17 +74,30 @@ const HeroSectionThree = () => {
             >
               <Github size={32} />
             </a>
-          </div>
 
-          {/* Email with envelope icon */}
-          <div className="flex items-center gap-2 mb-8">
-            <Mail size={20} className="text-lime-400" />
+            {/* PDF Resume Link */}
+            {/* PDF Resume Link */}
             <a
-              href="mailto:fabrizioterribile@gmail.com"
-              className="text-white underline text-lg"
-            >
-              fabrizioterribile@gmail.com
-            </a>
+  href="https://fab785.github.io/iResume/"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Resume"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    width="32"
+    height="32"
+  >
+    <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6z"/>
+    <text x="12" y="16" textAnchor="middle" fontSize="6" fontWeight="bold" fill="white">PDF</text>
+  </svg>
+</a>
+
+
+
+
           </div>
 
           {/* My Story Button */}
