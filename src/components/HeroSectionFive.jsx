@@ -92,13 +92,19 @@ export default function HeroSectionFive() {
             your website, or your next big idea.
           </p>
 
-          {/* Form */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          {/* Formspree Form */}
+          <form
+            action="https://formspree.io/f/xpwjbzkz"
+            method="POST"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4"
+          >
             <div>
               <label className="block text-lime-400 text-sm mb-1">Name</label>
               <input
                 type="text"
+                name="name"
                 placeholder="Fabrizio Terribile"
+                required
                 className="w-full bg-neutral-800 rounded-full px-4 py-2 outline-none text-white border border-transparent focus:border-lime-400 transition-colors"
               />
             </div>
@@ -106,54 +112,61 @@ export default function HeroSectionFive() {
               <label className="block text-lime-400 text-sm mb-1">Email</label>
               <input
                 type="email"
+                name="email"
                 placeholder="fabrizioterribile@gmail.com"
+                required
                 className="w-full bg-neutral-800 rounded-full px-4 py-2 outline-none text-white border border-transparent focus:border-lime-400 transition-colors"
               />
             </div>
-          </div>
 
-          <div className="mb-4">
-            <label className="block text-lime-400 text-sm mb-1">
-              Service Needed ?
-            </label>
-            <select className="w-full bg-neutral-800 rounded-full px-4 py-2 outline-none text-white border border-transparent focus:border-lime-400 transition-colors">
-              <option>Select...</option>
-              <option>Front-End</option>
-              <option>UI/UX Design</option>
-              <option>Web Development</option>
-            </select>
-          </div>
+            <div className="sm:col-span-2">
+              <label className="block text-lime-400 text-sm mb-1">Service Needed ?</label>
+              <select
+                name="service"
+                required
+                className="w-full bg-neutral-800 rounded-full px-4 py-2 outline-none text-white border border-transparent focus:border-lime-400 transition-colors"
+              >
+                <option value="">Select...</option>
+                <option value="Front-End">Front-End</option>
+                <option value="UI/UX Design">UI/UX Design</option>
+                <option value="Web Development">Web Development</option>
+              </select>
+            </div>
 
-          <div className="mb-6">
-            <label className="block text-lime-400 text-sm mb-1">
-              What Can I Help You...
-            </label>
-            <textarea
-              placeholder="Hello, I'd like to..."
-              className="w-full bg-neutral-800 rounded-xl px-4 py-3 outline-none text-white h-32 border border-transparent focus:border-lime-400 transition-colors"
-            />
-          </div>
+            <div className="sm:col-span-2">
+              <label className="block text-lime-400 text-sm mb-1">What Can I Help You...</label>
+              <textarea
+                name="message"
+                placeholder="Hello, I'd like to..."
+                required
+                className="w-full bg-neutral-800 rounded-xl px-4 py-3 outline-none text-white h-32 border border-transparent focus:border-lime-400 transition-colors"
+              />
+            </div>
 
-          <button
-            className="relative overflow-hidden border border-lime-400 text-lime-400 px-8 py-2 rounded-full font-bold transition-colors mb-10 sm:mb-0"
-            style={{
-              background:
-                "linear-gradient(to right, #A3E635 0%, #A3E635 50%, transparent 50%, transparent 100%)",
-              backgroundSize: "200% 100%",
-              backgroundPosition: "right bottom",
-              transition: "background-position 0.6s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundPosition = "left bottom";
-              e.currentTarget.style.color = "black";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundPosition = "right bottom";
-              e.currentTarget.style.color = "#A3E635";
-            }}
-          >
-            SUBMIT
-          </button>
+            <div className="sm:col-span-2">
+              <button
+                type="submit"
+                className="relative overflow-hidden border border-lime-400 text-lime-400 px-8 py-2 rounded-full font-bold transition-colors w-full"
+                style={{
+                  background:
+                    "linear-gradient(to right, #A3E635 0%, #A3E635 50%, transparent 50%, transparent 100%)",
+                  backgroundSize: "200% 100%",
+                  backgroundPosition: "right bottom",
+                  transition: "background-position 0.6s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundPosition = "left bottom";
+                  e.currentTarget.style.color = "black";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundPosition = "right bottom";
+                  e.currentTarget.style.color = "#A3E635";
+                }}
+              >
+                SUBMIT
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
