@@ -41,7 +41,7 @@ export default function Footer() {
                 <FaGithub size={20} />
               </a>
               <a
-                href="https://fab785.github.io/iResume/Resume.pdf"
+                href="https://docs.google.com/document/d/1YK8MGRIZbKKsQTfkrYBeEvNjJvW868JuWH7VTlQIy90/edit?tab=t.0"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-gray-700"
