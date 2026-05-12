@@ -1,12 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import profileImg from "../assets/Fab.jpg";
-import ContactModal from "./ContactModal"; // 👈 import your modal
 
-export default function Navbar() {
+export default function Navbar({ openContact }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isContactOpen, setIsContactOpen] = useState(false); // 👈 state for modal
   const prevScrollY = useRef(0);
 
   const location = useLocation();
@@ -41,18 +39,12 @@ export default function Navbar() {
     { label: "Projects", to: "/projects" },
   ];
 
-  const mobileLinks = [
-    { label: "Home", to: "/" },
-    { label: "About", to: "/my-story" },
-    { label: "Projects", to: "/projects" },
-  ];
+  const mobileLinks = menuLinks;
 
-  // Smooth scroll to top (Home)
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Home click handler
   const handleHomeClick = (e) => {
     e.preventDefault();
     if (location.pathname === "/") {
@@ -63,13 +55,12 @@ export default function Navbar() {
     setMenuOpen(false);
   };
 
-  // width per label (kept identical to your original sizing)
   const widthFor = (label) =>
     label === "Projects" ? 59.86 : label === "Home" ? 44.56 : 44.09;
 
   return (
     <>
-      {/* Large Screen Navbar */}
+      {/* LARGE NAVBAR */}
       <div
         className={`hidden sm:flex fixed top-6 left-1/2 -translate-x-1/2 z-[200] transition-all duration-500 ${
           scrolled ? "w-[260px]" : "w-[507.95px]"
@@ -87,7 +78,6 @@ export default function Navbar() {
             <div className="flex items-center gap-[16px] ml-[48px] mr-[24px]">
               {menuLinks.map(({ label, to }) =>
                 label === "Home" ? (
-                  // HOME as button, with rolling hover effect
                   <button
                     key={label}
                     onClick={handleHomeClick}
@@ -95,7 +85,7 @@ export default function Navbar() {
                     style={{ width: widthFor(label), height: "24px" }}
                   >
                     <div
-                      className="transition-transform duration-300 ease-in-out will-change-transform group-hover:-translate-y-6"
+                      className="transition-transform duration-300 ease-in-out group-hover:-translate-y-6"
                       style={{ height: "48px" }}
                     >
                       <span className="block text-white text-base font-light leading-[24px] h-6">
@@ -107,7 +97,6 @@ export default function Navbar() {
                     </div>
                   </button>
                 ) : (
-                  // ABOUT / PROJECTS as links, with rolling hover effect
                   <Link
                     key={label}
                     to={to}
@@ -115,7 +104,7 @@ export default function Navbar() {
                     style={{ width: widthFor(label), height: "24px" }}
                   >
                     <div
-                      className="transition-transform duration-300 ease-in-out will-change-transform group-hover:-translate-y-6"
+                      className="transition-transform duration-300 ease-in-out group-hover:-translate-y-6"
                       style={{ height: "48px" }}
                     >
                       <span className="block text-white text-base font-light leading-[24px] h-6">
@@ -135,7 +124,7 @@ export default function Navbar() {
 
           {!scrolled ? (
             <button
-              onClick={() => setIsContactOpen(true)} // 👈 open modal
+              onClick={openContact}   // ✅ FIXED
               className="relative group flex items-center justify-center rounded-full overflow-hidden text-base"
               style={{
                 width: "117.93px",
@@ -158,58 +147,36 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Small Screen Navbar */}
+      {/* MOBILE NAVBAR */}
       <nav className="sm:hidden fixed top-6 left-1/2 -translate-x-1/2 z-[200] w-[260px] transition-all duration-500">
         <div
-          className={`overflow-hidden border border-neutral-800 shadow-md transition-[padding,max-height,background-color,backdrop-filter] duration-500 ease-in-out ${
+          className={`overflow-hidden border border-neutral-800 shadow-md transition-all duration-500 ${
             menuOpen
               ? "bg-black/50 backdrop-blur-xl py-6 max-h-[480px] rounded-3xl"
               : "bg-black/90 backdrop-blur-md h-14 rounded-full"
           }`}
         >
-          {/* Top Row */}
           <div className="flex items-center justify-between px-4 h-14">
-            <div className="flex items-center">
-              <img
-                src={profileImg}
-                alt="Profile"
-                className="w-10 h-10 rounded-full object-cover"
-              />
-            </div>
+            <img
+              src={profileImg}
+              alt="Profile"
+              className="w-10 h-10 rounded-full object-cover"
+            />
 
             {!menuOpen && (
-              <div className="flex items-center gap-2 text-white text-sm font-medium select-none">
+              <div className="flex items-center gap-2 text-white text-sm">
                 <span>Available for work</span>
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
-                </span>
               </div>
             )}
 
-            {/* Toggle Button */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle menu"
-              aria-expanded={menuOpen}
-              className="relative w-10 h-10 rounded-full bg-lime-400 flex items-center justify-center"
+              className="w-10 h-10 rounded-full bg-lime-400 flex items-center justify-center"
             >
-              <div className="relative w-6 h-6">
-                <span
-                  className={`absolute left-0 top-1/2 w-6 h-0.5 bg-black transform transition-all duration-300 ${
-                    menuOpen ? "rotate-45 -translate-y-1/2" : "-translate-y-2"
-                  }`}
-                />
-                <span
-                  className={`absolute left-0 top-1/2 w-6 h-0.5 bg-black transform transition-all duration-300 ${
-                    menuOpen ? "-rotate-45 -translate-y-1/2" : "translate-y-2"
-                  }`}
-                />
-              </div>
+              ☰
             </button>
           </div>
 
-          {/* Expanding menu content */}
           <div
             className={`flex flex-col items-center space-y-5 mt-6 transition-opacity duration-500 ${
               menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -219,10 +186,8 @@ export default function Navbar() {
               label === "Home" ? (
                 <button
                   key={label}
-                  onClick={(e) => {
-                    handleHomeClick(e);
-                  }}
-                  className="text-white font-normal text-lg hover:text-lime-400 transition"
+                  onClick={handleHomeClick}
+                  className="text-white text-lg"
                 >
                   {label}
                 </button>
@@ -231,7 +196,7 @@ export default function Navbar() {
                   key={label}
                   to={to}
                   onClick={() => setMenuOpen(false)}
-                  className="text-white font-normal text-lg hover:text-lime-400 transition"
+                  className="text-white text-lg"
                 >
                   {label}
                 </Link>
@@ -240,19 +205,16 @@ export default function Navbar() {
 
             <button
               onClick={() => {
-                setIsContactOpen(true); // 👈 open modal
+                openContact();   // ✅ FIXED
                 setMenuOpen(false);
               }}
-              className="inline-block bg-lime-400 text-black font-semibold rounded-full px-6 py-2 text-lg hover:bg-lime-500 transition"
+              className="bg-lime-400 text-black font-semibold rounded-full px-6 py-2"
             >
               Contact
             </button>
           </div>
         </div>
       </nav>
-
-      {/* 👇 Modal rendered here */}
-      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
     </>
   );
 }

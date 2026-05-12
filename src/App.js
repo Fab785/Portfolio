@@ -18,17 +18,25 @@ import frontendImg from "./assets/laptop.jpg";
 /* Scroll to top on route change */
 function ScrollToTop() {
   const { pathname } = useLocation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
   return null;
 }
 
 /* Home page sections grouped */
-function HomePage({ hoveredImage, isMorphing, setHoveredImage, setIsMorphing }) {
+function HomePage({
+  hoveredImage,
+  isMorphing,
+  setHoveredImage,
+  setIsMorphing,
+}) {
   return (
     <>
       <Hero hoveredImage={hoveredImage} isMorphing={isMorphing} />
+
       <HeroSectionTwo
         setHoveredImage={setHoveredImage}
         setIsMorphing={setIsMorphing}
@@ -36,6 +44,7 @@ function HomePage({ hoveredImage, isMorphing, setHoveredImage, setIsMorphing }) 
         graphicImg={graphicImg}
         webImg={webImg}
       />
+
       <HeroSectionThree />
       <HeroSectionFour />
       <HeroSectionFive />
@@ -46,11 +55,13 @@ function HomePage({ hoveredImage, isMorphing, setHoveredImage, setIsMorphing }) 
 export default function App() {
   const [hoveredImage, setHoveredImage] = useState(null);
   const [isMorphing, setIsMorphing] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false); // modal state
+  const [contactOpen, setContactOpen] = useState(false);
 
   return (
     <div className="min-h-screen w-full text-white overflow-x-hidden">
-      <Navbar openContact={() => setContactOpen(true)} /> {/* unchanged */}
+      {/* Navbar triggers modal OPEN */}
+      <Navbar openContact={() => setContactOpen(true)} />
+
       <ScrollToTop />
 
       <Routes>
@@ -66,22 +77,16 @@ export default function App() {
           }
         />
 
-        {/* Projects page */}
         <Route path="/projects" element={<AllProjects />} />
-
-        {/* All Projects page for HeroSectionFour button */}
-        <Route path="/all-projects" element={<AllProjects />} /> {/* 👈 NEW */}
-
-        {/* My Story / AboutMe page */}
+        <Route path="/all-projects" element={<AllProjects />} />
         <Route path="/my-story" element={<AboutMe />} />
 
-        {/* fallback to home if unknown path */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
       <Footer />
 
-      {/* Contact Modal */}
+      {/* Global Contact Modal (single source of truth) */}
       <ContactModal
         isOpen={contactOpen}
         onClose={() => setContactOpen(false)}

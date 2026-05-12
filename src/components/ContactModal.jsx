@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ContactModal({ isOpen, onClose }) {
+  // ✅ FIX: always restore scroll properly
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -13,7 +26,7 @@ export default function ContactModal({ isOpen, onClose }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            onClick={onClose} // close modal on background click
+            onClick={onClose}
           />
 
           {/* Modal window */}
@@ -27,6 +40,7 @@ export default function ContactModal({ isOpen, onClose }) {
             <div className="w-[90%] max-w-lg p-8 rounded-3xl shadow-xl 
                             bg-gradient-to-br from-black/90 to-black/70 
                             backdrop-blur-lg border border-lime-400 relative">
+              
               {/* Header */}
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-3xl font-bold text-lime-400">Contact Me</h2>
@@ -44,6 +58,7 @@ export default function ContactModal({ isOpen, onClose }) {
 
               {/* Form */}
               <form className="flex flex-col gap-4">
+                
                 {/* Name */}
                 <div className="relative">
                   <input
@@ -104,6 +119,7 @@ export default function ContactModal({ isOpen, onClose }) {
                 >
                   Send Message
                 </button>
+
               </form>
             </div>
           </motion.div>
