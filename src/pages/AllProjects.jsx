@@ -8,7 +8,8 @@ import screenshot2 from "../assets/Aricreati.png";
 import screenshot3 from "../assets/Treact.png";
 import screenshot4 from "../assets/Skinstric.png";
 import screenshot5 from "../assets/Ultraverse.png";
-import screenshot6 from "../assets/Xclone.png"; // 🔹 Add your screenshot here
+import screenshot6 from "../assets/Xclone.png";
+import screenshot7 from "../assets/Summarist.png";
 
 export default function AllProjects() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -46,11 +47,19 @@ export default function AllProjects() {
 
   const projects = [
     {
+      img: screenshot7,
+      title: "Summarist Clone",
+      stack: ["React", "JavaScript", "Firebase", "Git"],
+      description:
+        "A responsive audiobook platform inspired by Summarist, built with React and modern front-end technologies. Features include authentication, dynamic routing, audio playback, personalized library functionality, and interactive UI components. The final product of my internship with Frontend Simplified.",
+      link: "https://summarist-beryl.vercel.app/#/",
+    },
+    {
       img: screenshot1,
       title: "Library Snapshot",
       stack: ["React", "JavaScript", "Node.js", "Git"],
       description:
-        "The final product of my internship with Frontend Simplified. Converted a static website into a dynamic app using Axios, Owl Carousel, and Animate on Scroll. Maintained version control with GitHub PRs.",
+        "Converted a static website into a dynamic app using Axios, Owl Carousel, and Animate on Scroll. Maintained version control with GitHub PRs.",
       link: "https://library-with-react-rho.vercel.app/#/",
     },
     {
