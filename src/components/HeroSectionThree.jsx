@@ -30,9 +30,9 @@ const HeroSectionThree = () => {
           {/* Stats row */}
           <div className="flex flex-col md:flex-row gap-6 md:gap-12 mb-10 max-w-xs md:max-w-full">
             {[
-              { end: 7, label: "Months of Experience" },
-              { end: 100, label: "Hours of Studies", suffix: "+" },
-              { end: 6, label: "Completed Projects" },
+              { end: 15, label: "Months of Experience" },
+              { end: 150, label: "Hours of Studies", suffix: "+" },
+              { end: 7, label: "Completed Projects" },
             ].map((stat, idx) => (
               <div key={idx} className="flex flex-col items-center">
                 <span className="text-lime-400 text-4xl font-extrabold">
