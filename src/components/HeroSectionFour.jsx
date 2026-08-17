@@ -5,9 +5,30 @@ import screenshot2 from "../assets/Xclone.png";
 import screenshot3 from "../assets/Summarist.png";
 
 const projects = [
-  { id: 1, title: "SKINSTRICT", description: "AI-driven skincare design and analysis", image: screenshot1, link: "https://fab785.github.io/skinstric/" },
-  { id: 2, title: "X-CLONE", description: "Responsive social media platform inspired by X", image: screenshot2, link: "https://x-clone-plum-theta.vercel.app/" },
-  { id: 3, title: "SUMMARIST", description: "Personalized audiobook platform with interactive audio", image: screenshot3, link: "https://summarist-beryl.vercel.app/#/" },
+  {
+    id: 1,
+    title: "SKINSTRICT",
+    description: "AI-driven skincare design and analysis",
+    image: screenshot1,
+    liveLink: "https://fab785.github.io/skinstric/",
+    githubLink: "https://github.com/Fab785/skinstric",
+  },
+  {
+    id: 2,
+    title: "X-CLONE",
+    description: "Responsive social media platform inspired by X",
+    image: screenshot2,
+    liveLink: "https://x-clone-plum-theta.vercel.app/",
+    githubLink: "https://github.com/Fab785/x-clone",
+  },
+  {
+    id: 3,
+    title: "SUMMARIST",
+    description: "Personalized audiobook platform with interactive audio",
+    image: screenshot3,
+    liveLink: "https://summarist-beryl.vercel.app/#/",
+    githubLink: "https://github.com/Fab785/summarist",
+  },
 ];
 
 export default function HeroSectionFour() {
@@ -114,14 +135,25 @@ export default function HeroSectionFour() {
               )}
             </div>
             {activeOverlays[idx] && (
+              <div className="flex gap-4 mt-6">
               <a
-                href={project.link}
+                href={project.liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 px-8 py-4 bg-lime-400 text-black font-semibold rounded-full hover:bg-lime-500 transition-colors duration-300"
+                className="px-6 py-3 bg-lime-400 text-black font-semibold rounded-full hover:bg-lime-500 transition-colors duration-300"
               >
-                Browse This Project
+                Live Demo
               </a>
+            
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 border-2 border-lime-400 text-lime-400 font-semibold rounded-full hover:bg-lime-400 hover:text-black transition-colors duration-300"
+              >
+                GitHub
+              </a>
+            </div>
             )}
           </div>
         </div>
