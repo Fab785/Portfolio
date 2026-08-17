@@ -5,9 +5,9 @@ import screenshot2 from "../assets/Treact.png";
 import screenshot3 from "../assets/Aricreati.png";
 
 const projects = [
-  { id: 1, title: "ULTRAVERSE", description: "Exploring immersive metaverse experiences.", image: screenshot1, link: "/projects/ultraverse" },
-  { id: 2, title: "TRIACT", description: "AI-driven skincare design and analysis.", image: screenshot2, link: "/projects/skincare" },
-  { id: 3, title: "ARICREATI CREAZIONI", description: "Creative portfolio and design showcase.", image: screenshot3, link: "/projects/aricreati" },
+  { id: 1, title: "SKINSTRICT", description: "Exploring immersive metaverse experiences.", image: screenshot1, link: "/projects/ultraverse" },
+  { id: 2, title: "X-CLONE", description: "AI-driven skincare design and analysis.", image: screenshot2, link: "/projects/skincare" },
+  { id: 3, title: "SUMMARIST", description: "Creative portfolio and design showcase.", image: screenshot3, link: "/src/assets/Summarist.png" },
 ];
 
 export default function HeroSectionFour() {
