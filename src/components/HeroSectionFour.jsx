@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import screenshot1 from "../assets/Ultraverse.png";
 import screenshot2 from "../assets/Treact.png";
-import screenshot3 from "../assets/Aricreati.png";
+import screenshot3 from "../assets/Summarist.png";
 
 const projects = [
-  { id: 1, title: "SKINSTRICT", description: "Exploring immersive metaverse experiences.", image: screenshot1, link: "/projects/ultraverse" },
-  { id: 2, title: "X-CLONE", description: "AI-driven skincare design and analysis.", image: screenshot2, link: "/projects/skincare" },
-  { id: 3, title: "SUMMARIST", description: "Creative portfolio and design showcase.", image: screenshot3, link: "/src/assets/Summarist.png" },
+  { id: 1, title: "SKINSTRICT", description: "Exploring immersive metaverse experiences.", image: screenshot1, link: "/projects/skinstrict" },
+  { id: 2, title: "X-CLONE", description: "AI-driven skincare design and analysis.", image: screenshot2, link: "/projects/x-clone" },
+  { id: 3, title: "SUMMARIST", description: "Creative portfolio and design showcase.", image: screenshot3, link: "/project/summarist" },
 ];
 
 export default function HeroSectionFour() {
