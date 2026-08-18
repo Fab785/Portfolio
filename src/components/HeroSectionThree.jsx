@@ -68,7 +68,7 @@ const HeroSectionThree = () => {
 
             {/* PDF Resume Link */}
             <a
-              href="https://docs.google.com/document/d/1YK8MGRIZbKKsQTfkrYBeEvNjJvW868JuWH7VTlQIy90/edit?tab=t.0"
+              href="https://docs.google.com/document/d/1XtXT6OH2zeqHR_xmwqGwQgEWMWdG0hceNvFzwpVFhAg/edit?tab=t.0"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Resume"
