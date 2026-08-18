@@ -34,32 +34,31 @@ export default function Hero({ hoveredImage, isMorphing }) {
   return (
     <>
       {/* Morphing Dot / Image (desktop only) */}
-{window.innerWidth >= 768 && (
-  <motion.div
-    className="fixed pointer-events-none z-50"
-    style={{
-      x: mouseX,
-      y: mouseY,
-      translateX: "0%",
-      translateY: "-50%",
-      backgroundColor:
-        isMorphing && hoveredImage ? "transparent" : "#A3E635",
-      backgroundImage:
-        isMorphing && hoveredImage ? `url(${hoveredImage})` : "none",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-    }}
-    animate={{
-      width: isMorphing ? 160 : 16,
-      height: isMorphing ? 100 : 16,
-      borderRadius: isMorphing ? "24px" : "9999px",
-      rotate: isMorphing ? 10 : 0,
-      transition: { duration: transitionDuration, ease: "easeInOut" },
-    }}
-  />
-)}
-
+      {window.innerWidth >= 768 && (
+        <motion.div
+          className="fixed pointer-events-none z-50"
+          style={{
+            x: mouseX,
+            y: mouseY,
+            translateX: "0%",
+            translateY: "-50%",
+            backgroundColor:
+              isMorphing && hoveredImage ? "transparent" : "#A3E635",
+            backgroundImage:
+              isMorphing && hoveredImage ? `url(${hoveredImage})` : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+          animate={{
+            width: isMorphing ? 160 : 16,
+            height: isMorphing ? 100 : 16,
+            borderRadius: isMorphing ? "24px" : "9999px",
+            rotate: isMorphing ? 10 : 0,
+            transition: { duration: transitionDuration, ease: "easeInOut" },
+          }}
+        />
+      )}
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 py-12 text-white overflow-hidden">
@@ -80,6 +79,7 @@ export default function Hero({ hoveredImage, isMorphing }) {
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
           />
+
           <motion.div
             className="absolute w-[500px] h-[500px] rounded-full"
             style={{
@@ -94,16 +94,18 @@ export default function Hero({ hoveredImage, isMorphing }) {
         </motion.div>
 
         {/* Hero content */}
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14 z-10 relative w-full max-w-6xl">
+        <div className="flex flex-col lg:flex-row items-center gap-5 sm:gap-8 lg:gap-14 z-10 relative w-full max-w-6xl">
+
           {/* Left Text */}
           <div
-            className="text-center lg:text-right lg:items-start flex flex-col"
-            style={{ width: 407, height: 132 }}
+            className="w-full lg:w-[407px] text-center lg:text-right lg:items-start flex flex-col"
           >
             <h1 className="text-base sm:text-base md:text-lg font-bold uppercase tracking-widest -mb-1">
               Fabrizio Terribile
             </h1>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold">
+
+            {/* Desktop FRONTEND */}
+            <h2 className="hidden lg:block text-4xl sm:text-5xl md:text-6xl font-extrabold">
               FRONTEND
             </h2>
           </div>
@@ -164,8 +166,10 @@ export default function Hero({ hoveredImage, isMorphing }) {
           {/* Right Text */}
           <div className="text-center lg:text-left lg:items-start flex flex-col">
             <h2 className="text-4xl sm:text-6xl md:text-6xl font-extrabold leading-none">
+              <span className="lg:hidden">FRONTEND </span>
               DEVELOPER
             </h2>
+
             <p className="text-sm sm:text-base mt-2 text-neutral-300 max-w-[260px] mx-auto lg:mx-0">
               I'm a US-based front-end developer
             </p>
@@ -175,6 +179,7 @@ export default function Hero({ hoveredImage, isMorphing }) {
     </>
   );
 }
+      
 
 
 
