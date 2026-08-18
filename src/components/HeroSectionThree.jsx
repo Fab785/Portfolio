@@ -31,7 +31,7 @@ const HeroSectionThree = () => {
           <div className="flex flex-col md:flex-row gap-6 md:gap-12 mb-10 max-w-xs md:max-w-full">
             {[
               { end: 18, label: "Months of Experience" },
-              { end: 150, label: "Hours of Studies", suffix: "+" },
+              { end: 200, label: "Hours of Studies", suffix: "+" },
               { end: 7, label: "Completed Projects" },
             ].map((stat, idx) => (
               <div key={idx} className="flex flex-col items-center">
