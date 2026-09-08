@@ -125,7 +125,7 @@ export default function Hero({ hoveredImage, isMorphing }) {
 
             {/* Bubble with chained animations */}
             <motion.div
-              className="absolute -bottom-8 -left-8 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-lime-400 overflow-hidden shadow-lg"
+              className="absolute -bottom-8 -left-14 sm:-left-10 lg:-left-8 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-lime-400 overflow-hidden shadow-lg"
               style={{ backgroundColor: "#A3E635" }}
             >
               <div className="relative w-full h-full flex items-center justify-center">

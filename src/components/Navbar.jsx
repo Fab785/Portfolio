@@ -150,9 +150,9 @@ export default function Navbar({ openContact }) {
       {/* MOBILE NAVBAR */}
       <nav className="sm:hidden fixed top-6 left-1/2 -translate-x-1/2 z-[200] w-[260px] transition-all duration-500">
         <div
-          className={`overflow-hidden border border-neutral-800 shadow-md transition-all duration-500 ${
+          className={`overflow-hidden border border-neutral-800 shadow-md ${
             menuOpen
-              ? "bg-black/50 backdrop-blur-xl py-6 max-h-[480px] rounded-3xl"
+              ? "bg-black/50 backdrop-blur-xl py-6 rounded-3xl"
               : "bg-black/90 backdrop-blur-md h-14 rounded-full"
           }`}
         >
