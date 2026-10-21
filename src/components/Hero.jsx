@@ -1,191 +1,134 @@
-import React, { useEffect, useState, useRef } from "react";
-import { motion, useMotionValue, AnimatePresence } from "framer-motion";
-import profileImg from "../assets/Fab.jpg";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import screenshotSummarist from "../assets/Summarist.png";
+import screenshotSkinstric from "../assets/Skinstric.png";
+import screenshotXClone from "../assets/Xclone.png";
 
-export default function Hero({ hoveredImage, isMorphing }) {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const [showHi, setShowHi] = useState(true);
-  const isFirstHi = useRef(true);
-  const prevMorphing = useRef(false);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      mouseX.set(e.clientX + 20);
-      mouseY.set(e.clientY + 20);
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
-
-  useEffect(() => {
-    const delay = showHi ? 2000 : 4000;
-    const timeout = setTimeout(() => {
-      setShowHi(!showHi);
-      if (showHi) isFirstHi.current = false;
-    }, delay);
-    return () => clearTimeout(timeout);
-  }, [showHi]);
-
-  const transitionDuration = isMorphing && !prevMorphing.current ? 0.6 : 0.15;
-  prevMorphing.current = isMorphing;
-
+export default function Hero() {
   return (
-    <>
-      {/* Morphing Dot / Image (desktop only) */}
-      {window.innerWidth >= 768 && (
-        <motion.div
-          className="fixed pointer-events-none z-50"
-          style={{
-            x: mouseX,
-            y: mouseY,
-            translateX: "0%",
-            translateY: "-50%",
-            backgroundColor:
-              isMorphing && hoveredImage ? "transparent" : "#A3E635",
-            backgroundImage:
-              isMorphing && hoveredImage ? `url(${hoveredImage})` : "none",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-          animate={{
-            width: isMorphing ? 160 : 16,
-            height: isMorphing ? 100 : 16,
-            borderRadius: isMorphing ? "24px" : "9999px",
-            rotate: isMorphing ? 10 : 0,
-            transition: { duration: transitionDuration, ease: "easeInOut" },
-          }}
-        />
-      )}
+    <section className="max-w-6xl mx-auto px-6 pt-6 pb-2">
+      {/* Top Grid */}
+      <div className="grid lg:grid-cols-12 gap-8 items-center mb-6">
+        
+        {/* Left Intro Column */}
+        <div className="lg:col-span-7 flex flex-col items-start">
+          <h1 className="text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight mb-3">
+            Hi, I'm <span className="text-lime-400">Fabrizio Terribile</span>.<br />
+            Front-End Developer.
+          </h1>
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 py-12 text-white overflow-hidden">
-        {/* Animated lime radial highlights flowing into Section 2 */}
-        <motion.div
-          className="absolute top-0 left-0 w-full h-[150vh] pointer-events-none -z-10"
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 120, ease: "linear" }}
-        >
-          <motion.div
-            className="absolute w-[400px] h-[400px] rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(198,255,0,0.08) 0%, transparent 70%)",
-              top: "-50px",
-              left: "-50px",
-            }}
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-          />
+          <p className="text-sm md:text-base text-zinc-400 max-w-xl mb-6 leading-relaxed">
+            I build fast, responsive, and accessible web applications using <strong className="text-zinc-200">React</strong>, <strong className="text-zinc-200">JavaScript</strong>, and modern CSS frameworks.
+          </p>
 
-          <motion.div
-            className="absolute w-[500px] h-[500px] rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(198,255,0,0.06) 0%, transparent 80%)",
-              bottom: "-150px",
-              right: "-100px",
-            }}
-            animate={{ scale: [1, 1.15, 1] }}
-            transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
-          />
-        </motion.div>
-
-        {/* Hero content */}
-        <div className="flex flex-col lg:flex-row items-center gap-5 sm:gap-8 lg:gap-14 z-10 relative w-full max-w-6xl">
-
-          {/* Left Text */}
-          <div
-            className="w-full lg:w-[407px] text-center lg:text-right lg:items-start flex flex-col"
-          >
-            <h1 className="text-base sm:text-base md:text-lg font-bold uppercase tracking-widest -mb-1">
-              Fabrizio Terribile
-            </h1>
-
-            {/* Desktop FRONTEND */}
-            <h2 className="hidden lg:block text-4xl sm:text-5xl md:text-6xl font-extrabold">
-              FRONTEND
-            </h2>
-          </div>
-
-          {/* Image + Hi Bubble */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="relative"
-          >
-            <img
-              src={profileImg}
-              alt="Profile"
-              className="rounded-[24px] object-cover object-[65%_center] w-[220px] h-[300px] sm:w-[260px] sm:h-[360px] md:w-[300px] md:h-[400px] lg:w-[340px] lg:h-[460px]"
-            />
-
-            {/* Bubble with chained animations */}
-            <motion.div
-              className="absolute -bottom-8 -left-14 sm:-left-10 lg:-left-8 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-lime-400 overflow-hidden shadow-lg"
-              style={{ backgroundColor: "#A3E635" }}
+          <div className="flex flex-wrap items-center gap-3">
+            <Link 
+              to="/projects" 
+              className="bg-lime-400 hover:bg-lime-300 text-zinc-950 font-semibold px-5 py-2.5 text-sm rounded-xl transition-all"
             >
-              <div className="relative w-full h-full flex items-center justify-center">
-                <AnimatePresence mode="popLayout">
-                  {showHi ? (
-                    <motion.div
-                      key="hi"
-                      className="absolute inset-0 flex items-center justify-center text-xl sm:text-2xl font-bold text-black"
-                      initial={{ y: isFirstHi.current ? "100%" : "-100%" }}
-                      animate={{ y: "0%" }}
-                      exit={{ y: "-100%" }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                    >
-                      Hi
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="wave"
-                      className="absolute inset-0 flex items-center justify-center text-xl sm:text-2xl font-bold text-black"
-                      initial={{ y: "100%" }}
-                      animate={{ y: "0%" }}
-                      exit={{ y: "100%" }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                    >
-                      <motion.span
-                        animate={{ rotate: [0, 15, -15, 15, 0] }}
-                        transition={{ repeat: Infinity, duration: 1 }}
-                      >
-                        👋
-                      </motion.span>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Text */}
-          <div className="text-center lg:text-left lg:items-start flex flex-col">
-            <h2 className="text-4xl sm:text-6xl md:text-6xl font-extrabold leading-none">
-              <span className="lg:hidden">FRONTEND </span>
-              DEVELOPER
-            </h2>
-
-            <p className="text-sm sm:text-base mt-2 text-neutral-300 max-w-[260px] mx-auto lg:mx-0">
-              I'm a US-based front-end developer
-            </p>
+              View All Projects
+            </Link>
+            <a 
+              href="https://github.com/fab785" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-zinc-900 hover:bg-zinc-800 text-white font-medium px-5 py-2.5 text-sm rounded-xl border border-zinc-800 transition-all"
+            >
+              GitHub Profile
+            </a>
+            <a 
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-zinc-400 hover:text-white font-medium text-sm px-3 py-2.5 transition-colors"
+            >
+              View Resume ↗
+            </a>
           </div>
         </div>
-      </section>
-    </>
+
+        {/* Right Side: Featured Card (Summarist - Top) */}
+        <div className="lg:col-span-5 w-full">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-zinc-700 transition-all shadow-xl group">
+            <div className="bg-zinc-950 px-3 py-2 flex items-center gap-2 border-b border-zinc-800">
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              <div className="text-[10px] text-zinc-500 font-mono mx-auto bg-zinc-900 px-2 py-0.5 rounded border border-zinc-800/50">
+                summarist-beryl.vercel.app
+              </div>
+            </div>
+            
+            <div className="overflow-hidden bg-zinc-950 h-40 relative">
+              <img 
+                src={screenshotSummarist} 
+                alt="Summarist Clone" 
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            <div className="p-4">
+              <div className="flex justify-between items-center mb-1">
+                <h3 className="text-base font-bold text-white">Summarist Clone</h3>
+                <span className="text-[10px] font-mono text-lime-400 bg-lime-400/10 border border-lime-400/20 px-2 py-0.5 rounded">Featured</span>
+              </div>
+              <p className="text-zinc-400 text-xs mb-3">
+                Audiobook app built with React & Firebase during my Frontend Simplified internship.
+              </p>
+              <div className="flex items-center justify-between pt-2 border-t border-zinc-800 text-xs">
+                <span className="text-zinc-500 font-mono text-[11px]">React • Firebase • Tailwind</span>
+                <a href="https://summarist-beryl.vercel.app/#/" target="_blank" rel="noopener noreferrer" className="text-lime-400 font-semibold hover:underline">
+                  Live App ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Bottom 2 Project Cards Row */}
+      <div className="pt-4 border-t border-zinc-800/60">
+        <h2 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+          <span>Featured Projects</span>
+          <span className="text-[11px] font-normal text-zinc-500 font-mono">(Direct Work Samples)</span>
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Bottom Card 1: X-Clone */}
+          <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-zinc-700 transition-all group p-3 flex gap-3 items-center">
+            <div className="w-20 h-14 bg-zinc-950 rounded-lg overflow-hidden flex-shrink-0 border border-zinc-800">
+              <img src={screenshotXClone} alt="X-Clone" className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform" />
+            </div>
+            <div className="flex-grow">
+              <h4 className="text-sm font-bold text-white">X-Clone</h4>
+              <p className="text-[11px] text-zinc-400 mb-1">Social media feed application built with modern web tools.</p>
+              <a href="https://github.com/fab785" target="_blank" rel="noopener noreferrer" className="text-[11px] text-lime-400 font-medium hover:underline">
+                Open Live Demo ↗
+              </a>
+            </div>
+          </div>
+
+          {/* Bottom Card 2: Skinstric */}
+          <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-zinc-700 transition-all group p-3 flex gap-3 items-center">
+            <div className="w-20 h-14 bg-zinc-950 rounded-lg overflow-hidden flex-shrink-0 border border-zinc-800">
+              <img src={screenshotSkinstric} alt="Skinstric" className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform" />
+            </div>
+            <div className="flex-grow">
+              <h4 className="text-sm font-bold text-white">Skinstric</h4>
+              <p className="text-[11px] text-zinc-400 mb-1">AI-driven skincare diagnostic app with demographic & facial analysis.</p>
+              <a href="https://fab785.github.io/skinstric/" target="_blank" rel="noopener noreferrer" className="text-[11px] text-lime-400 font-medium hover:underline">
+                Open Live Demo ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
-      
-
-
-
-
-
-
 
 
 

@@ -1,63 +1,55 @@
+import React from "react";
 import { FaLinkedin, FaGithub, FaFilePdf } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-lime-300 text-black py-6">
-      <div className="container mx-auto px-4">
-        
-        {/* Top Row */}
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start pb-4">
-          
-          {/* Email */}
-          <div className="mb-4 md:mb-0 text-center md:text-left">
-            <p className="text-sm">Email :</p>
-            <p className="font-bold">fabrizioterribile@gmail.com</p>
-          </div>
+    <footer className="w-full bg-lime-400 text-black py-3 px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-semibold">
+      {/* Contact Details */}
+      <div className="flex items-center gap-6">
+        <a 
+          href="mailto:fabrizioterribile@gmail.com" 
+          className="hover:underline transition-all"
+        >
+          fabrizioterribile@gmail.com
+        </a>
+        <span className="text-black/30">|</span>
+        <a 
+          href="tel:15623885705" 
+          className="hover:underline transition-all"
+        >
+          +1 (562) 388-5705
+        </a>
+      </div>
 
-          {/* Phone */}
-          <div className="mb-4 md:mb-0 text-center">
-            <p className="text-sm">Call Today :</p>
-            <p className="font-bold">+1 (562) 388-5705</p>
-          </div>
-
-          {/* Social */}
-          <div className="text-center md:text-right">
-            <p className="text-sm">Social :</p>
-            <div className="flex justify-center md:justify-end space-x-4 mt-1">
-              <a
-                href="https://linkedin.com/in/fabrizio-terribile/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gray-700"
-              >
-                <FaLinkedin size={20} />
-              </a>
-              <a
-                href="https://github.com/Fab785"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gray-700"
-              >
-                <FaGithub size={20} />
-              </a>
-              <a
-                href="https://docs.google.com/document/d/1YK8MGRIZbKKsQTfkrYBeEvNjJvW868JuWH7VTlQIy90/edit?tab=t.0"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gray-700"
-              >
-                <FaFilePdf size={20} />
-              </a>
-            </div>
-          </div>
-        </div>
-        {/* Divider Line */}
-        <div className="border-t border-black my-4"></div>
-
-        {/* Copyright */}
-        <div className="text-back text-sm">
-          © Copyright 2025. All Rights Reserved
-        </div>
+      {/* Social & Resume Links */}
+      <div className="flex items-center gap-5 text-base">
+        <a 
+          href="https://linkedin.com" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="hover:opacity-75 transition-opacity"
+          aria-label="LinkedIn"
+        >
+          <FaLinkedin />
+        </a>
+        <a 
+          href="https://github.com/fab785" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="hover:opacity-75 transition-opacity"
+          aria-label="GitHub"
+        >
+          <FaGithub />
+        </a>
+        <a 
+          href="/resume.pdf" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="hover:opacity-75 transition-opacity"
+          aria-label="Resume"
+        >
+          <FaFilePdf />
+        </a>
       </div>
     </footer>
   );

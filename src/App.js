@@ -3,19 +3,11 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import HeroSectionTwo from "./components/HeroSectionTwo";
-import HeroSectionThree from "./components/HeroSectionThree";
-import HeroSectionFour from "./components/HeroSectionFour";
-import HeroSectionFive from "./components/HeroSectionFive";
 import Footer from "./components/Footer";
 import ContactModal from "./components/ContactModal";
 import AllProjects from "./pages/AllProjects.jsx";
 import AboutMe from "./pages/AboutMe.jsx";
-import graphicImg from "./assets/uidesign.jpg";
-import webImg from "./assets/Laptop2.jpg";
-import frontendImg from "./assets/laptop.jpg";
 
-/* Scroll to top on route change */
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -26,67 +18,34 @@ function ScrollToTop() {
   return null;
 }
 
-/* Home page sections grouped */
-function HomePage({
-  hoveredImage,
-  isMorphing,
-  setHoveredImage,
-  setIsMorphing,
-}) {
+function HomePage() {
   return (
     <>
-      <Hero hoveredImage={hoveredImage} isMorphing={isMorphing} />
-
-      <HeroSectionTwo
-        setHoveredImage={setHoveredImage}
-        setIsMorphing={setIsMorphing}
-        frontendImg={frontendImg}
-        graphicImg={graphicImg}
-        webImg={webImg}
-      />
-
-      <HeroSectionThree />
-      <HeroSectionFour />
-      <HeroSectionFive />
+      <Hero />
     </>
   );
 }
 
 export default function App() {
-  const [hoveredImage, setHoveredImage] = useState(null);
-  const [isMorphing, setIsMorphing] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
-    <div className="min-h-screen w-full text-white overflow-x-hidden">
-      {/* Navbar triggers modal OPEN */}
-      <Navbar openContact={() => setContactOpen(true)} />
-
+    <div className="h-screen w-full bg-zinc-950 text-white flex flex-col justify-between overflow-hidden">
+      <Navbar />
       <ScrollToTop />
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <HomePage
-              hoveredImage={hoveredImage}
-              isMorphing={isMorphing}
-              setHoveredImage={setHoveredImage}
-              setIsMorphing={setIsMorphing}
-            />
-          }
-        />
-
-        <Route path="/projects" element={<AllProjects />} />
-        <Route path="/all-projects" element={<AllProjects />} />
-        <Route path="/my-story" element={<AboutMe />} />
-
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <main className="flex-grow flex flex-col justify-center">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/projects" element={<AllProjects />} />
+          <Route path="/all-projects" element={<AllProjects />} />
+          <Route path="/my-story" element={<AboutMe />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
 
       <Footer />
 
-      {/* Global Contact Modal (single source of truth) */}
       <ContactModal
         isOpen={contactOpen}
         onClose={() => setContactOpen(false)}
@@ -94,7 +53,3 @@ export default function App() {
     </div>
   );
 }
-
-
-
-

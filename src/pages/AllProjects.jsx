@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
-import { FaReact, FaNodeJs, FaGitAlt } from "react-icons/fa";
+import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
+import { FaReact, FaNodeJs, FaGitAlt, FaFire } from "react-icons/fa";
 import { IoLogoJavascript, IoLogoHtml5, IoLogoCss3 } from "react-icons/io";
 import { SiTailwindcss, SiNextdotjs, SiAxios } from "react-icons/si";
+
 import screenshot1 from "../assets/RactLibrary.png";
 import screenshot2 from "../assets/Aricreati.png";
 import screenshot3 from "../assets/Treact.png";
-import screenshot4 from "../assets/Skinstric.png";
+import screenshot4 from "../assets/Skinstric.png"; // Replace with your AI face screenshot asset if available
 import screenshot5 from "../assets/Ultraverse.png";
 import screenshot6 from "../assets/Xclone.png";
 import screenshot7 from "../assets/Summarist.png";
@@ -30,37 +31,60 @@ export default function AllProjects() {
     };
   }, []);
 
-  // map stack names to icons
   const iconsMap = {
-    React: <FaReact className="text-cyan-400 text-3xl" />,
-    JavaScript: <IoLogoJavascript className="text-yellow-400 text-3xl" />,
-    Nodejs: <FaNodeJs className="text-green-500 text-3xl" />,
-    "Node.js": <FaNodeJs className="text-green-500 text-3xl" />,
-    Git: <FaGitAlt className="text-orange-500 text-3xl" />,
-    Tailwind: <SiTailwindcss className="text-sky-400 text-3xl" />,
-    Nextjs: <SiNextdotjs className="text-gray-200 text-3xl" />,
-    "Next.js": <SiNextdotjs className="text-gray-200 text-3xl" />,
-    HTML: <IoLogoHtml5 className="text-orange-600 text-3xl" />,
-    CSS: <IoLogoCss3 className="text-blue-500 text-3xl" />,
-    Axios: <SiAxios className="text-purple-400 text-3xl" />,
+    React: <FaReact className="text-cyan-400" title="React" />,
+    JavaScript: <IoLogoJavascript className="text-yellow-400" title="JavaScript" />,
+    Nodejs: <FaNodeJs className="text-green-500" title="Node.js" />,
+    "Node.js": <FaNodeJs className="text-green-500" title="Node.js" />,
+    Git: <FaGitAlt className="text-orange-500" title="Git" />,
+    Firebase: <FaFire className="text-amber-500" title="Firebase" />,
+    Tailwind: <SiTailwindcss className="text-sky-400" title="Tailwind CSS" />,
+    Nextjs: <SiNextdotjs className="text-zinc-200" title="Next.js" />,
+    "Next.js": <SiNextdotjs className="text-zinc-200" title="Next.js" />,
+    HTML: <IoLogoHtml5 className="text-orange-600" title="HTML5" />,
+    CSS: <IoLogoCss3 className="text-blue-500" title="CSS3" />,
+    Axios: <SiAxios className="text-purple-400" title="Axios" />,
   };
 
   const projects = [
     {
       img: screenshot7,
       title: "Summarist Clone",
-      stack: ["React", "JavaScript", "Firebase", "Git"],
+      badge: "Featured / Internship",
+      stack: ["React", "JavaScript", "Firebase", "Tailwind", "Git"],
       description:
-        "A responsive audiobook platform inspired by Summarist, built with React and modern front-end technologies. Features include authentication, dynamic routing, audio playback, personalized library functionality, and interactive UI components. The final product of my internship with Frontend Simplified.",
+        "A full-featured audiobook platform featuring Firebase authentication, payment workflows, dynamic routing, and audio playback. Built as the capstone project for my Frontend Simplified internship.",
       link: "https://summarist-beryl.vercel.app/#/",
+      github: "https://github.com/fab785",
+    },
+    {
+      img: screenshot4,
+      title: "Skinstric",
+      badge: "AI Diagnostic App",
+      stack: ["React", "Tailwind", "Next.js", "JavaScript"],
+      description:
+        "An AI-driven skincare diagnostic web application featuring demographic facial analysis, interactive multi-step quiz flows, and dynamic regimen generation based on skin profiling.",
+      link: "https://fab785.github.io/skinstric/",
+      github: "https://github.com/fab785/skinstric",
+    },
+    {
+      img: screenshot6,
+      title: "X-Clone",
+      badge: "Social Media App",
+      stack: ["React", "JavaScript", "Tailwind", "Next.js"],
+      description:
+        "A modern web application replicating Twitter/X core functionality, focusing on responsive feeds, interactive post components, and state management.",
+      link: "https://x-clone-plum-theta.vercel.app/",
+      github: "https://github.com/fab785",
     },
     {
       img: screenshot1,
       title: "Library Snapshot",
-      stack: ["React", "JavaScript", "Node.js", "Git"],
+      stack: ["React", "JavaScript", "Node.js", "Axios", "Git"],
       description:
-        "Converted a static website into a dynamic app using Axios, Owl Carousel, and Animate on Scroll. Maintained version control with GitHub PRs.",
+        "Converted a static web template into a dynamic React application using Axios for data fetching, custom filtering, and dynamic cart management.",
       link: "https://library-with-react-rho.vercel.app/#/",
+      github: "https://github.com/fab785",
     },
     {
       img: screenshot2,
@@ -68,222 +92,134 @@ export default function AllProjects() {
       subtitle: "Creative Strategy",
       stack: ["React", "JavaScript", "Tailwind"],
       description:
-        "A modern business platform highlighting creative solutions for SMEs. Fast, scalable, and responsive — blending sleek UI with strategic storytelling.",
+        "A high-performance business landing page showcasing agency services for SMEs, built with a mobile-first approach and modern CSS transitions.",
       link: "https://fab785.github.io/AriCreati/",
-    },
-    {
-      img: screenshot3,
-      title: "Treact Clone",
-      stack: ["React", "HTML", "CSS"],
-      description:
-        "Recreated the Treact landing page with animations, components, and responsive design — testing precision in front-end replication.",
-      link: "https://final-project-zeta-livid.vercel.app/",
-    },
-    {
-      img: screenshot4,
-      title: "Skinstric",
-      stack: ["React", "Tailwind", "Next.js"],
-      description:
-        "A clean and modern skincare brand website. Built with Next.js for performance, Tailwind for styling, and a mobile-first design approach.",
-      link: "https://fab785.github.io/skinstric/",
+      github: "https://github.com/fab785/AriCreati",
     },
     {
       img: screenshot5,
       title: "ULTRAVERSE",
-      subtitle: "Internship Project",
-      stack: ["React", "JavaScript", "Tailwind"],
+      subtitle: "NFT Marketplace",
+      stack: ["React", "JavaScript", "Tailwind", "Axios"],
       description:
-        "Developed during my internship — showcasing UI/UX principles, modern layouts, and responsive components optimized for real-world use cases.",
+        "An e-commerce style NFT marketplace platform featuring live API data integration, skeleton loading states, and dynamic sorting mechanisms.",
       link: "https://fab785.github.io/fabrizio-internship/",
+      github: "https://github.com/fab785/fabrizio-internship",
     },
     {
-      img: screenshot6,
-      title: "X-clone",
-      stack: ["React", "JavaScript", "Tailwind", "Next.js"],
+      img: screenshot3,
+      title: "Treact Clone",
+      stack: ["React", "HTML", "CSS", "JavaScript"],
       description:
-        "A modern recreation of Twitter (now X). Built with React, Next.js, and TailwindCSS, focusing on dynamic feeds, authentication, and responsive UI.",
-      link: "https://x-clone-plum-theta.vercel.app/",
+        "A precise, pixel-perfect recreation of the Treact landing UI, focusing on modular component structures and responsive media queries.",
+      link: "https://final-project-zeta-livid.vercel.app/",
+      github: "https://github.com/fab785",
     },
   ];
 
-  const [mobileTappedIndex, setMobileTappedIndex] = useState(null);
-
   return (
-    <section
-      className="relative min-h-screen text-white px-6 py-16 flex flex-col items-center"
-      style={{
-        background: `
-          radial-gradient(circle at top left, rgba(132,204,22,0.15), transparent 60%),
-          radial-gradient(circle at bottom right, rgba(132,204,22,0.15), transparent 70%),
-          linear-gradient(to bottom right, #000000, #111827, #1a2e05)
-        `,
-      }}
-    >
-      {/* Floating cursor (desktop only) */}
+    <section className="min-h-screen bg-zinc-950 text-white pt-24 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
+      {/* Floating cursor */}
       {window.innerWidth >= 768 && (
         <div
-          className={`fixed flex items-center justify-center rounded-full transition-all duration-200 ease-out
-                pointer-events-none z-[9999]
-                ${hoveredProject ? "w-16 h-16" : "w-4 h-4"}`}
+          className={`fixed flex items-center justify-center rounded-full pointer-events-none z-[9999] transition-transform duration-100 ease-out ${
+            hoveredProject ? "w-12 h-12 bg-lime-400 text-zinc-950 scale-100" : "w-0 h-0 scale-0"
+          }`}
           style={{
-            left: cursorPos.x + 28,
-            top: cursorPos.y + 20,
+            left: cursorPos.x + 16,
+            top: cursorPos.y + 16,
             transform: "translate(-50%, -50%)",
-            backgroundColor: "#a3e635",
-            color: "#000",
           }}
         >
-          {hoveredProject && <ArrowUpRight className="w-6 h-6" />}
+          <ArrowUpRight className="w-5 h-5 font-bold" />
         </div>
       )}
 
-      {/* Header */}
-      <div className="w-full max-w-7xl mt-32 mb-12 text-left relative z-10">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-lime-400 mb-6">
-          Featured Projects
+      {/* Page Header */}
+      <div className="mb-14 border-b border-zinc-800 pb-8">
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
+          All <span className="text-lime-400">Projects</span>
         </h1>
-        <p className="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-4xl">
-          These selected projects reflect my passion for blending strategy with
-          creativity — solving real problems through thoughtful design and
-          impactful storytelling.
+        <p className="text-zinc-400 text-base md:text-lg max-w-2xl leading-relaxed">
+          A comprehensive showcase of web applications, client projects, and front-end builds focused on performance, clean UI, and modern React practices.
         </p>
       </div>
 
-      {/* Project cards */}
-      <div className="w-full flex flex-col items-center gap-14 relative z-10">
+      {/* Projects Grid */}
+      <div className="grid md:grid-cols-2 gap-8">
         {projects.map((project, i) => (
-          <a
+          <div
             key={i}
-            href={project.link}
-            target="_blank"
-            rel="noreferrer"
-            className="relative w-full h-[300px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl group block max-w-5xl"
+            className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-zinc-700 transition-all shadow-xl flex flex-col justify-between group"
             onMouseEnter={() => setHoveredProject(project)}
             onMouseLeave={() => setHoveredProject(null)}
-            onClick={(e) => {
-              if (window.innerWidth < 768) {
-                if (mobileTappedIndex !== i) {
-                  e.preventDefault();
-                  setMobileTappedIndex(i);
-                } else {
-                  setMobileTappedIndex(null);
-                }
-              }
-            }}
-            aria-label={`${project.title} – open project`}
           >
-            {/* Image wrapper */}
-            <div className="absolute inset-0 overflow-hidden rounded-3xl">
+            {/* Top Preview Banner */}
+            <div className="relative overflow-hidden bg-zinc-950 h-52 border-b border-zinc-800">
               <img
                 src={project.img}
-                alt={`project-${i + 1}`}
-                className="w-full h-full object-cover"
+                alt={project.title}
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
               />
+              {project.badge && (
+                <span className="absolute top-3 right-3 text-[10px] font-mono text-lime-400 bg-zinc-950/80 backdrop-blur-md border border-lime-400/30 px-2.5 py-1 rounded-md">
+                  {project.badge}
+                </span>
+              )}
             </div>
 
-            {/* Sliding door overlays for desktop */}
-            <div className="absolute inset-0 hidden md:flex pointer-events-none">
-              {/* Left panel */}
-              <div
-                className="w-1/2 h-full bg-black/40 backdrop-blur-md transform -translate-x-full 
-                           group-hover:translate-x-0 transition-transform duration-500 ease-in-out
-                           flex flex-col justify-start items-start px-8 pt-16"
-              >
-                <h3 className="text-4xl md:text-5xl font-bold text-lime-400 mb-2">
-                  {project.title}
-                </h3>
-                {project.subtitle && (
-                  <h4 className="text-xl md:text-2xl font-semibold text-gray-200 mb-4">
-                    {project.subtitle}
-                  </h4>
-                )}
-                {project.stack && (
-                  <div className="flex space-x-4 mt-4">
-                    {project.stack.map((tech, index) => (
-                      <span key={index}>{iconsMap[tech] || tech}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
+            {/* Card Content */}
+            <div className="p-6 flex flex-col flex-grow justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                    {project.title}
+                    {project.subtitle && (
+                      <span className="text-xs font-normal text-zinc-500">({project.subtitle})</span>
+                    )}
+                  </h3>
+                </div>
 
-              {/* Right panel */}
-              <div
-                className="w-1/2 h-full bg-black/40 backdrop-blur-md transform translate-x-full 
-                           group-hover:translate-x-0 transition-transform duration-500 ease-in-out
-                           flex flex-col justify-end items-start px-8 pb-16"
-              >
-                <p className="text-lg md:text-xl leading-relaxed text-gray-100 mt-20">
+                <p className="text-zinc-400 text-xs md:text-sm leading-relaxed mb-6">
                   {project.description}
                 </p>
               </div>
-            </div>
 
-            {/* Simple overlay for mobile (first tap shows, second tap navigates) */}
-            <div
-              className={`absolute inset-0 flex md:hidden bg-black/60 backdrop-blur-md flex-col justify-center items-center p-6 text-center
-                transition-opacity duration-300 ${
-                  mobileTappedIndex === i ? "opacity-100" : "opacity-0"
-                }`}
-            >
-              <h3 className="text-2xl font-bold text-lime-400 mb-2">
-                {project.title}
-              </h3>
-              {project.subtitle && (
-                <h4 className="text-lg font-semibold text-gray-200 mb-4">
-                  {project.subtitle}
-                </h4>
-              )}
-              <p className="text-base text-gray-100 mb-4">
-                {project.description}
-              </p>
-              {project.stack && (
-                <div className="flex space-x-3 justify-center">
-                  {project.stack.map((tech, index) => (
-                    <span key={index}>{iconsMap[tech] || tech}</span>
+              {/* Stack & Links Footer */}
+              <div className="pt-4 border-t border-zinc-800/80 flex items-center justify-between">
+                <div className="flex items-center gap-2 text-xl">
+                  {project.stack.map((tech, idx) => (
+                    <span key={idx}>{iconsMap[tech] || null}</span>
                   ))}
                 </div>
-              )}
+
+                <div className="flex items-center gap-3">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 text-zinc-400 hover:text-white bg-zinc-950 border border-zinc-800 rounded-lg hover:border-zinc-700 transition-colors"
+                      title="View Code"
+                    >
+                      <Github className="w-4 h-4" />
+                    </a>
+                  )}
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-xs font-semibold text-zinc-950 bg-lime-400 hover:bg-lime-300 px-3.5 py-2 rounded-lg transition-colors"
+                  >
+                    <span>Live Demo</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </section>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
