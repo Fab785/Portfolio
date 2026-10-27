@@ -5,6 +5,8 @@ import screenshotSkinstric from "../assets/Skinstric.png";
 import screenshotXClone from "../assets/Xclone.png";
 
 export default function Hero() {
+  const resumeUrl = `${window.location.origin}/Frontend_resume.pdf`;
+
   return (
     <section className="max-w-6xl mx-auto px-6 pt-6 pb-2">
       {/* Top Grid */}
@@ -37,13 +39,13 @@ export default function Hero() {
               GitHub Profile
             </a>
             <a 
-              href="/resume.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-zinc-400 hover:text-white font-medium text-sm px-3 py-2.5 transition-colors"
-            >
-              View Resume ↗
-            </a>
+  href="https://docs.google.com/document/d/1XtXT6OH2zeqHR_xmwqGwQgEWMWdG0hceNvFzwpVFhAg/edit?usp=sharing"
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="text-zinc-400 hover:text-white font-medium text-sm px-3 py-2.5 transition-colors cursor-pointer"
+>
+  View Resume ↗
+</a>
           </div>
         </div>
 
@@ -129,7 +131,6 @@ export default function Hero() {
     </section>
   );
 }
-
 
 
 

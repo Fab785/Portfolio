@@ -3,7 +3,7 @@ import { FaLinkedin, FaGithub, FaFilePdf } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-lime-400 text-black py-3 px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-semibold">
+    <footer className="w-full bg-lime-400 text-black pt-3 pb-20 md:py-3 px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-semibold">
       {/* Contact Details */}
       <div className="flex items-center gap-6">
         <a 

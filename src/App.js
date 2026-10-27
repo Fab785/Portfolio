@@ -8,6 +8,7 @@ import ContactModal from "./components/ContactModal";
 import AllProjects from "./pages/AllProjects.jsx";
 import AboutMe from "./pages/AboutMe.jsx";
 
+/* Scroll to top automatically on route change */
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -19,18 +20,23 @@ function ScrollToTop() {
 }
 
 function HomePage() {
-  return (
-    <>
-      <Hero />
-    </>
-  );
+  return <Hero />;
 }
 
 export default function App() {
   const [contactOpen, setContactOpen] = useState(false);
+  const location = useLocation();
+
+  const isHomePage = location.pathname === "/";
 
   return (
-    <div className="h-screen w-full bg-zinc-950 text-white flex flex-col justify-between overflow-hidden">
+    <div
+      className={`w-full bg-zinc-950 text-white flex flex-col justify-between ${
+        isHomePage
+          ? "min-h-screen overflow-y-auto md:h-screen md:overflow-hidden"
+          : "min-h-screen overflow-y-auto"
+      }`}
+    >
       <Navbar />
       <ScrollToTop />
 

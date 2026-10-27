@@ -1,101 +1,97 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { User, Code2, GraduationCap, ArrowLeft } from "lucide-react";
 import profileImg from "../assets/Fab.jpg";
 
 export default function AboutMe() {
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const rafId = useRef(null);
-
-  useEffect(() => {
-    const onMove = (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-      rafId.current = requestAnimationFrame(() => setCursorPos({ x, y }));
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-    };
-  }, []);
-
   return (
-    <section
-      className="w-full min-h-screen text-white flex flex-col justify-center items-center px-6 md:px-20 py-20 relative"
-      style={{
-        background: `
-          radial-gradient(circle at top left, rgba(132,204,22,0.15), transparent 60%),
-          radial-gradient(circle at bottom right, rgba(132,204,22,0.15), transparent 70%),
-          linear-gradient(to bottom right, #000000, #111827, #1a2e05)
-        `,
-      }}
-    >
-      {/* Lime dot cursor */}
-      <div
-        className="fixed w-4 h-4 rounded-full pointer-events-none z-[9999] bg-lime-400"
-        style={{
-            left: cursorPos.x + 28, // moves the dot 20px to the right
-            top: cursorPos.y + 20,   // moves the dot 8px down
-            transform: "translate(-50%, -50%)",
-            transition: "all 0.05s ease-out",
-          }}
-          
-      />
-
-      <div className="max-w-5xl w-full flex flex-col md:flex-row justify-between items-center gap-16">
-        {/* LEFT SIDE: Text */}
-        <div className="flex-1 flex flex-col justify-center">
-          <h2 className="text-5xl md:text-6xl font-bold text-lime-400 mb-6 uppercase tracking-wide">
-            ABOUT ME
-          </h2>
-          <p className="text-gray-300 mb-6 text-lg md:text-xl leading-relaxed max-w-xl">
-            Hi, I'm Fabrizio — a passionate Frontend Developer. I began my journey at
-            Frontend Simplified in February and have been fully committed to mastering
-            modern web technologies ever since.
-          </p>
-          <p className="text-gray-300 mb-6 text-lg md:text-xl leading-relaxed max-w-xl">
-            I love building interactive and visually engaging digital experiences,
-            blending design and functionality to turn ideas into reality. Every project I
-            create is an opportunity to sharpen my skills and explore new ways to push the
-            boundaries of web development.
-          </p>
-          <p className="text-gray-300 mb-6 text-lg md:text-xl leading-relaxed max-w-xl">
-            My focus is on crafting responsive, dynamic, and user-friendly applications
-            with React, Tailwind CSS, and other modern tools. I’m constantly learning,
-            experimenting, and staying inspired by the evolving world of technology.
-          </p>
+    <section className="w-full min-h-screen bg-zinc-950 text-white flex flex-col justify-center items-center px-6 md:px-12 py-24 relative overflow-y-auto">
+      <div className="max-w-5xl w-full">
+        {/* Header & Back Link */}
+        <div className="flex items-center justify-between mb-8 border-b border-zinc-800 pb-6">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+              About <span className="text-lime-400">Me</span>
+            </h1>
+            <p className="text-zinc-400 text-sm md:text-base mt-1">
+              Frontend developer, continuous learner, and problem solver.
+            </p>
+          </div>
           <Link
             to="/"
-            className="inline-block mt-6 px-8 py-4 border-2 border-lime-400 text-lime-400 font-bold text-lg rounded-full
-                       bg-gradient-to-r from-lime-400 to-lime-400 bg-[length:0%_100%] bg-no-repeat bg-left
-                       hover:bg-[length:100%_100%] hover:text-black
-                       transition-all duration-500 ease-out"
+            className="flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800 px-4 py-2 rounded-xl text-xs font-semibold transition-all"
           >
-            Back to Home
+            <ArrowLeft className="w-4 h-4 text-lime-400" />
+            <span>Back to Home</span>
           </Link>
         </div>
 
-        {/* RIGHT SIDE: Image */}
-<div className="w-full sm:w-[300px] md:w-[400px] aspect-[3/4] flex-shrink-0">
-  <div
-    className="w-full h-full rounded-2xl overflow-hidden shadow-[0_25px_40px_rgba(0,0,0,0.6)]"
-    style={{
-      transform: "rotateZ(-3deg) rotateX(2deg)",
-      transformOrigin: "bottom right",
-    }}
-  >
-    <img
-      src={profileImg}
-      alt="Profile"
-      className="w-full h-full object-cover object-[65%_center]"
-    />
-  </div>
-</div>
+        {/* Content Grid */}
+        <div className="grid md:grid-cols-12 gap-6 items-start">
+          
+          {/* Left Column: Photo & Quick Info Card */}
+          <div className="md:col-span-4 bg-zinc-900 border border-zinc-800 rounded-2xl p-5 flex flex-col items-center text-center">
+            <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-zinc-950 border border-zinc-800 mb-4">
+              <img
+                src={profileImg}
+                alt="Fabrizio Terribile"
+                className="w-full h-full object-cover object-[65%_center]"
+              />
+            </div>
+            <h3 className="text-lg font-bold text-white">Fabrizio Terribile</h3>
+            <p className="text-xs font-mono text-lime-400 mb-3">Front-End Developer</p>
+            <div className="w-full pt-3 border-t border-zinc-800 text-left text-xs text-zinc-400 space-y-1.5 font-mono">
+              <div className="flex justify-between">
+                <span>Location:</span>
+                <span className="text-white">Remote / US</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Focus:</span>
+                <span className="text-white">React & Tailwind</span>
+              </div>
+            </div>
+          </div>
 
+          {/* Right Column: Structured Modular Cards */}
+          <div className="md:col-span-8 flex flex-col gap-4">
+            
+            {/* Card 1: Background & Journey */}
+            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+              <div className="flex items-center gap-2.5 mb-3">
+                <GraduationCap className="w-5 h-5 text-lime-400" />
+                <h4 className="text-base font-bold text-white">The Journey</h4>
+              </div>
+              <p className="text-zinc-400 text-xs md:text-sm leading-relaxed">
+                I began my formal web development journey at Frontend Simplified, completing an intensive program and gaining hands-on internship experience building production-ready applications. I am deeply committed to writing clean, scalable code.
+              </p>
+            </div>
+
+            {/* Card 2: Philosophy & Approach */}
+            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+              <div className="flex items-center gap-2.5 mb-3">
+                <Code2 className="w-5 h-5 text-lime-400" />
+                <h4 className="text-base font-bold text-white">Development Approach</h4>
+              </div>
+              <p className="text-zinc-400 text-xs md:text-sm leading-relaxed">
+                I specialize in turning complex design concepts into fast, responsive, and accessible user interfaces. Whether it's state management in React, responsive layouts with Tailwind CSS, or integrating dynamic APIs, my focus is always on user experience and code quality.
+              </p>
+            </div>
+
+            {/* Card 3: Looking Ahead */}
+            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+              <div className="flex items-center gap-2.5 mb-3">
+                <User className="w-5 h-5 text-lime-400" />
+                <h4 className="text-base font-bold text-white">Looking Ahead</h4>
+              </div>
+              <p className="text-zinc-400 text-xs md:text-sm leading-relaxed">
+                I'm actively seeking junior front-end developer roles where I can collaborate with talented engineering teams, contribute to high-impact products, and continue growing as a software professional.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
       </div>
     </section>
   );
 }
-
-
